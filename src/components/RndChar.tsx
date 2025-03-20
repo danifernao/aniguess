@@ -192,7 +192,7 @@ function RndChar() {
     getData(query)
       .then((response) => {
         const data: Char[] = response.data.Page.characters;
-        const charsData: object[] = [];
+        const charsData: Char[] = [];
 
         for (let i = 0; i < data.length; i++) {
           if (data[i].media!.nodes.length > 0) {
@@ -288,12 +288,9 @@ function RndChar() {
         score: score,
       };
 
-      // Elige un personaje aleatorio a preguntar.
       setCurrChar(chars[rndIndex]);
       setIdsTaken((i) => [...i, chars[rndIndex].id!]);
 
-      /* Guarda los datos de la aplicación en el almacenamiento local
-         del navegador. */
       localStorage.setItem("backup", JSON.stringify(backup));
     }
   }, [chars]);
