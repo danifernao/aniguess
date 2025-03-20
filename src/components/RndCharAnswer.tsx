@@ -12,7 +12,7 @@ interface Char {
           english: string;
           romaji: string;
         };
-        siteUrl: string;
+        siteUrl?: string;
       }
     ];
   };

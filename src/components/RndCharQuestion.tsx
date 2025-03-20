@@ -1,5 +1,4 @@
 interface Char {
-  id?: number;
   name?: {
     full: string;
   };
@@ -9,16 +8,13 @@ interface Char {
   media?: {
     nodes: [
       {
-        id: number;
         title: {
           english: string;
           romaji: string;
         };
-        siteUrl: string;
       }
     ];
   };
-  siteUrl?: string;
 }
 
 interface RndCharQuestionProps {

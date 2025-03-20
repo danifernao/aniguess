@@ -16,12 +16,13 @@ interface Char {
   media?: {
     nodes: [
       {
-        id: number;
+        id?: number;
+        type?: string;
         title: {
           english: string;
           romaji: string;
         };
-        siteUrl: string;
+        siteUrl?: string;
       }
     ];
   };
@@ -175,6 +176,7 @@ function RndChar() {
           media {
             nodes {
               id
+              type
               title {
                 english
                 romaji
@@ -187,14 +189,12 @@ function RndChar() {
       }
     }`;
 
-    // Intenta obtener los datos de los personajes con las IDs aleatorias.
     getData(query)
       .then((response) => {
         const data: Char[] = response.data.Page.characters;
         const charsData: object[] = [];
 
         for (let i = 0; i < data.length; i++) {
-          // Verifica que haya obras asociadas al personaje iterado.
           if (data[i].media!.nodes.length > 0) {
             const imageIsDefault: boolean = /default\.jpg$/.test(
               data[i].image!.large
@@ -203,9 +203,6 @@ function RndChar() {
               data[i].media!.nodes[0].title.english !== "" ||
               data[i].media!.nodes[0].title.romaji !== ""
             );
-
-            /* Solo se tienen en cuenta los personajes que tienen imágenes y títulos en
-               inglés o romaji. */
             if (!imageIsDefault && hasMediaTitle) {
               charsData.push(data[i]);
             }
@@ -227,7 +224,11 @@ function RndChar() {
   const checkAnswer = (char: Char): void => {
     const isAnswerCorrect: boolean =
       char.id === currChar!.id ||
-      char.media!.nodes[0].id === currChar!.media!.nodes[0].id;
+      currChar!.media!.nodes.some(
+        (m) =>
+          m.id === char.media!.nodes[0].id &&
+          m.type === char.media!.nodes[0].type
+      );
 
     setIsCorrect(isAnswerCorrect);
 
@@ -266,7 +267,7 @@ function RndChar() {
       getLastCharId().then((id) => setTotalChars(id));
     }
 
-    // Establece el lenguaje y el cotenido textual de la aplicación.
+    // Establece el lenguaje de la aplicación.
     setTransl(lang[language as keyof object]);
     document.title = lang[language as keyof typeof lang].title;
     document.documentElement.lang = language;
