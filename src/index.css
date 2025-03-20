@@ -214,4 +214,8 @@ p {
     flex-direction: column;
     gap: 1rem;
   }
+
+  .character .question fieldset div {
+    margin: 1rem 0;
+  }
 }
