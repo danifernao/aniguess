@@ -1,0 +1,40 @@
+{
+  "en": {
+    "title": "Where does this character come from?",
+    "question": "Where does this character come from?",
+    "answer": {
+      "correct": "Correct!",
+      "incorrect": "Incorrect!",
+      "next": "Next"
+    },
+    "score": {
+      "correct": "Correct",
+      "total": "Questions",
+      "percentage": "Ratio"
+    },
+    "loading": {
+      "intro": "Fetching data",
+      "delay": "This may take a minute.",
+      "error": "An unexpected error occurred on our part, please try again later."
+    }
+  },
+  "es": {
+    "title": "¿De dónde proviene este personaje?",
+    "question": "¿De dónde proviene este personaje?",
+    "answer": {
+      "correct": "¡Correcto!",
+      "incorrect": "¡Incorrecto!",
+      "next": "Siguiente"
+    },
+    "score": {
+      "correct": "Aciertos",
+      "total": "Preguntas",
+      "percentage": "Relación"
+    },
+    "loading": {
+      "intro": "Obteniendo datos",
+      "delay": "Esto puede tardar un minuto.",
+      "error": "Se presentó un error inesperado de nuestra parte, inténtalo más tarde."
+    }
+  }
+}
