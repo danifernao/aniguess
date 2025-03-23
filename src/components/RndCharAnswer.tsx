@@ -1,3 +1,11 @@
+interface Media {
+  title: {
+    english: string;
+    romaji: string;
+  };
+  siteUrl?: string;
+}
+
 interface Char {
   name?: {
     full: string;
@@ -6,15 +14,7 @@ interface Char {
     large: string;
   };
   media?: {
-    nodes: [
-      {
-        title: {
-          english: string;
-          romaji: string;
-        };
-        siteUrl?: string;
-      }
-    ];
+    nodes: Media[];
   };
   siteUrl?: string;
 }

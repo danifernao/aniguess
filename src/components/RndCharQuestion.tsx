@@ -1,3 +1,10 @@
+interface Media {
+  title: {
+    english: string;
+    romaji: string;
+  };
+}
+
 interface Char {
   name?: {
     full: string;
@@ -6,14 +13,7 @@ interface Char {
     large: string;
   };
   media?: {
-    nodes: [
-      {
-        title: {
-          english: string;
-          romaji: string;
-        };
-      }
-    ];
+    nodes: Media[];
   };
 }
 
@@ -30,7 +30,7 @@ function RndCharQuestion({
   checkAnswer,
   transl,
 }: RndCharQuestionProps) {
-  const shuffle = (arr: Char[]) => {
+  const shuffle = (arr: Char[]): Char[] => {
     for (let i = arr.length - 1; i > 0; i--) {
       const j: number = Math.floor(Math.random() * (i + 1));
       [arr[i], arr[j]] = [arr[j], arr[i]];

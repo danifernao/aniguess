@@ -2,7 +2,7 @@
 
 Un simple juego en donde tienes que adivinar el nombre de la obra a la que pertence un personaje de alguna animación, novela o cómic registrado en la base de datos de AniList.
 
-![Captura de pantalla de la aplicación](/screenshot.png)
+![Captura de pantalla de la aplicación](/screenshot.jpeg)
 
 ### Instalación
 

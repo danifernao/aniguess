@@ -16,6 +16,26 @@
       "intro": "Fetching data",
       "delay": "This may take a minute.",
       "error": "An unexpected error occurred on our part, please try again later."
+    },
+    "settings": {
+      "title": "Settings",
+      "mediaType": {
+        "legend": "Media Type",
+        "options": {
+          "anime": "Anime",
+          "manga": "Manga",
+          "both": "Both"
+        }
+      },
+      "mediaNsfw": {
+        "legend": "NSFW content",
+        "options": {
+          "yes": "Yes",
+          "no": "No"
+        }
+      },
+      "note": "Changes are saved automatically.",
+      "close": "Close"
     }
   },
   "es": {
@@ -35,6 +55,26 @@
       "intro": "Obteniendo datos",
       "delay": "Esto puede tardar un minuto.",
       "error": "Se presentó un error inesperado de nuestra parte, inténtalo más tarde."
+    },
+    "settings": {
+      "title": "Configuración",
+      "mediaType": {
+        "legend": "Tipo de obra",
+        "options": {
+          "anime": "Anime",
+          "manga": "Manga",
+          "both": "Ambos"
+        }
+      },
+      "mediaNsfw": {
+        "legend": "Contenido para adultos",
+        "options": {
+          "yes": "Sí",
+          "no": "No"
+        }
+      },
+      "note": "Los cambios se guardan automáticamente.",
+      "close": "Cerrar"
     }
   }
 }
