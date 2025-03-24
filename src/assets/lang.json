@@ -1,6 +1,5 @@
 {
   "en": {
-    "title": "Where does this character come from?",
     "question": "Where does this character come from?",
     "answer": {
       "correct": "Correct!",
@@ -39,7 +38,6 @@
     }
   },
   "es": {
-    "title": "¿De dónde proviene este personaje?",
     "question": "¿De dónde proviene este personaje?",
     "answer": {
       "correct": "¡Correcto!",

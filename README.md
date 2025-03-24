@@ -1,4 +1,4 @@
-# ¿De dónde es?
+# AniGuess
 
 Un simple juego en donde tienes que adivinar el nombre de la animación, cómic o novela a la que pertenece un personaje. Los datos son proporcionados por AniList.co.
 

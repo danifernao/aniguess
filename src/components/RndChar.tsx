@@ -320,7 +320,6 @@ function RndChar() {
     }
 
     setTransl(lang[language as keyof object]);
-    document.title = lang[language as keyof typeof lang].title;
     document.documentElement.lang = language;
   }, []);
 
