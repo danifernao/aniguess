@@ -1,6 +1,6 @@
 # ¿De dónde es?
 
-Un simple juego en donde tienes que adivinar el nombre de la obra a la que pertence un personaje de alguna animación, novela o cómic registrado en la base de datos de AniList.
+Un simple juego en donde tienes que adivinar el nombre de la animación, cómic o novela a la que pertenece un personaje. Los datos son proporcionados por AniList.co.
 
 ![Captura de pantalla de la aplicación](/screenshot.jpeg)
 

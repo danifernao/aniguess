@@ -239,6 +239,7 @@ input[type="radio"] {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: 1rem;
   background-color: rgb(from var(--color-blue-5) r g b / 0.8);
   backdrop-filter: blur(0.2rem);
 }
