@@ -1,26 +1,9 @@
-interface Media {
-  title: {
-    english: string;
-    romaji: string;
-  };
-}
-
-interface Char {
-  name?: {
-    full: string;
-  };
-  image?: {
-    large: string;
-  };
-  media?: {
-    nodes: Media[];
-  };
-}
+import type { ALCharType } from "../types/types";
 
 interface RndCharQuestionProps {
-  chars: Char[];
-  currChar: Char;
-  checkAnswer: (char: Char) => void;
+  chars: ALCharType[];
+  currChar: ALCharType;
+  checkAnswer: (char: ALCharType) => void;
   transl: string;
 }
 
@@ -30,7 +13,7 @@ function RndCharQuestion({
   checkAnswer,
   transl,
 }: RndCharQuestionProps) {
-  const shuffle = (arr: Char[]): Char[] => {
+  const shuffle = (arr: ALCharType[]): ALCharType[] => {
     for (let i = arr.length - 1; i > 0; i--) {
       const j: number = Math.floor(Math.random() * (i + 1));
       [arr[i], arr[j]] = [arr[j], arr[i]];
@@ -40,10 +23,10 @@ function RndCharQuestion({
 
   return (
     <div className="question">
-      <img src={currChar.image!.large} alt="" />
+      <img src={currChar.image.large} alt="" />
       <fieldset>
         <legend>{transl}</legend>
-        {shuffle(chars).map((char: Char, key: number) => (
+        {shuffle(chars).map((char: ALCharType, key: number) => (
           <div key={key}>
             <input
               type="radio"
@@ -53,8 +36,8 @@ function RndCharQuestion({
               onClick={() => checkAnswer(char)}
             />
             <label htmlFor={`media-${key}`}>
-              {char.media!.nodes[0].title.english ||
-                char.media!.nodes[0].title.romaji}
+              {char.media.nodes[0].title.english ||
+                char.media.nodes[0].title.romaji}
             </label>
           </div>
         ))}

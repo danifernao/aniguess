@@ -1,33 +1,10 @@
-interface Media {
-  title: {
-    english: string;
-    romaji: string;
-  };
-  siteUrl?: string;
-}
-
-interface Char {
-  name?: {
-    full: string;
-  };
-  image?: {
-    large: string;
-  };
-  media?: {
-    nodes: Media[];
-  };
-  siteUrl?: string;
-}
+import type { ALCharType, TranslAnswerType } from "../types/types";
 
 interface RndCharAnswerProps {
-  currChar: Char;
+  currChar: ALCharType;
   isCorrect: boolean;
   playAgain: () => void;
-  transl: {
-    correct: string;
-    incorrect: string;
-    next: string;
-  };
+  transl: TranslAnswerType;
 }
 
 function RndCharAnswer({
@@ -42,7 +19,7 @@ function RndCharAnswer({
         <p className="title">
           <b>{isCorrect ? transl.correct : transl.incorrect}</b>
         </p>
-        <img src={currChar.image!.large} alt="" />
+        <img src={currChar.image.large} alt="" />
         <div className="description">
           <p>
             <a href={currChar.siteUrl} target="_blank">
@@ -50,9 +27,9 @@ function RndCharAnswer({
             </a>
           </p>
           <p>
-            <a href={currChar.media!.nodes[0].siteUrl} target="_blank">
-              {currChar.media!.nodes[0].title.english ||
-                currChar.media!.nodes[0].title.romaji}
+            <a href={currChar.media.nodes[0].siteUrl} target="_blank">
+              {currChar.media.nodes[0].title.english ||
+                currChar.media.nodes[0].title.romaji}
             </a>
           </p>
         </div>

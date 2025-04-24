@@ -1,3 +1,4 @@
+import type { AppSettingsType, TranslSettingsType } from "../types/types";
 import Modal from "react-modal";
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -6,24 +7,9 @@ import { faGear, faXmark } from "@fortawesome/free-solid-svg-icons";
 Modal.setAppElement("#root");
 
 interface RndCharSettingsProps {
-  settings: {
-    mediaType: string | null;
-    mediaNsfw: boolean;
-  };
+  settings: AppSettingsType;
   saveSettings: (key: string, value: string) => void;
-  transl: {
-    title: string;
-    mediaType: {
-      legend: string;
-      options: { [key: string]: string };
-    };
-    mediaNsfw: {
-      legend: string;
-      options: { [key: string]: string };
-    };
-    note: string;
-    close: string;
-  };
+  transl: TranslSettingsType;
 }
 
 function RndCharSettings({

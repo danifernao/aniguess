@@ -1,10 +1,8 @@
+import type { TranslLoadingType } from "../types/types";
+
 interface RndCharLoadingProps {
   errorFound: boolean;
-  transl: {
-    intro: string;
-    delay: string;
-    error: string;
-  };
+  transl: TranslLoadingType;
 }
 
 function RndCharLoading({ errorFound, transl }: RndCharLoadingProps) {

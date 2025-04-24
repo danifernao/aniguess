@@ -1,13 +1,8 @@
+import type { AppScoreType, TranslScoreType } from "../types/types";
+
 interface RndCharScoreProps {
-  score: {
-    correct: number;
-    total: number;
-  };
-  transl: {
-    correct: string;
-    total: string;
-    percentage: string;
-  };
+  score: AppScoreType;
+  transl: TranslScoreType;
 }
 
 function RndCharScore({ score, transl }: RndCharScoreProps) {
