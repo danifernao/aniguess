@@ -1,10 +1,10 @@
 import contentEs from "../locales/es.json";
 import contentEn from "../locales/en.json";
 import type {
-  ApiResponseType,
   AppScoreType,
   AppSettingsType,
   AppBackupType,
+  ApiResponseType,
   ALCharType,
   TranslType,
 } from "../types/types";

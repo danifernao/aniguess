@@ -1,11 +1,3 @@
-export interface ApiResponseType {
-  data: {
-    Page: {
-      characters: ALCharType[];
-    };
-  };
-}
-
 export interface AppScoreType {
   total: number;
   correct: number;
@@ -21,6 +13,14 @@ export interface AppBackupType {
   idsTaken: number[];
   score: AppScoreType;
   settings: AppSettingsType;
+}
+
+export interface ApiResponseType {
+  data: {
+    Page: {
+      characters: ALCharType[];
+    };
+  };
 }
 
 export interface ALCharType {
