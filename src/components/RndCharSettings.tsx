@@ -74,9 +74,7 @@ function RndCharSettings({
       <div className="settings">
         <a
           href="#"
-          onClick={(e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) =>
-            toggleModal(e)
-          }
+          onClick={(e: React.MouseEvent<HTMLAnchorElement>) => toggleModal(e)}
           title={transl.title}
           aria-label={transl.title}
         >
