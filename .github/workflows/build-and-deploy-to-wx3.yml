@@ -1,0 +1,33 @@
+name: Build and Deploy to WX3
+
+on:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - "README.md"
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - run: npm ci && npm run build
+
+      - run: |
+          git config --global user.email "action@github.com"
+          git config --global user.name "GitHub Action"
+          git clone https://x-access-token:${{ secrets.ACCESS_TOKEN }}@github.com/danifernao/wx3.git
+
+      - run: |
+          rm -rf wx3/aniguess
+          mkdir -p wx3/aniguess
+          cp -r dist/* wx3/aniguess/
+
+      - run: |
+          cd wx3
+          git add .
+          git commit -m "Actualiza carpeta 'aniguess' desde repositorio 'aniguess'" || echo "No hay cambios para registrar"
+          git push
