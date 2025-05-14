@@ -4,7 +4,7 @@ Un simple juego elaborado con React en el que se debe adivinar el nombre de la a
 
 ![Captura de pantalla de la aplicación](/screenshot.jpeg)
 
-### Instalación
+## Instalación
 
 1. Asegúrate de tener instalado Node.js y NPM.
 2. Descarga o clona este repositorio e ingresa a él.
@@ -14,7 +14,7 @@ Un simple juego elaborado con React en el que se debe adivinar el nombre de la a
 npm install
 ```
 
-### Visualización
+## Visualización
 
 Ubícate en la raíz del proyecto, abre el terminal en dicha ubicación y ejecuta lo siguiente para iniciar el entorno de desarrollo y visualizarlo en el explorador web:
 
@@ -22,7 +22,7 @@ Ubícate en la raíz del proyecto, abre el terminal en dicha ubicación y ejecut
 npm run dev
 ```
 
-### Producción
+## Producción
 
 Ubícate en la raíz del proyecto, abre el terminal en dicha ubicación y ejecuta lo siguiente para generar los archivos destinados a un entorno de producción:
 
@@ -32,6 +32,6 @@ npm run build
 
 Estos se guardarán en una nueva carpeta llamada `dist`.
 
-### Consideraciones
+## Consideraciones
 
 - En la mayoría de los casos, los registros que no tienen imágenes traen en su reemplazo un archivo llamado _default.jpg_. No obstante, se han encontrado escenarios en los que el archivo viene con un nombre aleatorio, evadiendo la filtración. Por lo anterior, es posible que algunos personajes se presenten sin imágenes.
