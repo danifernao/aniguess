@@ -1,0 +1,38 @@
+{
+  "question": "Where does this character come from?",
+  "answer": {
+    "correct": "Correct!",
+    "incorrect": "Incorrect!",
+    "next": "Next"
+  },
+  "score": {
+    "correct": "Correct",
+    "total": "Questions",
+    "percentage": "Ratio"
+  },
+  "loading": {
+    "intro": "Fetching data",
+    "delay": "This may take a minute.",
+    "error": "An unexpected error occurred on our part, please try again later."
+  },
+  "settings": {
+    "title": "Settings",
+    "mediaType": {
+      "legend": "Media Type",
+      "options": {
+        "anime": "Anime",
+        "manga": "Manga",
+        "both": "Both"
+      }
+    },
+    "mediaNsfw": {
+      "legend": "NSFW content",
+      "options": {
+        "yes": "Yes",
+        "no": "No"
+      }
+    },
+    "note": "Changes are saved automatically.",
+    "close": "Close"
+  }
+}

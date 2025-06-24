@@ -1,0 +1,38 @@
+{
+  "question": "¿De dónde proviene este personaje?",
+  "answer": {
+    "correct": "¡Correcto!",
+    "incorrect": "¡Incorrecto!",
+    "next": "Siguiente"
+  },
+  "score": {
+    "correct": "Aciertos",
+    "total": "Preguntas",
+    "percentage": "Relación"
+  },
+  "loading": {
+    "intro": "Obteniendo datos",
+    "delay": "Esto puede tardar un minuto.",
+    "error": "Se presentó un error inesperado de nuestra parte, inténtalo más tarde."
+  },
+  "settings": {
+    "title": "Configuración",
+    "mediaType": {
+      "legend": "Tipo de obra",
+      "options": {
+        "anime": "Anime",
+        "manga": "Manga",
+        "both": "Ambos"
+      }
+    },
+    "mediaNsfw": {
+      "legend": "Contenido para adultos",
+      "options": {
+        "yes": "Sí",
+        "no": "No"
+      }
+    },
+    "note": "Los cambios se guardan automáticamente.",
+    "close": "Cerrar"
+  }
+}

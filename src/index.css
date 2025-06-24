@@ -1,0 +1,317 @@
+:root {
+  --color-white: #ffffff;
+  --color-red: #f09275;
+  --color-green: #75f088;
+  --color-blue-1: #adc0d2;
+  --color-blue-2: #3db4f2;
+  --color-blue-3: #3577ff;
+  --color-blue-4: #26304b;
+  --color-blue-5: #0b1622;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  position: relative;
+  margin: 0;
+  padding: 1rem;
+  min-height: 100vh;
+  background-color: var(--color-blue-5);
+  font-family: "Roboto", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  color: var(--color-blue-1);
+}
+
+body, #root {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+a {
+  color: var(--color-blue-2);
+  text-decoration: none;
+}
+
+p {
+  margin: 0;
+}
+
+input[type="radio"] {
+  margin: 0;
+}
+
+#root {
+  max-width: 40rem;
+}
+
+.game,
+.game > * {
+  display: flex;
+  align-items: center;
+}
+
+.game .question img,
+.game .answer img {
+  max-width: 10rem;
+  max-height: 18rem;
+  background-color: var(--color-blue-4);
+  border-radius: 0.5rem;
+}
+
+.game .question fieldset {
+  border: 0;
+}
+
+.game .question legend {
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.game .question fieldset div {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  margin: 0.5rem 0;
+}
+
+.game .answer {
+  flex-direction: column;
+  max-width: 25rem;
+}
+
+.game .answer > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+  text-align: center;
+}
+
+.game .answer .title {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.game .answer img {
+  margin: 1rem 0;
+}
+
+.game .answer.correct .title,
+.game .answer.correct .description p:last-of-type a {
+  color: var(--color-green);
+}
+
+.game .answer.incorrect .title,
+.game .answer.incorrect .description p:last-of-type a {
+  color: var(--color-red);
+}
+
+.game .answer .description p {
+  font-size: 1.3rem;
+}
+
+.game .answer .description p:last-of-type {
+  margin-top: 0.3rem;
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.game .answer button {
+  margin: 1rem 0;
+  padding: 0.5rem 0.8rem;
+  background-color: var(--color-blue-3);
+  border: 0;
+  border-radius: 0.3rem;
+  font-family: "Roboto", sans-serif;
+  font-size: 1rem;
+  color: var(--color-white);
+  animation: box-shadow 0.6s ease, transform 0.2s ease-in-out;
+}
+
+.game .answer button:hover {
+  transform: scale(1.03);
+  box-shadow: 0 0.1rem 0.6rem rgb(from var(--color-blue-3) r g b / 0.6);
+}
+
+.game .loading {
+  flex-direction: column;
+  max-width: 25rem;
+}
+
+.game .loading:not(.error) p:first-of-type:after {
+  content: '';
+  display: inline-block;
+  min-width: 1rem;
+  animation: dotty steps(1) 1.5s infinite;
+}
+
+@keyframes dotty {
+  0%   { content: '' }
+  25%  { content: '.'; }
+  50%  { content: '..'; }
+  75%  { content: '...'; }
+  100% { content: ''; }
+}
+
+.game .loading p:last-of-type {
+  text-align: center;
+}
+
+.game .loading:not(.error) p:last-of-type {
+  opacity: 0;
+  animation: 10s fadeIn;
+  animation-fill-mode: forwards;
+  transition: opacity 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+  99% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.game .score {
+  display: grid;
+  gap: 0.5rem;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  margin: 0;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+.game .score dt {
+  font-weight: bold;
+}
+
+.game .score dt:first-of-type {
+  grid-column-start: 1;
+  grid-row-start: 1;
+}
+
+.game .score dt:nth-of-type(2) {
+  grid-column-start: 2;
+  grid-row-start: 1;
+}
+
+.game .score dt:last-of-type {
+  grid-column-start: 3;
+  grid-row-start: 1;
+}
+
+.game .score dd {
+  margin: 0;
+}
+
+.game .settings {
+  position: fixed;
+  bottom: 1rem;
+  left: 1rem;
+  font-size: 1.5rem;
+  color: var(--color-blue-1) !important;
+}
+
+.game .settings a {
+  color: var(--color-blue-1);
+}
+
+.game .settings a:hover {
+  color: var(--color-blue-3);
+}
+
+.ReactModalPortal .overlay {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  background-color: rgb(from var(--color-blue-5) r g b / 0.8);
+  backdrop-filter: blur(0.2rem);
+}
+
+.ReactModalPortal .modal {
+  position: relative;
+  padding: 1.5rem;
+  width: 100%;
+  max-width: 30rem;
+  background-color: var(--color-blue-4);
+  border-radius: 0.5rem;
+}
+
+.ReactModalPortal .modal h2 {
+  margin: 0 0 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 0.1rem solid rgb(from var(--color-blue-5) r g b / 0.4);
+}
+
+.ReactModalPortal .modal fieldset {
+  padding: 1rem;
+  border: 0.1rem solid rgb(from var(--color-blue-5) r g b / 0.4);
+}
+
+.ReactModalPortal .modal .content {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.ReactModalPortal .modal .options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.ReactModalPortal .modal .options div {
+  display: flex;
+  gap: 0.3rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.ReactModalPortal .modal input[type="radio"] {
+  margin: 0;
+}
+
+.ReactModalPortal .modal .close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background-color: transparent;
+  border: none;
+  font-size: 1.2rem;
+  font-family: "Roboto", sans-serif;
+  color: var(--color-blue-1);
+  cursor: pointer;
+}
+
+.ReactModalPortal .modal .note {
+  text-align: right;
+  font-size: 0.9rem;
+  font-style: italic;
+}
+
+@media only screen and (max-width: 600px) {
+  .game .question {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .game .question fieldset div {
+    margin: 1rem 0;
+  }
+}
