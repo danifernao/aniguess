@@ -138,7 +138,7 @@ function CharacterQuiz() {
   };
 
   // Obtiene personajes aleatorios de AniList.
-  const fetchRandomCharacters = (): void => {
+  const fetchRandomCharacters = useCallback((): void => {
     /* Calcula qué porcentaje del rango total de IDs posibles
      * ya ha sido utilizado como pregunta.
      *
@@ -250,7 +250,14 @@ function CharacterQuiz() {
         setOptionCharacters((c) => [...c, ...filteredCharacters]);
       })
       .catch(() => setErrorFound(true));
-  };
+  }, [
+    usedCharacterIds,
+    totalCharacterCount,
+    settings.mediaType,
+    settings.mediaNsfw,
+    optionCharacters.length,
+    answerOptionCount,
+  ]);
 
   /* Verifica si la opción elegida por el jugador es correcta y actualiza
    * el puntaje de la partida.
@@ -349,7 +356,7 @@ function CharacterQuiz() {
     if (totalCharacterCount && optionCharacters.length < answerOptionCount) {
       fetchRandomCharacters();
     }
-  }, [totalCharacterCount, optionCharacters]);
+  }, [totalCharacterCount, optionCharacters, fetchRandomCharacters]);
 
   // Cada vez que se actualice el arreglo de personajes, se verifica si
   // se han obtenido ya el número de opciones necesarias para la pregunta. En tal
