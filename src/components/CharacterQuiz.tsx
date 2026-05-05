@@ -391,7 +391,7 @@ function CharacterQuiz() {
   }, [totalCharacterCount, usedCharacterIds, score, settings, saveToLocal]);
 
   return (
-    <div className="game">
+    <div className="main">
       {!errorFound && questionCharacter && isAnswerCorrect === null && (
         <Question
           optionCharacters={optionCharacters}
