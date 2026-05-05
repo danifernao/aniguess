@@ -2,10 +2,10 @@
   --color-white: #ffffff;
   --color-red: #e85d75;
   --color-green: #75f088;
-  --color-blue-1: #adc0d2;
+  --color-blue-1: #9fadbd;
   --color-blue-2: #3db4f2;
-  --color-blue-3: #3577ff;
-  --color-blue-4: #26304b;
+  --color-blue-3: #1c59d8;
+  --color-blue-4: #151f2e;
   --color-blue-5: #0b1622;
   --color-orange: #f2a365;
 }
@@ -133,6 +133,7 @@ input[type="radio"] {
   font-size: 1rem;
   color: var(--color-white);
   animation: box-shadow 0.6s ease, transform 0.2s ease-in-out;
+  font-weight: 600;
 }
 
 .game .answer button:hover {
@@ -310,6 +311,16 @@ input[type="radio"] {
 
 .ReactModalPortal .modal input[type="radio"] {
   margin: 0;
+}
+
+.ReactModalPortal select {
+  padding: 0.5rem;
+  background-color: var(--color-blue-5);
+  border: 0;
+  border-radius: 0.3rem;
+  font-family: "Roboto", sans-serif;
+  font-size: 0.9rem;
+  color: var(--color-blue-1);
 }
 
 .ReactModalPortal .modal .close {
