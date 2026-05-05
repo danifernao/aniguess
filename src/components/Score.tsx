@@ -35,18 +35,22 @@ function Score({ score }: ScoreProps) {
   }, [score]);
 
   return (
-    <div
-      className="score"
-      title={t("score.summary", {
-        correct: score.correct,
-        total: score.total,
-      })}
-    >
+    <div className="score">
+      <div
+        className="stats"
+        title={t("score.summary", {
+          correct: score.correct,
+          total: score.total,
+        })}
+      >
+        {score.correct} / {score.total}
+      </div>
+
       <CircularProgressbar
         value={percentage}
         text={`${percentage}%`}
         strokeWidth={10}
-        className={`progress ${getScoreStatus()}`}
+        className={`progress-bar ${getScoreStatus()}`}
       />
     </div>
   );

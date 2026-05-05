@@ -182,41 +182,55 @@ input[type="radio"] {
 
 .game .score {
   position: absolute;
-  top: 1rem;
-  right: 1rem;
-  text-align: center;
-  font-size: 0.9rem;
+  top: 0;
+  right: 0;
+  left: 0;
+  display: flex;
+  gap: 1rem;
+  align-items: start;
+  padding: 1rem;
 }
 
-.game .score .progress {
+.game .score .stats {
+  flex: 1;
+  font-size: 1.5rem;
+  font-weight: 700;
+  opacity: 0.4;
+}
+
+.game .score .progress-bar {
   width: 4rem;
   height: 4rem;
 }
 
-.game .score .progress .CircularProgressbar-trail {
+.game .score .progress-bar .CircularProgressbar-trail {
   stroke: var(--color-blue-1);
 }
 
-.game .score .progress.neutral .CircularProgressbar-path,
-.game .score .progress.neutral .CircularProgressbar-text {
+.game .score .progress-bar .CircularProgressbar-text {
+  font-size: 1.3rem;
+}
+
+.game .score .progress-bar.neutral .CircularProgressbar-path,
+.game .score .progress-bar.neutral .CircularProgressbar-text {
   stroke: var(--color-blue-1);
   fill: var(--color-blue-1);
 }
 
-.game .score .progress.good .CircularProgressbar-path,
-.game .score .progress.good .CircularProgressbar-text {
+.game .score .progress-bar.good .CircularProgressbar-path,
+.game .score .progress-bar.good .CircularProgressbar-text {
   stroke: var(--color-green);
   fill: var(--color-green);
 }
 
-.game .score .progress.medium .CircularProgressbar-path,
-.game .score .progress.medium .CircularProgressbar-text {
+.game .score .progress-bar.medium .CircularProgressbar-path,
+.game .score .progress-bar.medium .CircularProgressbar-text {
   stroke: var(--color-orange);
   fill: var(--color-orange);
 }
 
-.game .score .progress.bad .CircularProgressbar-path,
-.game .score .progress.bad .CircularProgressbar-text {
+.game .score .progress-bar.bad .CircularProgressbar-path,
+.game .score .progress-bar.bad .CircularProgressbar-text {
   stroke: var(--color-red);
   fill: var(--color-red);
 }
