@@ -321,37 +321,35 @@ function CharacterQuiz() {
     playAgain();
   };
 
-  // Al cargar la página, se intenta recuperar la información guardada
-  // en el almacenamiento local del navegador.
+  // Lógica que se ejecuta al cargar el componente por primera vez.
   useEffect(() => {
     const localData: string | null = localStorage.getItem("data");
 
     // Si existe una copia de respaldo local, se recupera la información y
-    // se actualizan las variables estado correspondientes. De lo contrario,
-    // se obtiene el ID más alto de personajes registrado en AniList,
-    // valor necesario para generar personajes aleatorios posteriormente.
+    // se actualizan las variables estado correspondientes.
     if (localData) {
       const appData = JSON.parse(localData);
 
-      setSettings(appData.settings);
-      setTotalCharacterCount(appData.totalCharacterCount);
       setUsedCharacterIds(appData.usedCharacterIds);
       setScore(appData.score);
-    } else {
-      fetchLastCharacterId().then((id) => {
-        if (id) {
-          setTotalCharacterCount(id);
-        } else {
-          setErrorFound(true);
-        }
-      });
+      setSettings(appData.settings);
     }
+
+    // Obtiene el ID más alto de personajes registrado en AniList y lo toma
+    // como el rango máximo al momento de generar personajes aleatorios.
+    fetchLastCharacterId().then((id) => {
+      if (id) {
+        setTotalCharacterCount(id);
+      } else {
+        setErrorFound(true);
+      }
+    });
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // Cada vez que se actualice el número total de personajes o el arreglo de
-  // personajes, se verifica si es necesario obtener más personajes.
+  // Cada vez que se el arreglo de personajes, se verifica si es necesario
+  // obtener más personajes.
   useEffect(() => {
     if (totalCharacterCount && optionCharacters.length < answerOptionCount) {
       fetchRandomCharacters();
