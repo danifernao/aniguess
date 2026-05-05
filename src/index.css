@@ -252,7 +252,7 @@ input[type="radio"] {
 }
 
 .game .settings button:hover {
-  color: var(--color-blue-3);
+  color: var(--color-blue-2);
 }
 
 .ReactModalPortal .overlay {
@@ -332,7 +332,6 @@ input[type="radio"] {
   font-size: 1.2rem;
   font-family: "Roboto", sans-serif;
   color: var(--color-blue-1);
-  cursor: pointer;
 }
 
 .ReactModalPortal .modal .note {
