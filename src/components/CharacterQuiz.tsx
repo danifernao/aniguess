@@ -334,6 +334,18 @@ function CharacterQuiz() {
     if (localData) {
       const appData = JSON.parse(localData);
 
+      // Si la copia de respaldo corresponde a un esquema antiguo,
+      // se migran los datos al nuevo formato.
+      const hasOldSchema =
+        appData.totalChars !== undefined || appData.idsTaken !== undefined;
+
+      if (hasOldSchema) {
+        appData.totalCharacterCount = appData.totalChars;
+        appData.usedCharacterIds = appData.idsTaken;
+
+        localStorage.setItem("data", JSON.stringify(appData));
+      }
+
       setUsedCharacterIds(appData.usedCharacterIds);
       setScore(appData.score);
       setSettings(appData.settings);
