@@ -10,8 +10,8 @@ export interface SettingsType {
 }
 
 export interface BackupType {
-  totalChars: number | null;
-  idsTaken: number[];
+  totalCharacterCount: number | null;
+  usedCharacterIds: number[];
   score: ScoreType;
   settings: SettingsType;
 }

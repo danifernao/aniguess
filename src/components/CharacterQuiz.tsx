@@ -5,7 +5,7 @@ import type {
   ApiResponseType,
   CharacterType,
 } from "../types/types";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import Question from "./Question";
 import Answer from "./Answer";
 import Loading from "./Loading";
@@ -282,36 +282,20 @@ function CharacterQuiz() {
   };
 
   // Guarda los datos de la aplicación en el almacenamiento local del navegador.
-  const manageLocalData = (action: string): boolean => {
-    let backup: BackupType;
-
-    if (action === "load") {
-      const data: string | null = localStorage.getItem("data");
-
-      if (data) {
-        backup = JSON.parse(data);
-
-        setSettings(backup.settings);
-        setTotalCharacterCount(backup.totalChars);
-        setUsedCharacterIds(backup.idsTaken);
-        setScore(backup.score);
-      } else {
-        return false;
-      }
-    } else {
-      backup = {
-        totalChars: totalCharacterCount,
-        idsTaken: usedCharacterIds,
-        score: score,
-        settings: settings,
-      };
-
-      localStorage.setItem("data", JSON.stringify(backup));
-      i18n.changeLanguage(backup.settings.language);
+  const saveToLocal = useCallback(() => {
+    if (!totalCharacterCount) {
+      return;
     }
 
-    return true;
-  };
+    const appData: BackupType = {
+      totalCharacterCount,
+      usedCharacterIds,
+      score,
+      settings,
+    };
+
+    localStorage.setItem("data", JSON.stringify(appData));
+  }, [totalCharacterCount, usedCharacterIds, score, settings]);
 
   // Guarda las opciones de configuración del juego establecidas por el usuario.
   const saveSettings = (key: keyof SettingsType, value: string): void => {
@@ -333,12 +317,20 @@ function CharacterQuiz() {
   // Al cargar la página, se intenta recuperar la información guardada
   // en el almacenamiento local del navegador.
   useEffect(() => {
-    const hasBackup = manageLocalData("load");
+    const localData: string | null = localStorage.getItem("data");
 
-    // Si no existe una copia de respaldo local, obtiene desde la API
-    // el ID más alto de personajes para determinar el rango disponible
-    // al momento de generar personajes aleatorios.
-    if (!hasBackup) {
+    // Si existe una copia de respaldo local, se recupera la información y
+    // se actualizan las variables estado correspondientes. De lo contrario,
+    // se obtiene el ID más alto de personajes registrado en AniList,
+    // valor necesario para generar personajes aleatorios posteriormente.
+    if (localData) {
+      const appData = JSON.parse(localData);
+
+      setSettings(appData.settings);
+      setTotalCharacterCount(appData.totalCharacterCount);
+      setUsedCharacterIds(appData.usedCharacterIds);
+      setScore(appData.score);
+    } else {
       fetchLastCharacterId().then((id) => {
         if (id) {
           setTotalCharacterCount(id);
@@ -347,6 +339,8 @@ function CharacterQuiz() {
         }
       });
     }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Cada vez que se actualice el número total de personajes o el arreglo de
@@ -357,11 +351,10 @@ function CharacterQuiz() {
     }
   }, [totalCharacterCount, optionCharacters]);
 
-  /* Cada vez que se actualice el arreglo de personajes, se verifica si
-   * se han obtenido ya el número de opciones necesarias para la pregunta. En tal
-   * caso, se elige aleatoriamente un personaje para preguntar y se guarda su ID
-   * en el arreglo de IDs tomados.
-   */
+  // Cada vez que se actualice el arreglo de personajes, se verifica si
+  // se han obtenido ya el número de opciones necesarias para la pregunta. En tal
+  // caso, se elige aleatoriamente un personaje para preguntar y se guarda su ID
+  // en el arreglo de IDs tomados.
   useEffect(() => {
     if (optionCharacters.length === answerOptionCount) {
       const rndIndex: number = getRandomInt(0, answerOptionCount - 1);
@@ -370,13 +363,11 @@ function CharacterQuiz() {
     }
   }, [optionCharacters]);
 
-  // Cada vez que se actualice el puntaje o la configuración,
-  // se guarda la información en el almacenamiento local del navegador.
+  // Guarda en el almacenamiento local del navegador la información de la
+  // aplicación cada vez que se actualice alguno de los valores.
   useEffect(() => {
-    if (totalCharacterCount) {
-      manageLocalData("save");
-    }
-  }, [score, settings]);
+    saveToLocal();
+  }, [totalCharacterCount, usedCharacterIds, score, settings, saveToLocal]);
 
   return (
     <div className="game">
