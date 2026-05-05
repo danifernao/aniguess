@@ -318,6 +318,10 @@ function CharacterQuiz() {
             : value,
     }));
 
+    if (key === "language") {
+      i18n.changeLanguage(value);
+    }
+
     playAgain();
   };
 
