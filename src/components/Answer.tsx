@@ -1,3 +1,5 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
 import type { CharacterType } from "../types/types";
 import { useTranslation } from "react-i18next";
 
@@ -23,6 +25,7 @@ function Answer({ questionCharacter, isCorrect, playAgain }: AnswerProps) {
           <p>
             <a href={questionCharacter.siteUrl} target="_blank">
               {questionCharacter.name!.full}
+              <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
             </a>
           </p>
 
@@ -30,6 +33,7 @@ function Answer({ questionCharacter, isCorrect, playAgain }: AnswerProps) {
             <a href={questionCharacter.media.nodes[0].siteUrl} target="_blank">
               {questionCharacter.media.nodes[0].title.english ||
                 questionCharacter.media.nodes[0].title.romaji}
+              <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
             </a>
           </p>
         </div>
