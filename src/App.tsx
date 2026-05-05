@@ -1,7 +1,7 @@
-import RndChar from "./components/RndChar";
+import CharacterQuiz from "./components/CharacterQuiz";
 
 function App() {
-  return <RndChar />;
+  return <CharacterQuiz />;
 }
 
 export default App;

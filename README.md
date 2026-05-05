@@ -2,7 +2,7 @@
 
 Un simple juego elaborado con React en el que se debe adivinar el nombre de la animación, cómic o novela a la que pertenece un personaje. Los datos son proporcionados por AniList.co.
 
-![Captura de pantalla de la aplicación](/screenshot.jpeg)
+![Captura de pantalla de la aplicación](/screenshot.png)
 
 ## Instalación
 

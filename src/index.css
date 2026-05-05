@@ -1,12 +1,13 @@
 :root {
   --color-white: #ffffff;
-  --color-red: #f09275;
+  --color-red: #e85d75;
   --color-green: #75f088;
   --color-blue-1: #adc0d2;
   --color-blue-2: #3db4f2;
   --color-blue-3: #3577ff;
   --color-blue-4: #26304b;
   --color-blue-5: #0b1622;
+  --color-orange: #f2a365;
 }
 
 * {
@@ -180,37 +181,44 @@ input[type="radio"] {
 }
 
 .game .score {
-  display: grid;
-  gap: 0.5rem;
   position: absolute;
   top: 1rem;
   right: 1rem;
-  margin: 0;
   text-align: center;
   font-size: 0.9rem;
 }
 
-.game .score dt {
-  font-weight: bold;
+.game .score .progress {
+  width: 4rem;
+  height: 4rem;
 }
 
-.game .score dt:first-of-type {
-  grid-column-start: 1;
-  grid-row-start: 1;
+.game .score .progress .CircularProgressbar-trail {
+  stroke: var(--color-blue-1);
 }
 
-.game .score dt:nth-of-type(2) {
-  grid-column-start: 2;
-  grid-row-start: 1;
+.game .score .progress.neutral .CircularProgressbar-path,
+.game .score .progress.neutral .CircularProgressbar-text {
+  stroke: var(--color-blue-1);
+  fill: var(--color-blue-1);
 }
 
-.game .score dt:last-of-type {
-  grid-column-start: 3;
-  grid-row-start: 1;
+.game .score .progress.good .CircularProgressbar-path,
+.game .score .progress.good .CircularProgressbar-text {
+  stroke: var(--color-green);
+  fill: var(--color-green);
 }
 
-.game .score dd {
-  margin: 0;
+.game .score .progress.medium .CircularProgressbar-path,
+.game .score .progress.medium .CircularProgressbar-text {
+  stroke: var(--color-orange);
+  fill: var(--color-orange);
+}
+
+.game .score .progress.bad .CircularProgressbar-path,
+.game .score .progress.bad .CircularProgressbar-text {
+  stroke: var(--color-red);
+  fill: var(--color-red);
 }
 
 .game .settings {
@@ -221,11 +229,14 @@ input[type="radio"] {
   color: var(--color-blue-1) !important;
 }
 
-.game .settings a {
+.game .settings button {
+  background-color: transparent;
+  border: none;
   color: var(--color-blue-1);
+  font-size: 1.5rem;
 }
 
-.game .settings a:hover {
+.game .settings button:hover {
   color: var(--color-blue-3);
 }
 

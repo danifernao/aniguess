@@ -1,29 +1,30 @@
-export interface AppScoreType {
+export interface ScoreType {
   total: number;
   correct: number;
 }
 
-export interface AppSettingsType {
+export interface SettingsType {
+  language: "es" | "en";
   mediaType: string | null;
   mediaNsfw: boolean;
 }
 
-export interface AppBackupType {
+export interface BackupType {
   totalChars: number | null;
   idsTaken: number[];
-  score: AppScoreType;
-  settings: AppSettingsType;
+  score: ScoreType;
+  settings: SettingsType;
 }
 
 export interface ApiResponseType {
   data: {
     Page: {
-      characters: ALCharType[];
+      characters: CharacterType[];
     };
   };
 }
 
-export interface ALCharType {
+export interface CharacterType {
   id: number;
   name: {
     full: string;
@@ -32,12 +33,12 @@ export interface ALCharType {
     large: string;
   };
   media: {
-    nodes: ALMediaType[];
+    nodes: MediaType[];
   };
   siteUrl: string;
 }
 
-export interface ALMediaType {
+export interface MediaType {
   id: number;
   isAdult: boolean;
   title: {
@@ -45,50 +46,4 @@ export interface ALMediaType {
     romaji: string;
   };
   siteUrl: string;
-}
-
-export interface TranslType {
-  question: string;
-  answer: TranslAnswerType;
-  score: TranslScoreType;
-  loading: TranslLoadingType;
-  settings: TranslSettingsType;
-}
-
-export interface TranslAnswerType {
-  correct: string;
-  incorrect: string;
-  next: string;
-}
-
-export interface TranslScoreType {
-  correct: string;
-  total: string;
-  percentage: string;
-}
-
-export interface TranslLoadingType {
-  intro: string;
-  delay: string;
-  error: string;
-}
-
-export interface TranslSettingsType {
-  title: string;
-  mediaType: {
-    legend: string;
-    options: {
-      anime: string;
-      manga: string;
-    }
-  };
-  mediaNsfw: {
-    legend: string;
-    options: {
-      yes: string;
-      no: string;
-    }
-  },
-  note: string;
-  close: string;
 }

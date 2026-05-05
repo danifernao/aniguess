@@ -1,14 +1,21 @@
 {
-  "question": "Where does this character come from?",
+  "language": {
+    "legend": "Language",
+    "options": {
+      "en": "English",
+      "es": "Spanish"
+    }
+  },
+  "question": {
+    "legend": "What title is this character from?"
+  },
   "answer": {
     "correct": "Correct!",
     "incorrect": "Incorrect!",
     "next": "Next"
   },
   "score": {
-    "correct": "Correct",
-    "total": "Questions",
-    "percentage": "Ratio"
+    "summary": "{{correct}} correct out of {{total}} questions"
   },
   "loading": {
     "intro": "Fetching data",

@@ -1,14 +1,21 @@
 {
-  "question": "¿De dónde proviene este personaje?",
+  "language": {
+    "legend": "Idioma",
+    "options": {
+      "en": "Inglés",
+      "es": "Español"
+    }
+  },
+  "question": {
+    "legend": "¿A qué obra pertenece este personaje?"
+  },
   "answer": {
     "correct": "¡Correcto!",
     "incorrect": "¡Incorrecto!",
     "next": "Siguiente"
   },
   "score": {
-    "correct": "Aciertos",
-    "total": "Preguntas",
-    "percentage": "Relación"
+    "summary": "{{correct}} aciertos de {{total}} preguntas"
   },
   "loading": {
     "intro": "Obteniendo datos",
