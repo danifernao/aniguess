@@ -65,6 +65,15 @@ input[type="radio"] {
   border-radius: 0.5rem;
 }
 
+.question .loading-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 5rem;
+  height: 5rem;
+  font-size: 1.5rem;
+}
+
 .question fieldset {
   border: 0;
 }

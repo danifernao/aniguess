@@ -7,7 +7,8 @@
     }
   },
   "question": {
-    "legend": "What title is this character from?"
+    "legend": "What title is this character from?",
+    "loading": "Loading image..."
   },
   "answer": {
     "correct": "Correct!",
