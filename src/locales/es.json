@@ -3,7 +3,8 @@
     "of": "de"
   },
   "question": {
-    "legend": "¿A qué obra pertenece este personaje?",
+    "character": "¿Cómo se llama este personaje?",
+    "work": "¿A qué obra pertenece este personaje?",
     "loading": "Cargando imagen..."
   },
   "answer": {
@@ -29,6 +30,13 @@
       "options": {
         "en": "Inglés",
         "es": "Español"
+      }
+    },
+    "questionMode": {
+      "legend": "Tipo de pregunta",
+      "options": {
+        "character": "Nombre de personaje",
+        "work": "Nombre de obra"
       }
     },
     "mediaType": {

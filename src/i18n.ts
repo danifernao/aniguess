@@ -13,7 +13,7 @@ const resources = {
   },
 };
 
-const storedData = localStorage.getItem("data");
+const storedData = localStorage.getItem("gameState");
 const parsedData = storedData ? JSON.parse(storedData) : null;
 
 const localeLanguage = new Intl.Locale(navigator.language).language;

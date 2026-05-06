@@ -5,12 +5,13 @@ export interface ScoreType {
 
 export interface SettingsType {
   language: "es" | "en";
+  questionMode: "character" | "work";
   mediaType: string | null;
   mediaNsfw: boolean;
 }
 
-export interface BackupType {
-  totalCharacterCount: number | null;
+export interface GameStateType {
+  maxCharacterId: number | null;
   usedCharacterIds: number[];
   score: ScoreType;
   settings: SettingsType;

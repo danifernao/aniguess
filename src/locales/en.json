@@ -3,7 +3,8 @@
     "of": "out of"
   },
   "question": {
-    "legend": "What title is this character from?",
+    "character": "What is this character's name?",
+    "work": "What title is this character from?",
     "loading": "Loading image..."
   },
   "answer": {
@@ -30,6 +31,13 @@
         "en": "English",
         "es": "Spanish"
       }
+    },
+    "questionMode": {
+      "legend": "Question type",
+      "options": {
+        "character": "Character name",
+        "work": "Work title"
+      }      
     },
     "mediaType": {
       "legend": "Media Type",

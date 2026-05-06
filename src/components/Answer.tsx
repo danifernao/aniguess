@@ -4,12 +4,18 @@ import type { CharacterType } from "../types/types";
 import { useTranslation } from "react-i18next";
 
 interface AnswerProps {
+  questionMode: "character" | "work";
   questionCharacter: CharacterType;
   isCorrect: boolean;
-  playAgain: () => void;
+  newQuestion: () => void;
 }
 
-function Answer({ questionCharacter, isCorrect, playAgain }: AnswerProps) {
+function Answer({
+  questionMode,
+  questionCharacter,
+  isCorrect,
+  newQuestion,
+}: AnswerProps) {
   const { t } = useTranslation();
 
   return (
@@ -21,7 +27,7 @@ function Answer({ questionCharacter, isCorrect, playAgain }: AnswerProps) {
 
         <img src={questionCharacter.image.large} alt="" />
 
-        <div className="description">
+        <div className={`description ${questionMode}`}>
           <p>
             <a href={questionCharacter.siteUrl} target="_blank">
               {questionCharacter.name!.full}
@@ -39,7 +45,7 @@ function Answer({ questionCharacter, isCorrect, playAgain }: AnswerProps) {
         </div>
       </div>
 
-      <button onClick={playAgain}>{t("answer.next")}</button>
+      <button onClick={newQuestion}>{t("answer.next")}</button>
     </div>
   );
 }

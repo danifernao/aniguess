@@ -1,7 +1,7 @@
 import type {
   ScoreType,
   SettingsType,
-  BackupType,
+  GameStateType,
   ApiResponseType,
   CharacterType,
 } from "../types/types";
@@ -15,9 +15,7 @@ import i18n from "../i18n";
 
 function CharacterQuiz() {
   // Número total de personajes registrados en AniList.
-  const [totalCharacterCount, setTotalCharacterCount] = useState<number | null>(
-    null,
-  );
+  const [maxCharacterId, setMaxCharacterId] = useState<number | null>(null);
 
   // Arreglo con los IDs de personajes que no se deben tener en cuenta.
   const [usedCharacterIds, setUsedCharacterIds] = useState<number[]>([]);
@@ -46,6 +44,7 @@ function CharacterQuiz() {
   // Opciones de configuración del juego establecidas por el usuario.
   const [settings, setSettings] = useState<SettingsType>({
     language: i18n.language as "es" | "en",
+    questionMode: "work",
     mediaType: null,
     mediaNsfw: true,
   });
@@ -150,7 +149,7 @@ function CharacterQuiz() {
      * menos eficiente al aumentar la cantidad de IDs excluidos, el historial
      * se reinicia al alcanzar un umbral determinado.
      */
-    const usageRatio = usedCharacterIds.length / totalCharacterCount!;
+    const usageRatio = usedCharacterIds.length / maxCharacterId!;
 
     // Si ya se ha utilizado al menos el 3 % del rango total de IDs posibles,
     // vacía el historial para permitir reutilizarlos nuevamente.
@@ -163,11 +162,7 @@ function CharacterQuiz() {
 
     // Genera 20 IDs únicos de manera aleatoria.
     for (let i = 0; i < 20; i++) {
-      const randomId: number = getRandomInt(
-        1,
-        totalCharacterCount!,
-        excludedIds,
-      );
+      const randomId: number = getRandomInt(1, maxCharacterId!, excludedIds);
 
       randomIds.push(randomId);
       excludedIds.add(randomId);
@@ -252,7 +247,7 @@ function CharacterQuiz() {
       .catch(() => setErrorFound(true));
   }, [
     usedCharacterIds,
-    totalCharacterCount,
+    maxCharacterId,
     settings.mediaType,
     settings.mediaNsfw,
     optionCharacters.length,
@@ -282,7 +277,7 @@ function CharacterQuiz() {
   };
 
   // Reinicia las variables estado de los personajes y de la respuesta.
-  const playAgain = (): void => {
+  const newQuestion = (): void => {
     setOptionCharacters([]);
     setQuestionCharacter(null);
     setIsAnswerCorrect(null);
@@ -290,25 +285,25 @@ function CharacterQuiz() {
 
   // Guarda los datos de la aplicación en el almacenamiento local del navegador.
   const saveToLocal = useCallback(() => {
-    if (!totalCharacterCount) {
+    if (!maxCharacterId) {
       return;
     }
 
-    const appData: BackupType = {
-      totalCharacterCount,
+    const gameState: GameStateType = {
+      maxCharacterId,
       usedCharacterIds,
       score,
       settings,
     };
 
-    localStorage.setItem("data", JSON.stringify(appData));
-  }, [totalCharacterCount, usedCharacterIds, score, settings]);
+    localStorage.setItem("gameState", JSON.stringify(gameState));
+  }, [maxCharacterId, usedCharacterIds, score, settings]);
 
   // Guarda las opciones de configuración del juego establecidas por el usuario.
   const saveSettings = (
     key: keyof SettingsType,
     value: string,
-    restart: boolean = true,
+    triggerNewQuestion: boolean = true,
   ): void => {
     setSettings((s) => ({
       ...s,
@@ -326,8 +321,8 @@ function CharacterQuiz() {
       i18n.changeLanguage(value);
     }
 
-    if (restart) {
-      playAgain();
+    if (triggerNewQuestion) {
+      newQuestion();
     }
   };
 
@@ -341,35 +336,23 @@ function CharacterQuiz() {
 
   // Lógica que se ejecuta al cargar el componente por primera vez.
   useEffect(() => {
-    const localData: string | null = localStorage.getItem("data");
+    const localData: string | null = localStorage.getItem("gameState");
 
     // Si existe una copia de respaldo local, se recupera la información y
     // se actualizan las variables estado correspondientes.
     if (localData) {
-      const appData = JSON.parse(localData);
+      const gameState = JSON.parse(localData);
 
-      // Si la copia de respaldo corresponde a un esquema antiguo,
-      // se migran los datos al nuevo formato.
-      const hasOldSchema =
-        appData.totalChars !== undefined || appData.idsTaken !== undefined;
-
-      if (hasOldSchema) {
-        appData.totalCharacterCount = appData.totalChars;
-        appData.usedCharacterIds = appData.idsTaken;
-
-        localStorage.setItem("data", JSON.stringify(appData));
-      }
-
-      setUsedCharacterIds(appData.usedCharacterIds);
-      setScore(appData.score);
-      setSettings(appData.settings);
+      setUsedCharacterIds(gameState.usedCharacterIds);
+      setScore(gameState.score);
+      setSettings(gameState.settings);
     }
 
     // Obtiene el ID más alto de personajes registrado en AniList y lo toma
     // como el rango máximo al momento de generar personajes aleatorios.
     fetchLastCharacterId().then((id) => {
       if (id) {
-        setTotalCharacterCount(id);
+        setMaxCharacterId(id);
       } else {
         setErrorFound(true);
       }
@@ -381,10 +364,10 @@ function CharacterQuiz() {
   // Cada vez que se el arreglo de personajes, se verifica si es necesario
   // obtener más personajes.
   useEffect(() => {
-    if (totalCharacterCount && optionCharacters.length < answerOptionCount) {
+    if (maxCharacterId && optionCharacters.length < answerOptionCount) {
       fetchRandomCharacters();
     }
-  }, [totalCharacterCount, optionCharacters, fetchRandomCharacters]);
+  }, [maxCharacterId, optionCharacters, fetchRandomCharacters]);
 
   // Cada vez que se actualice el arreglo de personajes, se verifica si
   // se han obtenido ya el número de opciones necesarias para la pregunta. En tal
@@ -402,12 +385,13 @@ function CharacterQuiz() {
   // aplicación cada vez que se actualice alguno de los valores.
   useEffect(() => {
     saveToLocal();
-  }, [totalCharacterCount, usedCharacterIds, score, settings, saveToLocal]);
+  }, [maxCharacterId, usedCharacterIds, score, settings, saveToLocal]);
 
   return (
     <div className="main">
       {!errorFound && questionCharacter && isAnswerCorrect === null && (
         <Question
+          questionMode={settings.questionMode}
           optionCharacters={optionCharacters}
           questionCharacter={questionCharacter}
           checkAnswer={checkAnswer}
@@ -416,9 +400,10 @@ function CharacterQuiz() {
 
       {!errorFound && questionCharacter && isAnswerCorrect !== null && (
         <Answer
+          questionMode={settings.questionMode}
           questionCharacter={questionCharacter}
           isCorrect={isAnswerCorrect}
-          playAgain={playAgain}
+          newQuestion={newQuestion}
         />
       )}
 

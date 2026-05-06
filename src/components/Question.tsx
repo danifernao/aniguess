@@ -5,12 +5,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleNotch } from "@fortawesome/free-solid-svg-icons";
 
 interface QuestionProps {
+  questionMode: "character" | "work";
   optionCharacters: CharacterType[];
   questionCharacter: CharacterType;
   checkAnswer: (char: CharacterType) => void;
 }
 
 function Question({
+  questionMode,
   optionCharacters,
   questionCharacter,
   checkAnswer,
@@ -63,7 +65,11 @@ function Question({
       />
 
       <fieldset>
-        <legend>{t("question.legend")}</legend>
+        <legend>
+          {questionMode === "character"
+            ? t("question.character")
+            : t("question.work")}
+        </legend>
 
         {shuffledCharacters.map((character: CharacterType) => (
           <div key={character.id}>
@@ -75,8 +81,10 @@ function Question({
               onClick={() => checkAnswer(character)}
             />
             <label htmlFor={`media-${character.id}`}>
-              {character.media.nodes[0].title.english ||
-                character.media.nodes[0].title.romaji}
+              {questionMode === "character"
+                ? character.name.full
+                : character.media.nodes[0].title.english ||
+                  character.media.nodes[0].title.romaji}
             </label>
           </div>
         ))}

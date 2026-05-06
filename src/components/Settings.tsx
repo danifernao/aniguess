@@ -40,7 +40,22 @@ function Settings({
     { value: "en", label: t("settings.language.options.en") },
   ];
 
+  const triggersNewQuestion = ["mediaType", "mediaNsfw"];
+
   const settingGroups: SettingGroup[] = [
+    {
+      name: "questionMode",
+      options: [
+        {
+          name: "character",
+          value: "character",
+        },
+        {
+          name: "work",
+          value: "work",
+        },
+      ],
+    },
     {
       name: "mediaType",
       options: [
@@ -153,7 +168,11 @@ function Settings({
                         option.value === normalizeSettingValue(group.name)
                       }
                       onChange={(event) =>
-                        saveSettings(group.name, event.currentTarget.value)
+                        saveSettings(
+                          group.name,
+                          event.currentTarget.value,
+                          triggersNewQuestion.includes(group.name),
+                        )
                       }
                     />
                     <label htmlFor={`${group.name}-${j}`}>

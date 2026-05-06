@@ -113,13 +113,20 @@ input[type="radio"] {
   margin: 1rem 0;
 }
 
+.answer .description.character p:last-of-type a,
+.answer .description.work p:first-of-type a {
+  color: var(--color-blue-1);
+}
+
 .answer.correct .title,
-.answer.correct .description p:last-of-type a {
+.answer.correct .description.character p:first-of-type a,
+.answer.correct .description.work p:last-of-type a {
   color: var(--color-green);
 }
 
 .answer.incorrect .title,
-.answer.incorrect .description p:last-of-type a {
+.answer.incorrect .description.character p:first-of-type a,
+.answer.incorrect .description.work p:last-of-type a {
   color: var(--color-red);
 }
 
