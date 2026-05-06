@@ -212,7 +212,6 @@ input[type="radio"] {
   flex: 1;
   font-size: 1.5rem;
   font-weight: 700;
-  opacity: 0.4;
 }
 
 .score .progress-bar {
