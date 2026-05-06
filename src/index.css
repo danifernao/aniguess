@@ -123,14 +123,10 @@ input[type="radio"] {
   color: var(--color-red);
 }
 
-.answer .description a {
-  display: inline-flex;
-  align-items: center;
-}
-
 .answer .description a .fa-arrow-up-right-from-square {
   margin-left: 0.5rem;
   font-size: 0.8rem;
+  vertical-align: middle;
 }
 
 .answer .description p {

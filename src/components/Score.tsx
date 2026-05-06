@@ -38,7 +38,7 @@ function Score({ score }: ScoreProps) {
     <div className="score">
       <div
         className="stats"
-        title={`${t("score.correct", { count: score.correct })} ${t("common.of")} ${t("score.question", { count: score.total })}.`}
+        title={`${t("score.correct", { count: score.correct })} ${t("common.of")} ${t("score.question", { count: score.total })}`}
       >
         {score.correct} / {score.total}
       </div>
