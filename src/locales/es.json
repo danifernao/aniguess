@@ -6,6 +6,9 @@
       "es": "Español"
     }
   },
+  "common": {
+    "of": "de"
+  },
   "question": {
     "legend": "¿A qué obra pertenece este personaje?",
     "loading": "Cargando imagen..."
@@ -16,7 +19,10 @@
     "next": "Siguiente"
   },
   "score": {
-    "summary": "{{correct}} aciertos de {{total}} preguntas"
+    "correct_one": "{{count}} acierto",
+    "correct_other": "{{count}} aciertos",
+    "question_one": "{{count}} pregunta",
+    "question_other": "{{count}} preguntas"
   },
   "loading": {
     "intro": "Obteniendo datos",

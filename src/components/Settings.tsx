@@ -166,11 +166,14 @@ function Settings({
           ))}
 
           {score.total > 0 && (
-            <fieldset className="options">
+            <fieldset className="options reset-stats">
               <legend>{t("settings.stats")}</legend>
               <button className="reset" onClick={() => reset()}>
                 {t("settings.reset")}
               </button>
+              <span>
+                {`${t("score.correct", { count: score.correct })} ${t("common.of")} ${t("score.question", { count: score.total })}`}
+              </span>
             </fieldset>
           )}
 

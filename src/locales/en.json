@@ -6,6 +6,9 @@
       "es": "Spanish"
     }
   },
+  "common": {
+    "of": "out of"
+  },
   "question": {
     "legend": "What title is this character from?",
     "loading": "Loading image..."
@@ -16,7 +19,10 @@
     "next": "Next"
   },
   "score": {
-    "summary": "{{correct}} correct out of {{total}} questions"
+    "correct_one": "{{count}} correct answer",
+    "correct_other": "{{count}} correct answers",
+    "question_one": "{{count}} question",
+    "question_other": "{{count}} questions"
   },
   "loading": {
     "intro": "Fetching data",
