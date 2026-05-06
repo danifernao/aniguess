@@ -305,7 +305,11 @@ function CharacterQuiz() {
   }, [totalCharacterCount, usedCharacterIds, score, settings]);
 
   // Guarda las opciones de configuración del juego establecidas por el usuario.
-  const saveSettings = (key: keyof SettingsType, value: string): void => {
+  const saveSettings = (
+    key: keyof SettingsType,
+    value: string,
+    restart: boolean = true,
+  ): void => {
     setSettings((s) => ({
       ...s,
       [key]:
@@ -322,7 +326,9 @@ function CharacterQuiz() {
       i18n.changeLanguage(value);
     }
 
-    playAgain();
+    if (restart) {
+      playAgain();
+    }
   };
 
   // Reinicia el puntaje.

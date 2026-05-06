@@ -9,7 +9,11 @@ Modal.setAppElement("#root");
 
 interface SettingsProps {
   settings: SettingsType;
-  saveSettings: (key: keyof SettingsType, value: string) => void;
+  saveSettings: (
+    key: keyof SettingsType,
+    value: string,
+    restart?: boolean,
+  ) => void;
   score: ScoreType;
   resetScore: () => void;
 }
@@ -81,6 +85,7 @@ function Settings({
 
   const reset = () => {
     const confirmation = confirm(t("settings.confirm"));
+
     if (confirmation) {
       resetScore();
     }
@@ -120,7 +125,7 @@ function Settings({
               <select
                 value={i18n.language}
                 onChange={(event) => {
-                  saveSettings("language", event.target.value);
+                  saveSettings("language", event.target.value, false);
                 }}
               >
                 {languageOptions.map((option) => (
