@@ -1,4 +1,4 @@
-import type { SettingsType } from "../types/types";
+import type { ScoreType, SettingsType } from "../types/types";
 import Modal from "react-modal";
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -10,6 +10,8 @@ Modal.setAppElement("#root");
 interface SettingsProps {
   settings: SettingsType;
   saveSettings: (key: keyof SettingsType, value: string) => void;
+  score: ScoreType;
+  resetScore: () => void;
 }
 
 type SettingGroup = {
@@ -20,7 +22,12 @@ type SettingGroup = {
   }[];
 };
 
-function Settings({ settings, saveSettings }: SettingsProps) {
+function Settings({
+  settings,
+  saveSettings,
+  score,
+  resetScore,
+}: SettingsProps) {
   const { t, i18n } = useTranslation();
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
@@ -70,6 +77,13 @@ function Settings({ settings, saveSettings }: SettingsProps) {
     }
 
     return String(value);
+  };
+
+  const reset = () => {
+    const confirmation = confirm(t("settings.confirm"));
+    if (confirmation) {
+      resetScore();
+    }
   };
 
   return (
@@ -145,6 +159,16 @@ function Settings({ settings, saveSettings }: SettingsProps) {
               </div>
             </fieldset>
           ))}
+
+          {score.total > 0 && (
+            <fieldset className="options">
+              <legend>{t("settings.stats")}</legend>
+              <button className="reset" onClick={() => reset()}>
+                {t("settings.reset")}
+              </button>
+            </fieldset>
+          )}
+
           <p className="note">{t("settings.note")}</p>
         </div>
 

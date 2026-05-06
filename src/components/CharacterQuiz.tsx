@@ -325,6 +325,14 @@ function CharacterQuiz() {
     playAgain();
   };
 
+  // Reinicia el puntaje.
+  const resetScore = () => {
+    setScore({
+      total: 0,
+      correct: 0,
+    });
+  };
+
   // Lógica que se ejecuta al cargar el componente por primera vez.
   useEffect(() => {
     const localData: string | null = localStorage.getItem("data");
@@ -414,7 +422,12 @@ function CharacterQuiz() {
 
       <Score score={score} />
 
-      <Settings settings={settings} saveSettings={saveSettings} />
+      <Settings
+        settings={settings}
+        saveSettings={saveSettings}
+        score={score}
+        resetScore={resetScore}
+      />
     </div>
   );
 }

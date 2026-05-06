@@ -40,6 +40,9 @@
         "no": "No"
       }
     },
+    "stats": "Stats",
+    "reset": "Reset",
+    "confirm": "Are you sure you want to reset your statistics? This action cannot be undone.",
     "note": "Changes are saved automatically.",
     "close": "Close"
   }

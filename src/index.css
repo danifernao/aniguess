@@ -1,6 +1,7 @@
 :root {
   --color-white: #ffffff;
   --color-red: #e85d75;
+  --color-red-2: #d41e3e;
   --color-green: #75f088;
   --color-blue-1: #9fadbd;
   --color-blue-2: #3db4f2;
@@ -340,6 +341,23 @@ input[type="radio"] {
   font-family: "Roboto", sans-serif;
   font-size: 0.9rem;
   color: var(--color-blue-1);
+}
+
+.ReactModalPortal .modal .reset {
+  padding: 0.5rem 0.8rem;
+  background-color: var(--color-red-2);
+  border: 0;
+  border-radius: 0.3rem;
+  font-family: "Roboto", sans-serif;
+  font-size: 1rem;
+  color: var(--color-white);
+  animation: box-shadow 0.6s ease, transform 0.2s ease-in-out;
+  font-weight: 600;
+}
+
+.ReactModalPortal .modal .reset:hover {
+  transform: scale(1.03);
+  box-shadow: 0 0.1rem 0.6rem rgb(from var(--color-red-2) r g b / 0.6);
 }
 
 .ReactModalPortal .modal .close {

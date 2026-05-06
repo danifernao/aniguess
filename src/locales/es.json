@@ -40,6 +40,9 @@
         "no": "No"
       }
     },
+    "stats": "Estadísticas",
+    "reset": "Reiniciar",
+    "confirm": "¿Seguro que quieres restablecer las estadísticas? Esta acción no se puede deshacer.",
     "note": "Los cambios se guardan automáticamente.",
     "close": "Cerrar"
   }
