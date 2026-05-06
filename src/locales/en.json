@@ -1,11 +1,4 @@
 {
-  "language": {
-    "legend": "Language",
-    "options": {
-      "en": "English",
-      "es": "Spanish"
-    }
-  },
   "common": {
     "of": "out of"
   },
@@ -31,6 +24,13 @@
   },
   "settings": {
     "title": "Settings",
+    "language": {
+      "legend": "Language",
+      "options": {
+        "en": "English",
+        "es": "Spanish"
+      }
+    },
     "mediaType": {
       "legend": "Media Type",
       "options": {

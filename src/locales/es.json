@@ -1,11 +1,4 @@
 {
-  "language": {
-    "legend": "Idioma",
-    "options": {
-      "en": "Inglés",
-      "es": "Español"
-    }
-  },
   "common": {
     "of": "de"
   },
@@ -31,6 +24,13 @@
   },
   "settings": {
     "title": "Configuración",
+    "language": {
+      "legend": "Idioma",
+      "options": {
+        "en": "Inglés",
+        "es": "Español"
+      }
+    },
     "mediaType": {
       "legend": "Tipo de obra",
       "options": {

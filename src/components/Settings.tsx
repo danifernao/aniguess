@@ -36,8 +36,8 @@ function Settings({
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const languageOptions = [
-    { value: "es", label: t("language.options.es") },
-    { value: "en", label: t("language.options.en") },
+    { value: "es", label: t("settings.language.options.es") },
+    { value: "en", label: t("settings.language.options.en") },
   ];
 
   const settingGroups: SettingGroup[] = [
@@ -119,7 +119,7 @@ function Settings({
 
         <div className="content">
           <fieldset>
-            <legend>{t("language.legend")}</legend>
+            <legend>{t("settings.language.legend")}</legend>
 
             <div className="options">
               <select
