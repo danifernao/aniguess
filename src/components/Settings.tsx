@@ -172,7 +172,7 @@ function Settings({
                 {t("settings.reset")}
               </button>
               <span>
-                {`${t("score.correct", { count: score.correct })} ${t("common.of")} ${t("score.question", { count: score.total })}`}
+                {`${t("score.correct", { count: score.correct })} ${t("common.of")} ${t("score.question", { count: score.total })}.`}
               </span>
             </fieldset>
           )}
