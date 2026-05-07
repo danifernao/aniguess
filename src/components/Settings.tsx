@@ -3,6 +3,7 @@ import Modal from "react-modal";
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGear, faXmark } from "@fortawesome/free-solid-svg-icons";
+import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import { useTranslation } from "react-i18next";
 
 Modal.setAppElement("#root");
@@ -100,7 +101,7 @@ function Settings({
   };
 
   const reset = () => {
-    const confirmation = confirm(t("settings.confirm"));
+    const confirmation = confirm(t("settings.stats.confirm"));
 
     if (confirmation) {
       resetScore();
@@ -134,76 +135,88 @@ function Settings({
         <h2>{t("settings.title")}</h2>
 
         <div className="content">
-          <fieldset>
-            <legend>{t("settings.language.legend")}</legend>
-
-            <div className="options">
-              <select
-                value={i18n.language}
-                onChange={(event) => {
-                  saveSettings("language", event.target.value, false);
-                }}
-              >
-                {languageOptions.map((option) => (
-                  <option key={option.value} value={option.value}>
-                    {option.label}
-                  </option>
-                ))}
-              </select>
-            </div>
-          </fieldset>
-
-          {settingGroups.map((group, i) => (
-            <fieldset key={i}>
-              <legend>{t(`settings.${group.name}.legend`)}</legend>
+          <div className="options-wrapper">
+            <fieldset>
+              <legend>{t("settings.language.legend")}</legend>
 
               <div className="options">
-                {group.options.map((option, j) => (
-                  <div key={j}>
-                    <input
-                      type="radio"
-                      id={`${group.name}-${j}`}
-                      name={group.name}
-                      value={option.value}
-                      defaultChecked={
-                        option.value === normalizeSettingValue(group.name)
-                      }
-                      onChange={(event) =>
-                        saveSettings(
-                          group.name,
-                          event.currentTarget.value,
-                          triggersNewQuestion.includes(group.name),
-                        )
-                      }
-                    />
-                    <label htmlFor={`${group.name}-${j}`}>
-                      {t(`settings.${group.name}.options.${option.name}`)}
-                    </label>
-                  </div>
-                ))}
+                <select
+                  value={i18n.language}
+                  onChange={(event) => {
+                    saveSettings("language", event.target.value, false);
+                  }}
+                >
+                  {languageOptions.map((option) => (
+                    <option key={option.value} value={option.value}>
+                      {option.label}
+                    </option>
+                  ))}
+                </select>
               </div>
+            </fieldset>
 
-              {optionsWithNotices.includes(group.name) && (
-                <div className="option-notice">
-                  <p>{t(`settings.${group.name}.notice`)}</p>
+            {settingGroups.map((group, i) => (
+              <fieldset key={i}>
+                <legend>{t(`settings.${group.name}.legend`)}</legend>
+
+                <div className="options">
+                  {group.options.map((option, j) => (
+                    <div key={j}>
+                      <input
+                        type="radio"
+                        id={`${group.name}-${j}`}
+                        name={group.name}
+                        value={option.value}
+                        defaultChecked={
+                          option.value === normalizeSettingValue(group.name)
+                        }
+                        onChange={(event) =>
+                          saveSettings(
+                            group.name,
+                            event.currentTarget.value,
+                            triggersNewQuestion.includes(group.name),
+                          )
+                        }
+                      />
+                      <label htmlFor={`${group.name}-${j}`}>
+                        {t(`settings.${group.name}.options.${option.name}`)}
+                      </label>
+                    </div>
+                  ))}
                 </div>
-              )}
-            </fieldset>
-          ))}
 
-          {score.total > 0 && (
-            <fieldset className="options reset-stats">
-              <legend>{t("settings.stats")}</legend>
-              <button className="reset" onClick={() => reset()}>
-                {t("settings.reset")}
-              </button>
-              <span>
-                {`${t("score.correct", { count: score.correct })} ${t("common.of")} ${t("score.question", { count: score.total })}.`}
-              </span>
-            </fieldset>
-          )}
+                {optionsWithNotices.includes(group.name) && (
+                  <div className="option-notice">
+                    <p>{t(`settings.${group.name}.notice`)}</p>
+                  </div>
+                )}
+              </fieldset>
+            ))}
 
-          <p className="settings-notice">{t("settings.note")}</p>
+            {score.total > 0 && (
+              <fieldset className="options reset-stats">
+                <legend>{t("settings.stats.legend")}</legend>
+                <button className="reset" onClick={() => reset()}>
+                  {t("settings.stats.button")}
+                </button>
+                <span>
+                  {`${t("score.correct", { count: score.correct })} ${t("common.of")} ${t("score.question", { count: score.total })}.`}
+                </span>
+              </fieldset>
+            )}
+          </div>
+
+          <div className="footer">
+            <a
+              href="https://github.com/danifernao/aniguess"
+              target="_blank"
+              title={t("settings.footer.github")}
+            >
+              <FontAwesomeIcon icon={faGithub} aria-hidden="true" />
+            </a>
+
+            <p className="settings-notice">{t("settings.footer.notice")}</p>
+          </div>
         </div>
 
         <button

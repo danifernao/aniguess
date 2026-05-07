@@ -54,10 +54,15 @@
       },
       "notice": "Algunas páginas con contenido para adultos en AniList requieren que inicies sesión; de lo contrario, devolverán un error 404."
     },
-    "stats": "Estadísticas",
-    "reset": "Reiniciar",
-    "confirm": "¿Seguro que quieres restablecer las estadísticas? Esta acción no se puede deshacer.",
-    "note": "Los cambios se guardan automáticamente.",
+    "stats": {
+      "legend": "Estadísticas",
+      "button": "Reiniciar",
+      "confirm": "¿Seguro que quieres restablecer las estadísticas? Esta acción no se puede deshacer."
+    },
+    "footer": {
+      "github": "Repositorio en GitHub",
+      "notice": "Los cambios se guardan automáticamente."
+    },
     "close": "Cerrar"
   }
 }
