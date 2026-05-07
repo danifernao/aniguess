@@ -38,7 +38,7 @@ export function useCharacterQuiz(answerOptionCount: number) {
   // Configuración del juego.
   const [settings, setSettings] = useState<SettingsType>({
     language: i18n.language as "es" | "en",
-    questionMode: "work",
+    questionMode: "series",
     mediaType: null,
     mediaNsfw: true,
   });
@@ -128,7 +128,7 @@ export function useCharacterQuiz(answerOptionCount: number) {
   const checkAnswer = (selected: CharacterType): void => {
     const isCorrect =
       selected.id === questionCharacter!.id ||
-      (settings.questionMode === "work" &&
+      (settings.questionMode === "series" &&
         questionCharacter!.media.nodes.some(
           (m) => m.id === selected.media.nodes[0].id,
         ));

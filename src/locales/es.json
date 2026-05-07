@@ -4,7 +4,7 @@
   },
   "question": {
     "character": "¿Cómo se llama este personaje?",
-    "work": "¿A qué obra pertenece este personaje?",
+    "series": "¿A qué obra pertenece este personaje?",
     "loading": "Cargando imagen..."
   },
   "answer": {
@@ -19,9 +19,8 @@
     "question_other": "{{count}} preguntas"
   },
   "loading": {
-    "intro": "Obteniendo datos",
-    "delay": "Esto puede tardar un minuto.",
-    "error": "Se presentó un error inesperado de nuestra parte, inténtalo más tarde."
+    "message": "Cargando...",
+    "error": "Se presentó un error inesperado, inténtalo más tarde."
   },
   "settings": {
     "title": "Configuración",
@@ -36,7 +35,7 @@
       "legend": "Tipo de pregunta",
       "options": {
         "character": "Nombre de personaje",
-        "work": "Nombre de obra"
+        "series": "Nombre de obra"
       }
     },
     "mediaType": {
@@ -52,7 +51,8 @@
       "options": {
         "yes": "Sí",
         "no": "No"
-      }
+      },
+      "notice": "Las páginas de obras para adultos en AniList requieren iniciar sesión; de lo contrario, pueden mostrar un error 404."
     },
     "stats": "Estadísticas",
     "reset": "Reiniciar",

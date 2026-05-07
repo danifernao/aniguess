@@ -114,19 +114,19 @@ input[type="radio"] {
 }
 
 .answer .description.character p:last-of-type a,
-.answer .description.work p:first-of-type a {
+.answer .description.series p:first-of-type a {
   color: var(--color-blue-1);
 }
 
 .answer.correct .title,
 .answer.correct .description.character p:first-of-type a,
-.answer.correct .description.work p:last-of-type a {
+.answer.correct .description.series p:last-of-type a {
   color: var(--color-green);
 }
 
 .answer.incorrect .title,
 .answer.incorrect .description.character p:first-of-type a,
-.answer.incorrect .description.work p:last-of-type a {
+.answer.incorrect .description.series p:last-of-type a {
   color: var(--color-red);
 }
 
@@ -165,43 +165,11 @@ input[type="radio"] {
 }
 
 .loading {
-  flex-direction: column;
-  max-width: 25rem;
+  gap: 0.5rem;
 }
 
-.loading:not(.error) p:first-of-type:after {
-  content: '';
-  display: inline-block;
-  min-width: 1rem;
-  animation: dotty steps(1) 1.5s infinite;
-}
-
-@keyframes dotty {
-  0%   { content: '' }
-  25%  { content: '.'; }
-  50%  { content: '..'; }
-  75%  { content: '...'; }
-  100% { content: ''; }
-}
-
-.loading p:last-of-type {
-  text-align: center;
-}
-
-.loading:not(.error) p:last-of-type {
-  opacity: 0;
-  animation: 10s fadeIn;
-  animation-fill-mode: forwards;
-  transition: opacity 0.5s ease-in;
-}
-
-@keyframes fadeIn {
-  99% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
+.loading .fa-circle-notch {
+  font-size: 1.5rem;
 }
 
 .score {
@@ -335,6 +303,12 @@ input[type="radio"] {
   align-items: center;
 }
 
+.ReactModalPortal .modal .option-notice {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  font-style: italic;
+}
+
 .ReactModalPortal .modal input[type="radio"] {
   margin: 0;
 }
@@ -392,7 +366,7 @@ input[type="radio"] {
   color: var(--color-blue-1);
 }
 
-.ReactModalPortal .modal .note {
+.ReactModalPortal .modal .settings-notice {
   text-align: right;
   font-size: 0.9rem;
   font-style: italic;

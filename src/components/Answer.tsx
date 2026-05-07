@@ -4,7 +4,7 @@ import type { CharacterType } from "../types/types";
 import { useTranslation } from "react-i18next";
 
 interface AnswerProps {
-  questionMode: "character" | "work";
+  questionMode: "character" | "series";
   questionCharacter: CharacterType;
   isCorrect: boolean;
   newQuestion: () => void;

@@ -41,6 +41,7 @@ function Settings({
   ];
 
   const triggersNewQuestion = ["mediaType", "mediaNsfw"];
+  const optionsWithNotices = ["mediaNsfw"];
 
   const settingGroups: SettingGroup[] = [
     {
@@ -51,8 +52,8 @@ function Settings({
           value: "character",
         },
         {
-          name: "work",
-          value: "work",
+          name: "series",
+          value: "series",
         },
       ],
     },
@@ -181,6 +182,12 @@ function Settings({
                   </div>
                 ))}
               </div>
+
+              {optionsWithNotices.includes(group.name) && (
+                <div className="option-notice">
+                  <p>{t(`settings.${group.name}.notice`)}</p>
+                </div>
+              )}
             </fieldset>
           ))}
 
@@ -196,7 +203,7 @@ function Settings({
             </fieldset>
           )}
 
-          <p className="note">{t("settings.note")}</p>
+          <p className="settings-notice">{t("settings.note")}</p>
         </div>
 
         <button

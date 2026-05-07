@@ -6,7 +6,7 @@ import { faCircleNotch } from "@fortawesome/free-solid-svg-icons";
 import { shuffle } from "../utils/shuffle";
 
 interface QuestionProps {
-  questionMode: "character" | "work";
+  questionMode: "character" | "series";
   optionCharacters: CharacterType[];
   questionCharacter: CharacterType;
   checkAnswer: (char: CharacterType) => void;
@@ -37,7 +37,7 @@ function Question({
           aria-label={t("question.loading")}
           role="status"
         >
-          <FontAwesomeIcon icon={faCircleNotch} spin />
+          <FontAwesomeIcon icon={faCircleNotch} spin aria-hidden="true" />
         </div>
       )}
 
@@ -55,7 +55,7 @@ function Question({
         <legend>
           {questionMode === "character"
             ? t("question.character")
-            : t("question.work")}
+            : t("question.series")}
         </legend>
 
         {shuffledCharacters.map((character: CharacterType) => (

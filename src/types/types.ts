@@ -5,7 +5,7 @@ export interface ScoreType {
 
 export interface SettingsType {
   language: "es" | "en";
-  questionMode: "character" | "work";
+  questionMode: "character" | "series";
   mediaType: string | null;
   mediaNsfw: boolean;
 }

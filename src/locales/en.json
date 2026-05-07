@@ -4,7 +4,7 @@
   },
   "question": {
     "character": "What is this character's name?",
-    "work": "What title is this character from?",
+    "series": "What series is this character from?",
     "loading": "Loading image..."
   },
   "answer": {
@@ -19,9 +19,8 @@
     "question_other": "{{count}} questions"
   },
   "loading": {
-    "intro": "Fetching data",
-    "delay": "This may take a minute.",
-    "error": "An unexpected error occurred on our part, please try again later."
+    "message": "Loading...",
+    "error": "An unexpected error occurred. Please try again later."
   },
   "settings": {
     "title": "Settings",
@@ -36,8 +35,8 @@
       "legend": "Question type",
       "options": {
         "character": "Character name",
-        "work": "Work title"
-      }      
+        "series": "Series title"
+      }
     },
     "mediaType": {
       "legend": "Media Type",
@@ -52,11 +51,12 @@
       "options": {
         "yes": "Yes",
         "no": "No"
-      }
+      },
+      "notice": "Some adult-content pages on AniList require you to sign in; otherwise, they may return a 404 error."
     },
     "stats": "Stats",
     "reset": "Reset",
-    "confirm": "Are you sure you want to reset your statistics? This action cannot be undone.",
+    "confirm": "Are you sure you want to reset your stats? This action cannot be undone.",
     "note": "Changes are saved automatically.",
     "close": "Close"
   }
