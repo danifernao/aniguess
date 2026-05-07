@@ -3,6 +3,7 @@ import { initReactI18next } from "react-i18next";
 
 import es from "./locales/es.json";
 import en from "./locales/en.json";
+import { loadGameState } from "./storage/gameState";
 
 const resources = {
   es: {
@@ -13,13 +14,12 @@ const resources = {
   },
 };
 
-const storedData = localStorage.getItem("gameState");
-const parsedData = storedData ? JSON.parse(storedData) : null;
+const localState = loadGameState();
 
 const localeLanguage = new Intl.Locale(navigator.language).language;
 const browserLanguage = ["en", "es"].includes(localeLanguage) ? localeLanguage : null;
 
-const language = parsedData?.settings.language ?? browserLanguage ?? "en";
+const language = localState?.settings.language ?? browserLanguage ?? "en";
 
 i18n.use(initReactI18next).init({
   resources,
