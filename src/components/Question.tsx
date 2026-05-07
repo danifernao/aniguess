@@ -3,6 +3,7 @@ import type { CharacterType } from "../types/types";
 import { useTranslation } from "react-i18next";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleNotch } from "@fortawesome/free-solid-svg-icons";
+import { shuffle } from "../utils/shuffle";
 
 interface QuestionProps {
   questionMode: "character" | "work";
@@ -18,22 +19,8 @@ function Question({
   checkAnswer,
 }: QuestionProps) {
   const { t } = useTranslation();
-
-  // Estado para controlar la carga de la imagen.
   const [isImageLoading, setIsImageLoading] = useState<boolean>(true);
 
-  // Mezcla aleatoriamente el orden de los personajes.
-  const shuffle = (arr: CharacterType[]): CharacterType[] => {
-    for (let i = arr.length - 1; i > 0; i--) {
-      const j: number = Math.floor(Math.random() * (i + 1));
-      [arr[i], arr[j]] = [arr[j], arr[i]];
-    }
-
-    return arr;
-  };
-
-  // Memoriza el resultado de la mezcla para evitar recalcularlo en cada
-  // renderizado.
   const shuffledCharacters = useMemo(() => {
     return shuffle([...optionCharacters]);
   }, [optionCharacters]);

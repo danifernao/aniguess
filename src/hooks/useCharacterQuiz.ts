@@ -3,14 +3,13 @@ import type {
   ScoreType,
   SettingsType,
   CharacterType,
-  GameStateType,
 } from "../types/types";
 
-import { getRandomInt } from "../utils/randomInt";
+import { getRandomInt, generateUniqueIds } from "../utils/random";
 import { fetchAniListData, fetchLastCharacterId } from "../services/anilist";
-import { generateUniqueIds } from "../utils/randomIds";
-import { filterValidCharacters } from "../rules/characters";
+import { filterValidCharacters } from "../filters/characters";
 import i18n from "../i18n";
+import { loadGameState, saveGameState } from "../storage/gameState";
 
 export function useCharacterQuiz(answerOptionCount: number) {
   // ID más alto de un personaje registrado en AniList.
@@ -188,35 +187,16 @@ export function useCharacterQuiz(answerOptionCount: number) {
   };
 
 
-  // Guarda los datos del juego en el almacenamiento local del navegador.
-  const saveToLocal = useCallback(() => {
-    if (!maxCharacterId) {
-      return;
-    }
-
-    const gameState: GameStateType = {
-      maxCharacterId,
-      usedCharacterIds,
-      score,
-      settings,
-    };
-
-    localStorage.setItem("gameState", JSON.stringify(gameState));
-  }, [maxCharacterId, usedCharacterIds, score, settings]);
-
-
   // Inicialización.
   useEffect(() => {
-    const localData: string | null = localStorage.getItem("gameState");
+    const localState = loadGameState();
 
-    // Si existe una copia de respaldo local, se recupera la información y
-    // se actualizan las variables estado correspondientes.
-    if (localData) {
-      const gameState = JSON.parse(localData);
-
-      setUsedCharacterIds(gameState.usedCharacterIds);
-      setScore(gameState.score);
-      setSettings(gameState.settings);
+    // Se recupera la información guardada localmente y se actualizan las
+    // variables estado correspondientes.
+    if (localState) {
+      setUsedCharacterIds(localState.usedCharacterIds);
+      setScore(localState.score);
+      setSettings(localState.settings);
     }
 
     // Obtiene el ID más alto de los personajes registrados en AniList.
@@ -251,8 +231,15 @@ export function useCharacterQuiz(answerOptionCount: number) {
 
   // Guarda en el almacenamiento local del navegador la información del juego.
   useEffect(() => {
-    saveToLocal();
-  }, [maxCharacterId, usedCharacterIds, score, settings, saveToLocal]);
+    if (maxCharacterId) {
+      saveGameState({
+        maxCharacterId,
+        usedCharacterIds,
+        score,
+        settings,
+      });
+    }
+  }, [maxCharacterId, usedCharacterIds, score, settings]);
 
   return {
     maxCharacterId,
