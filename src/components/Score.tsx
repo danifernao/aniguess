@@ -35,7 +35,7 @@ function Score({ score }: ScoreProps) {
   }, [score]);
 
   return (
-    <div className="score">
+    <div id="score">
       <div
         className="stats"
         title={`${t("score.correct", { count: score.correct })} ${t("common.of")} ${t("score.question", { count: score.total })}`}

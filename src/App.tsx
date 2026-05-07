@@ -22,7 +22,7 @@ function App() {
   } = useCharacterQuiz(answerOptionCount);
 
   return (
-    <div className="main">
+    <div id="main">
       {!errorFound && questionCharacter && isAnswerCorrect === null && (
         <Question
           questionMode={settings.questionMode}

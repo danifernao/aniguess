@@ -10,7 +10,7 @@ function Loading({ errorFound }: LoadingProps) {
   const { t } = useTranslation();
 
   return (
-    <div className={`loading ${errorFound ? "error" : ""}`} role="status">
+    <div id="loading" className={`${errorFound ? "error" : ""}`} role="status">
       {errorFound ? (
         <p>{t("loading.error")}</p>
       ) : (

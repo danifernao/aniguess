@@ -30,7 +30,7 @@ function Question({
   }, [questionCharacter]);
 
   return (
-    <div className="question">
+    <div id="question">
       {isImageLoading && (
         <div
           className="loading-image"
@@ -49,6 +49,7 @@ function Question({
         style={{
           display: isImageLoading ? "none" : "block",
         }}
+        className="character-image"
       />
 
       <fieldset>
@@ -59,12 +60,12 @@ function Question({
         </legend>
 
         {shuffledCharacters.map((character: CharacterType) => (
-          <div key={character.id}>
+          <div className="options" key={character.id}>
             <input
               type="radio"
               id={`media-${character.id}`}
               value={character.id}
-              name="title"
+              name="series-title"
               onClick={() => checkAnswer(character)}
             />
             <label htmlFor={`media-${character.id}`}>

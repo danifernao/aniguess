@@ -110,7 +110,7 @@ function Settings({
 
   return (
     <>
-      <div className="settings">
+      <div className="settings-trigger">
         <button
           type="button"
           onClick={() => setIsOpen(true)}
@@ -120,31 +120,32 @@ function Settings({
           aria-expanded={isOpen}
           aria-controls="settings-modal"
         >
-          <FontAwesomeIcon icon={faGear} />
+          <FontAwesomeIcon icon={faGear} aria-hidden="true" />
         </button>
       </div>
 
       <Modal
-        id="settings-modal"
+        id="settings"
         isOpen={isOpen}
         onRequestClose={() => setIsOpen(false)}
-        className="modal"
         overlayClassName="overlay"
         contentLabel={t("settings.title")}
+        className="modal"
       >
-        <h2>{t("settings.title")}</h2>
+        <h2 className="title">{t("settings.title")}</h2>
 
         <div className="content">
-          <div className="options-wrapper">
+          <div className="controls">
             <fieldset>
               <legend>{t("settings.language.legend")}</legend>
 
-              <div className="options">
+              <div className="fields">
                 <select
                   value={i18n.language}
                   onChange={(event) => {
                     saveSettings("language", event.target.value, false);
                   }}
+                  className="language"
                 >
                   {languageOptions.map((option) => (
                     <option key={option.value} value={option.value}>
@@ -159,9 +160,9 @@ function Settings({
               <fieldset key={i}>
                 <legend>{t(`settings.${group.name}.legend`)}</legend>
 
-                <div className="options">
+                <div className="fields">
                   {group.options.map((option, j) => (
-                    <div key={j}>
+                    <div className="option" key={j}>
                       <input
                         type="radio"
                         id={`${group.name}-${j}`}
@@ -194,12 +195,12 @@ function Settings({
             ))}
 
             {score.total > 0 && (
-              <fieldset className="options reset-stats">
+              <fieldset className="reset-stats">
                 <legend>{t("settings.stats.legend")}</legend>
-                <button className="reset" onClick={() => reset()}>
+                <button className="action" onClick={() => reset()}>
                   {t("settings.stats.button")}
                 </button>
-                <span>
+                <span className="score">
                   {`${t("score.correct", { count: score.correct })} ${t("common.of")} ${t("score.question", { count: score.total })}.`}
                 </span>
               </fieldset>
@@ -215,12 +216,12 @@ function Settings({
               <FontAwesomeIcon icon={faGithub} aria-hidden="true" />
             </a>
 
-            <p className="settings-notice">{t("settings.footer.notice")}</p>
+            <p className="notice">{t("settings.footer.notice")}</p>
           </div>
         </div>
 
         <button
-          className="close"
+          className="modal-close"
           onClick={() => setIsOpen(false)}
           title={t("settings.close")}
           aria-label={t("settings.close")}
