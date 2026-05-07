@@ -39,7 +39,7 @@
       }
     },
     "mediaType": {
-      "legend": "Media Type",
+      "legend": "Media type",
       "options": {
         "anime": "Anime",
         "manga": "Manga",

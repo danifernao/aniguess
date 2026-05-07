@@ -283,6 +283,10 @@ input[type="radio"] {
   border: 0.1rem solid rgb(from var(--color-blue-5) r g b / 0.4);
 }
 
+.ReactModalPortal .modal legend {
+  font-weight: 700;
+}
+
 .ReactModalPortal .modal .content {
   display: flex;
   flex-direction: column;
@@ -305,7 +309,7 @@ input[type="radio"] {
 
 .ReactModalPortal .modal .option-notice {
   margin-top: 1rem;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   font-style: italic;
 }
 
