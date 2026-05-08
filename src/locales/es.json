@@ -60,8 +60,7 @@
       "confirm": "¿Seguro que quieres restablecer las estadísticas? Esta acción no se puede deshacer."
     },
     "footer": {
-      "github": "Repositorio en GitHub",
-      "notice": "Los cambios se guardan automáticamente."
+      "github": "Repositorio en GitHub"
     },
     "close": "Cerrar"
   }

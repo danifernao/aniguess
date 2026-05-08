@@ -121,8 +121,6 @@ function Settings({
             >
               <FontAwesomeIcon icon={faGithub} aria-hidden="true" />
             </a>
-
-            <p className="notice">{t("settings.footer.notice")}</p>
           </div>
         </div>
 
