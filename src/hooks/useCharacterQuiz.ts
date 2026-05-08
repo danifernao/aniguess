@@ -64,9 +64,10 @@ export function useCharacterQuiz(answerOptionCount: number) {
       setUsedCharacterIds([]);
     }
 
-    // Genera 20 IDs únicos de manera aleatoria.
+    // Genera IDs únicos de manera aleatoria.
     const excludedIds = new Set(usedCharacterIds);
-    const randomIds: number[] = generateUniqueIds(20, maxCharacterId!, excludedIds);
+    const totalIds = answerOptionCount * (settings.mediaNsfw ? 3 : 4);
+    const randomIds: number[] = generateUniqueIds(totalIds, maxCharacterId!, excludedIds);
 
     const query = `query($idIn: [Int], $type: MediaType) {
       Page {
