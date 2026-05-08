@@ -111,7 +111,7 @@ function Settings({
                   {t("settings.stats.button")}
                 </button>
                 <span className="summary">
-                  {t("score.summary", {
+                  {t("stats.summary", {
                     correct: score.correct,
                     total: score.total,
                     percentage: scorePercentage,

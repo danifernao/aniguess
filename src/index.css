@@ -188,8 +188,8 @@ input[type="radio"] {
 }
 
 
-/* Puntaje */
-#score {
+/* Estadísticas */
+#stats {
   position: absolute;
   top: 0;
   right: 0;
@@ -200,45 +200,45 @@ input[type="radio"] {
   padding: 1rem;
 }
 
-#score .stats {
+#stats .score {
   flex: 1;
   font-size: 1.5rem;
   font-weight: 700;
 }
 
-#score .progress-bar {
+#stats .progress-bar {
   width: 4rem;
   height: 4rem;
 }
 
-#score .progress-bar .CircularProgressbar-trail {
+#stats .progress-bar .CircularProgressbar-trail {
   stroke: var(--color-blue-1);
 }
 
-#score .progress-bar .CircularProgressbar-text {
+#stats .progress-bar .CircularProgressbar-text {
   font-size: 1.3rem;
 }
 
-#score .progress-bar.neutral .CircularProgressbar-path,
-#score .progress-bar.neutral .CircularProgressbar-text {
+#stats .progress-bar.neutral .CircularProgressbar-path,
+#stats .progress-bar.neutral .CircularProgressbar-text {
   stroke: var(--color-blue-1);
   fill: var(--color-blue-1);
 }
 
-#score .progress-bar.good .CircularProgressbar-path,
-#score .progress-bar.good .CircularProgressbar-text {
+#stats .progress-bar.good .CircularProgressbar-path,
+#stats .progress-bar.good .CircularProgressbar-text {
   stroke: var(--color-green);
   fill: var(--color-green);
 }
 
-#score .progress-bar.medium .CircularProgressbar-path,
-#score .progress-bar.medium .CircularProgressbar-text {
+#stats .progress-bar.medium .CircularProgressbar-path,
+#stats .progress-bar.medium .CircularProgressbar-text {
   stroke: var(--color-orange);
   fill: var(--color-orange);
 }
 
-#score .progress-bar.bad .CircularProgressbar-path,
-#score .progress-bar.bad .CircularProgressbar-text {
+#stats .progress-bar.bad .CircularProgressbar-path,
+#stats .progress-bar.bad .CircularProgressbar-text {
   stroke: var(--color-red);
   fill: var(--color-red);
 }

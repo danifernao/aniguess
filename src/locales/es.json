@@ -12,11 +12,13 @@
     "incorrect": "¡Incorrecto!",
     "next": "Siguiente"
   },
-  "score": {
-    "correct_one": "{{count}} acierto",
-    "correct_other": "{{count}} aciertos",
-    "question_one": "{{count}} pregunta",
-    "question_other": "{{count}} preguntas",
+  "stats": {
+    "score": {
+      "correct_one": "{{count}} acierto",
+      "correct_other": "{{count}} aciertos",
+      "question_one": "{{count}} pregunta",
+      "question_other": "{{count}} preguntas"
+    },    
     "summary": "{{correct}}/{{total}} · {{percentage}}%"
   },
   "loading": {

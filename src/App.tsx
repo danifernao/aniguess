@@ -1,9 +1,9 @@
 import Answer from "./components/Answer";
 import Loading from "./components/Loading";
 import Question from "./components/Question";
-import Score from "./components/Score";
 import Settings from "./components/Settings";
 import { useCharacterQuiz } from "./hooks/useCharacterQuiz";
+import Stats from "./components/Stats";
 
 function App() {
   const answerOptionCount = 3;
@@ -45,7 +45,7 @@ function App() {
         <Loading errorFound={errorFound} />
       )}
 
-      <Score score={score} />
+      <Stats score={score} />
 
       <Settings
         settings={settings}

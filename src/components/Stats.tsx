@@ -3,37 +3,30 @@ import "react-circular-progressbar/dist/styles.css";
 import { CircularProgressbar } from "react-circular-progressbar";
 import { useTranslation } from "react-i18next";
 
-interface ScoreProps {
+interface StatsProps {
   score: ScoreType;
 }
 
-function Score({ score }: ScoreProps) {
+function Stats({ score }: StatsProps) {
   const { t } = useTranslation();
 
   const percentage =
     score.total > 0 ? Math.round((score.correct / score.total) * 100) : 0;
 
-  const getScoreStatus = (): string => {
-    if (score.total === 0) {
-      return "neutral";
-    }
-
-    if (percentage >= 70) {
-      return "good";
-    }
-
-    if (percentage >= 50) {
-      return "medium";
-    }
-
-    return "bad";
-  };
+  const status =
+    score.total === 0
+      ? "neutral"
+      : percentage >= 70
+        ? "good"
+        : percentage >= 50
+          ? "medium"
+          : "bad";
 
   return (
-    <div id="score">
+    <div id="stats">
       <div
-        className="stats"
-        title={`${t("score.correct", { count: score.correct })} ${t("common.of")} ${t("score.question", { count: score.total })}`}
+        className="score"
+        title={`${t("stats.score.correct", { count: score.correct })} ${t("common.of")} ${t("stats.score.question", { count: score.total })}`}
       >
         {score.correct} / {score.total}
       </div>
@@ -42,10 +35,10 @@ function Score({ score }: ScoreProps) {
         value={percentage}
         text={`${percentage}%`}
         strokeWidth={10}
-        className={`progress-bar ${getScoreStatus()}`}
+        className={`progress-bar ${status}`}
       />
     </div>
   );
 }
 
-export default Score;
+export default Stats;
