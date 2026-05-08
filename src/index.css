@@ -375,7 +375,7 @@ input[type="radio"] {
   box-shadow: 0 0.1rem 0.6rem rgb(from var(--color-red-2) r g b / 0.6);
 }
 
-#settings .reset-stats .score {
+#settings .reset-stats .summary {
   font-size: 0.8rem;
 }
 

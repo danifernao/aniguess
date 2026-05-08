@@ -16,7 +16,8 @@
     "correct_one": "{{count}} correct answer",
     "correct_other": "{{count}} correct answers",
     "question_one": "{{count}} question",
-    "question_other": "{{count}} questions"
+    "question_other": "{{count}} questions",
+    "summary": "{{correct}}/{{total}} · {{percentage}}%"
   },
   "loading": {
     "message": "Loading...",

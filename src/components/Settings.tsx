@@ -27,12 +27,17 @@ function Settings({
   resetScore,
 }: SettingsProps) {
   const { t, i18n } = useTranslation();
+
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const languageOptions = [
     { value: "es", label: t("settings.language.options.es") },
     { value: "en", label: t("settings.language.options.en") },
   ];
+
+  const scorePercentage =
+    score.total > 0 ? Math.round((score.correct / score.total) * 100) : 0;
+
   const reset = () => {
     const confirmation = confirm(t("settings.stats.confirm"));
 
@@ -105,8 +110,12 @@ function Settings({
                 <button className="action" onClick={() => reset()}>
                   {t("settings.stats.button")}
                 </button>
-                <span className="score">
-                  {`${t("score.correct", { count: score.correct })} ${t("common.of")} ${t("score.question", { count: score.total })}.`}
+                <span className="summary">
+                  {t("score.summary", {
+                    correct: score.correct,
+                    total: score.total,
+                    percentage: scorePercentage,
+                  })}
                 </span>
               </fieldset>
             )}
