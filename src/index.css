@@ -430,13 +430,15 @@ input[type="radio"] {
     gap: 1rem;
   }
 
-  #question legend,
-  #question .options,
-  #answer .description p {
-    margin: 1rem 0;
+  #question .options {
+    margin: 1rem 0 0 0;
   }
 
-  #question legend {
-    margin-bottom: 0;
+  #answer .description p {
+    margin: 0;
+  }
+  
+  #answer .description p:last-of-type {
+    margin-top: 1rem;
   }
 }
