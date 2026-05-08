@@ -43,7 +43,7 @@ function Question({
 
       <img
         src={questionCharacter.image.large}
-        alt=""
+        alt={t("question.image_alt")}
         onLoad={() => setIsImageLoading(false)}
         onError={() => setIsImageLoading(false)}
         style={{

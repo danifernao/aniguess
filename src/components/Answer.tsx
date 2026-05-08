@@ -21,20 +21,20 @@ function Answer({
   return (
     <div id="answer" className={`${isCorrect ? "correct" : "incorrect"}`}>
       <div>
-        <p className="title">
+        <p className="result">
           <b>{isCorrect ? t("answer.correct") : t("answer.incorrect")}</b>
         </p>
 
         <img
           src={questionCharacter.image.large}
-          alt=""
+          alt={t("answer.image_alt", { name: questionCharacter.name.full })}
           className="character-image"
         />
 
         <div className={`description ${questionMode}`}>
           <p className="character-name">
             <a href={questionCharacter.siteUrl} target="_blank">
-              {questionCharacter.name!.full}
+              {questionCharacter.name.full}
               <FontAwesomeIcon
                 icon={faArrowUpRightFromSquare}
                 className="link-icon"

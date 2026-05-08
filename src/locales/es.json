@@ -5,11 +5,13 @@
   "question": {
     "character": "¿Cómo se llama este personaje?",
     "series": "¿A qué obra pertenece este personaje?",
-    "loading": "Cargando imagen..."
+    "loading": "Cargando imagen...",
+    "image_alt": "Imagen del personaje"
   },
   "answer": {
     "correct": "¡Correcto!",
     "incorrect": "¡Incorrecto!",
+    "image_alt": "Imagen del personaje {{name}}",
     "next": "Siguiente"
   },
   "stats": {

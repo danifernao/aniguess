@@ -127,7 +127,7 @@ input[type="radio"] {
   text-align: center;
 }
 
-#answer .title {
+#answer .result {
   font-size: 2rem;
   font-weight: 700;
 }
@@ -141,13 +141,13 @@ input[type="radio"] {
   color: var(--color-blue-1);
 }
 
-#answer.correct .title,
+#answer.correct .result,
 #answer.correct .description.character .character-name a,
 #answer.correct .description.series .series-title a {
   color: var(--color-green);
 }
 
-#answer.incorrect .title,
+#answer.incorrect .result,
 #answer.incorrect .description.character .character-name a,
 #answer.incorrect .description.series .series-title a {
   color: var(--color-red);
