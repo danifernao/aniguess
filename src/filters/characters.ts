@@ -28,7 +28,7 @@ export const filterValidCharacters = (
     // por el jugador.
     const media = character.media.nodes.filter(
       (m) =>
-        (m.title.english !== "" || m.title.romaji !== "") &&
+        (m.title.english || m.title.romaji) &&
         (settings.mediaNsfw || !m.isAdult),
     );
 
