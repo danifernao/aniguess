@@ -1,6 +1,5 @@
 import type { ScoreType } from "../types/types";
 import "react-circular-progressbar/dist/styles.css";
-import { useEffect, useState } from "react";
 import { CircularProgressbar } from "react-circular-progressbar";
 import { useTranslation } from "react-i18next";
 
@@ -10,7 +9,9 @@ interface ScoreProps {
 
 function Score({ score }: ScoreProps) {
   const { t } = useTranslation();
-  const [percentage, setPercentage] = useState(0);
+
+  const percentage =
+    score.total > 0 ? Math.round((score.correct / score.total) * 100) : 0;
 
   const getScoreStatus = (): string => {
     if (score.total === 0) {
@@ -27,12 +28,6 @@ function Score({ score }: ScoreProps) {
 
     return "bad";
   };
-
-  useEffect(() => {
-    setPercentage(
-      score.total > 0 ? Math.trunc((score.correct / score.total) * 100) : 0,
-    );
-  }, [score]);
 
   return (
     <div id="score">
