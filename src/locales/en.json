@@ -51,8 +51,7 @@
       "options": {
         "yes": "Yes",
         "no": "No"
-      },
-      "notice": "Some adult-content pages on AniList require you to sign in; otherwise, they will return a 404 error."
+      }
     },
     "stats": {
       "legend": "Stats",

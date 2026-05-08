@@ -51,8 +51,7 @@
       "options": {
         "yes": "Sí",
         "no": "No"
-      },
-      "notice": "Algunas páginas con contenido para adultos en AniList requieren que inicies sesión; de lo contrario, devolverán un error 404."
+      }
     },
     "stats": {
       "legend": "Estadísticas",

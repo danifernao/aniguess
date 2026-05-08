@@ -25,7 +25,6 @@ function SettingsRadioGroups({
   const { t } = useTranslation();
 
   const triggersNewQuestion = ["mediaType", "mediaNsfw"];
-  const optionsWithNotices = ["mediaNsfw"];
 
   const radioGroups: radioGroup[] = [
     {
@@ -112,12 +111,6 @@ function SettingsRadioGroups({
           </div>
         ))}
       </div>
-
-      {optionsWithNotices.includes(group.name) && (
-        <div className="option-notice">
-          <p>{t(`settings.${group.name}.notice`)}</p>
-        </div>
-      )}
     </fieldset>
   ));
 }
