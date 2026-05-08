@@ -18,6 +18,9 @@ export function useCharacterQuiz(answerOptionCount: number) {
   // IDs de personajes que no se deben tener en cuenta.
   const [usedCharacterIds, setUsedCharacterIds] = useState<number[]>([]);
 
+  // Límite de historial de IDs de personajes usados.
+  const usedCharactersLimit = 100;
+
   // Personajes usados como opciones de respuesta.
   const [optionCharacters, setOptionCharacters] = useState<CharacterType[]>([]);
 
@@ -49,21 +52,6 @@ export function useCharacterQuiz(answerOptionCount: number) {
 
   // Obtiene personajes aleatorios.
   const fetchRandomCharacters = useCallback((): void => {
-    /* Calcula qué porcentaje del rango total de IDs posibles
-     * ya ha sido utilizado como pregunta.
-     *
-     * Para evitar que la generación aleatoria se vuelva progresivamente
-     * menos eficiente al aumentar la cantidad de IDs excluidos, el historial
-     * se reinicia al alcanzar un umbral determinado.
-     */
-    const usageRatio = usedCharacterIds.length / maxCharacterId!;
-
-    // Si ya se ha utilizado al menos el 3 % del rango total de IDs posibles,
-    // vacía el historial para permitir reutilizarlos nuevamente.
-    if (usageRatio >= 0.03) {
-      setUsedCharacterIds([]);
-    }
-
     // Genera IDs únicos de manera aleatoria.
     const excludedIds = new Set(usedCharacterIds);
     const totalIds = answerOptionCount * (settings.mediaNsfw ? 3 : 4);
@@ -226,7 +214,7 @@ export function useCharacterQuiz(answerOptionCount: number) {
       const selected = optionCharacters[index];
 
       setQuestionCharacter(selected);
-      setUsedCharacterIds((prev) => [...prev, selected.id]);
+      setUsedCharacterIds((prev) => [...prev, selected.id].slice(-usedCharactersLimit));
     }
   }, [optionCharacters, answerOptionCount]);
 
