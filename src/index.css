@@ -298,7 +298,7 @@ input[type="radio"] {
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  overflow-y: auto;
+  min-height: 0;
 }
 
 #settings .controls {
