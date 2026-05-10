@@ -6,6 +6,7 @@ export interface ScoreType {
 export interface SettingsType {
   language: "es" | "en";
   questionMode: "character" | "series";
+  seriesTitleLanguage: "english" | "romaji";
   mediaType: string | null;
   mediaNsfw: boolean;
 }

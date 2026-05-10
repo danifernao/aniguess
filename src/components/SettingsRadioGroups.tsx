@@ -41,6 +41,19 @@ function SettingsRadioGroups({
       ],
     },
     {
+      name: "seriesTitleLanguage",
+      options: [
+        {
+          name: "english",
+          value: "english",
+        },
+        {
+          name: "romaji",
+          value: "romaji",
+        },
+      ],
+    },
+    {
       name: "mediaType",
       options: [
         {

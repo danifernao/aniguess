@@ -30,7 +30,7 @@
   "settings": {
     "title": "Settings",
     "language": {
-      "legend": "Language",
+      "legend": "Interface language",
       "options": {
         "en": "English",
         "es": "Spanish"
@@ -41,6 +41,13 @@
       "options": {
         "character": "Character name",
         "series": "Series title"
+      }
+    },
+    "seriesTitleLanguage": {
+      "legend": "Series title language",
+      "options": {
+        "english": "English",
+        "romaji": "Romaji"
       }
     },
     "mediaType": {

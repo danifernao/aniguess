@@ -7,6 +7,7 @@ import { shuffle } from "../utils/shuffle";
 
 interface QuestionProps {
   questionMode: "character" | "series";
+  seriesTitleLanguage: "english" | "romaji";
   optionCharacters: CharacterType[];
   questionCharacter: CharacterType;
   checkAnswer: (char: CharacterType) => void;
@@ -14,6 +15,7 @@ interface QuestionProps {
 
 function Question({
   questionMode,
+  seriesTitleLanguage,
   optionCharacters,
   questionCharacter,
   checkAnswer,
@@ -71,8 +73,11 @@ function Question({
             <label htmlFor={`media-${character.id}`}>
               {questionMode === "character"
                 ? character.name.full
-                : character.media.nodes[0].title.english ||
-                  character.media.nodes[0].title.romaji}
+                : seriesTitleLanguage === "english"
+                  ? character.media.nodes[0].title.english ||
+                    character.media.nodes[0].title.romaji
+                  : character.media.nodes[0].title.romaji ||
+                    character.media.nodes[0].title.english}
             </label>
           </div>
         ))}

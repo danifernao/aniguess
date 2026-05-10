@@ -26,6 +26,7 @@ function App() {
       {!errorFound && questionCharacter && isAnswerCorrect === null && (
         <Question
           questionMode={settings.questionMode}
+          seriesTitleLanguage={settings.seriesTitleLanguage}
           optionCharacters={optionCharacters}
           questionCharacter={questionCharacter}
           checkAnswer={checkAnswer}
@@ -35,6 +36,7 @@ function App() {
       {!errorFound && questionCharacter && isAnswerCorrect !== null && (
         <Answer
           questionMode={settings.questionMode}
+          seriesTitleLanguage={settings.seriesTitleLanguage}
           questionCharacter={questionCharacter}
           isCorrect={isAnswerCorrect}
           newQuestion={newQuestion}

@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next";
 
 interface AnswerProps {
   questionMode: "character" | "series";
+  seriesTitleLanguage: "english" | "romaji";
   questionCharacter: CharacterType;
   isCorrect: boolean;
   newQuestion: () => void;
@@ -12,6 +13,7 @@ interface AnswerProps {
 
 function Answer({
   questionMode,
+  seriesTitleLanguage,
   questionCharacter,
   isCorrect,
   newQuestion,
@@ -45,8 +47,11 @@ function Answer({
 
           <p className="series-title">
             <a href={questionCharacter.media.nodes[0].siteUrl} target="_blank">
-              {questionCharacter.media.nodes[0].title.english ||
-                questionCharacter.media.nodes[0].title.romaji}
+              {seriesTitleLanguage === "english"
+                ? questionCharacter.media.nodes[0].title.english ||
+                  questionCharacter.media.nodes[0].title.romaji
+                : questionCharacter.media.nodes[0].title.romaji ||
+                  questionCharacter.media.nodes[0].title.english}
               <FontAwesomeIcon
                 icon={faArrowUpRightFromSquare}
                 className="link-icon"

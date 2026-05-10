@@ -43,6 +43,7 @@ export function useCharacterQuiz(answerOptionCount: number) {
     language: i18n.language as "es" | "en",
     questionMode: "series",
     mediaType: null,
+    seriesTitleLanguage: "english",
     mediaNsfw: true,
   });
 

@@ -30,7 +30,7 @@
   "settings": {
     "title": "Configuración",
     "language": {
-      "legend": "Idioma",
+      "legend": "Idioma de la interfaz",
       "options": {
         "en": "Inglés",
         "es": "Español"
@@ -40,8 +40,15 @@
       "legend": "Tipo de pregunta",
       "options": {
         "character": "Nombre de personaje",
-        "series": "Nombre de obra"
+        "series": "Título de obra"
       }
+    },
+    "seriesTitleLanguage": {
+      "legend": "Idioma del título de la obra",
+      "options": {
+        "english": "Inglés",
+        "romaji": "Romaji"
+      }      
     },
     "mediaType": {
       "legend": "Tipo de obra",
