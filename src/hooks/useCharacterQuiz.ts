@@ -258,7 +258,6 @@ export function useCharacterQuiz(answerOptionCount: number) {
   useEffect(() => {
     if (maxCharacterId) {
       saveGameState({
-        maxCharacterId,
         usedCharacterIds,
         optionCharacterIds:
           isAnswerCorrect === null && optionCharacters.length
@@ -272,7 +271,7 @@ export function useCharacterQuiz(answerOptionCount: number) {
         settings,
       });
     }
-  }, [maxCharacterId, usedCharacterIds, isAnswerCorrect, optionCharacters, questionCharacter, score, settings]);
+  }, [usedCharacterIds, optionCharacters, questionCharacter, isAnswerCorrect, score, settings]);
 
   return {
     maxCharacterId,

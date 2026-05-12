@@ -12,7 +12,6 @@ export interface SettingsType {
 }
 
 export interface GameStateType {
-  maxCharacterId: number | null;
   usedCharacterIds: number[];
   optionCharacterIds: number[] | null;
   questionCharacterId: number | null;
