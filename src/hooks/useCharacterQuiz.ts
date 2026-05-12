@@ -57,6 +57,12 @@ export function useCharacterQuiz(answerOptionCount: number) {
   // Indica si se encontró un error o no con la gestión de la API.
   const [errorFound, setErrorFound] = useState<boolean>(false);
 
+  // Muestra un mensaje indicando que los cambios fueron aplicados.
+  const showChangesAppliedToast = (): void => {
+    toast.dismiss();
+    toast.success(t("settings.changesApplied"));
+  };
+
 
   // Obtiene personajes desde AniList.
   // Si se proporcionan IDs recuperados del almacenamiento local,
@@ -154,6 +160,8 @@ export function useCharacterQuiz(answerOptionCount: number) {
       total: 0,
       correct: 0,
     });
+
+    showChangesAppliedToast();
   };
 
 
@@ -183,8 +191,7 @@ export function useCharacterQuiz(answerOptionCount: number) {
       newQuestion();
     }
 
-    toast.dismiss();
-    toast.success(t(`settings.changesApplied`));
+    showChangesAppliedToast();
   };
 
 
