@@ -1,78 +1,83 @@
 {
-  "common": {
-    "of": "out of"
-  },
-  "question": {
-    "character": "What is this character's name?",
-    "series": "What series is this character from?",
-    "loading": "Loading image...",
-    "image_alt": "Character image"
-  },
-  "answer": {
-    "correct": "Correct!",
-    "incorrect": "Incorrect!",
-    "image_alt": "Character image of {{name}}",
-    "next": "Next"
-  },
-  "stats": {
-    "score": {
-      "correct_one": "{{count}} correct answer",
-      "correct_other": "{{count}} correct answers",
-      "question_one": "{{count}} question",
-      "question_other": "{{count}} questions"
-    },    
-    "summary": "{{correct}}/{{total}} · {{percentage}}%"
-  },
-  "loading": {
-    "message": "Loading...",
-    "error": "An unexpected error occurred. Please try again later."
-  },
-  "settings": {
-    "title": "Settings",
-    "language": {
-      "legend": "Interface language",
-      "options": {
-        "en": "English",
-        "es": "Spanish"
-      }
+    "answer": {
+        "correct": "Correct!",
+        "image_alt": "Character image of {{name}}",
+        "incorrect": "Incorrect!",
+        "next": "Next"
     },
-    "questionMode": {
-      "legend": "Question type",
-      "options": {
-        "character": "Character name",
-        "series": "Series title"
-      }
+    "common": {
+        "cancel": "Cancel",
+        "confirm": "Confirm",
+        "of": "out of"
     },
-    "seriesTitleLanguage": {
-      "legend": "Series title language",
-      "options": {
-        "english": "English",
-        "romaji": "Romaji"
-      }
+    "loading": {
+        "error": "An unexpected error occurred. Please try again later.",
+        "message": "Loading..."
     },
-    "mediaType": {
-      "legend": "Media type",
-      "options": {
-        "anime": "Anime",
-        "manga": "Manga",
-        "both": "Both"
-      }
+    "question": {
+        "character": "What is this character's name?",
+        "image_alt": "Character image",
+        "loading": "Loading image...",
+        "series": "What series is this character from?"
     },
-    "mediaNsfw": {
-      "legend": "NSFW content",
-      "options": {
-        "yes": "Yes",
-        "no": "No"
-      }
+    "settings": {
+        "close": "Close",
+        "footer": {
+            "github": "GitHub repository"
+        },
+        "language": {
+            "legend": "Interface language",
+            "options": {
+                "en": "English",
+                "es": "Spanish"
+            }
+        },
+        "mediaNsfw": {
+            "legend": "NSFW content",
+            "options": {
+                "no": "No",
+                "yes": "Yes"
+            }
+        },
+        "mediaType": {
+            "legend": "Media type",
+            "options": {
+                "anime": "Anime",
+                "both": "Both",
+                "manga": "Manga"
+            }
+        },
+        "questionMode": {
+            "legend": "Question type",
+            "options": {
+                "character": "Character name",
+                "series": "Series title"
+            }
+        },
+        "seriesTitleLanguage": {
+            "legend": "Series title language",
+            "options": {
+                "english": "English",
+                "romaji": "Romaji"
+            }
+        },
+        "stats": {
+            "button": "Reset",
+            "confirm": {
+                "description": "Are you sure you want to reset your stats? This action cannot be undone.",
+                "title": "Reset stats"
+            },
+            "legend": "Stats"
+        },
+        "title": "Settings"
     },
     "stats": {
-      "legend": "Stats",
-      "button": "Reset",
-      "confirm": "Are you sure you want to reset your stats? This action cannot be undone."
-    },
-    "footer": {
-      "github": "GitHub repository"
-    },    
-    "close": "Close"
-  }
+        "score": {
+            "correct_one": "{{count}} correct answer",
+            "correct_other": "{{count}} correct answers",
+            "question_one": "{{count}} question",
+            "question_other": "{{count}} questions"
+        },
+        "summary": "{{correct}}/{{total}} · {{percentage}}%"
+    }
 }

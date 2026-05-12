@@ -1,78 +1,83 @@
 {
-  "common": {
-    "of": "de"
-  },
-  "question": {
-    "character": "¿Cómo se llama este personaje?",
-    "series": "¿A qué obra pertenece este personaje?",
-    "loading": "Cargando imagen...",
-    "image_alt": "Imagen del personaje"
-  },
-  "answer": {
-    "correct": "¡Correcto!",
-    "incorrect": "¡Incorrecto!",
-    "image_alt": "Imagen del personaje {{name}}",
-    "next": "Siguiente"
-  },
-  "stats": {
-    "score": {
-      "correct_one": "{{count}} acierto",
-      "correct_other": "{{count}} aciertos",
-      "question_one": "{{count}} pregunta",
-      "question_other": "{{count}} preguntas"
-    },    
-    "summary": "{{correct}}/{{total}} · {{percentage}}%"
-  },
-  "loading": {
-    "message": "Cargando...",
-    "error": "Se presentó un error inesperado, inténtalo más tarde."
-  },
-  "settings": {
-    "title": "Configuración",
-    "language": {
-      "legend": "Idioma de la interfaz",
-      "options": {
-        "en": "Inglés",
-        "es": "Español"
-      }
+    "answer": {
+        "correct": "¡Correcto!",
+        "image_alt": "Imagen del personaje {{name}}",
+        "incorrect": "¡Incorrecto!",
+        "next": "Siguiente"
     },
-    "questionMode": {
-      "legend": "Tipo de pregunta",
-      "options": {
-        "character": "Nombre de personaje",
-        "series": "Título de obra"
-      }
+    "common": {
+        "cancel": "Cancel",
+        "confirm": "Confirm",
+        "of": "de"
     },
-    "seriesTitleLanguage": {
-      "legend": "Idioma del título de la obra",
-      "options": {
-        "english": "Inglés",
-        "romaji": "Romaji"
-      }      
+    "loading": {
+        "error": "Se presentó un error inesperado, inténtalo más tarde.",
+        "message": "Cargando..."
     },
-    "mediaType": {
-      "legend": "Tipo de obra",
-      "options": {
-        "anime": "Anime",
-        "manga": "Manga",
-        "both": "Ambos"
-      }
+    "question": {
+        "character": "¿Cómo se llama este personaje?",
+        "image_alt": "Imagen del personaje",
+        "loading": "Cargando imagen...",
+        "series": "¿A qué obra pertenece este personaje?"
     },
-    "mediaNsfw": {
-      "legend": "Contenido para adultos",
-      "options": {
-        "yes": "Sí",
-        "no": "No"
-      }
+    "settings": {
+        "close": "Cerrar",
+        "footer": {
+            "github": "Repositorio en GitHub"
+        },
+        "language": {
+            "legend": "Idioma de la interfaz",
+            "options": {
+                "en": "Inglés",
+                "es": "Español"
+            }
+        },
+        "mediaNsfw": {
+            "legend": "Contenido para adultos",
+            "options": {
+                "no": "No",
+                "yes": "Sí"
+            }
+        },
+        "mediaType": {
+            "legend": "Tipo de obra",
+            "options": {
+                "anime": "Anime",
+                "both": "Ambos",
+                "manga": "Manga"
+            }
+        },
+        "questionMode": {
+            "legend": "Tipo de pregunta",
+            "options": {
+                "character": "Nombre de personaje",
+                "series": "Título de obra"
+            }
+        },
+        "seriesTitleLanguage": {
+            "legend": "Idioma del título de la obra",
+            "options": {
+                "english": "Inglés",
+                "romaji": "Romaji"
+            }
+        },
+        "stats": {
+            "button": "Reiniciar",
+            "confirm": {
+                "description": "¿Seguro que quieres restablecer las estadísticas? Esta acción no se puede deshacer.",
+                "title": "Reiniciar estadísticas"
+            },
+            "legend": "Estadísticas"
+        },
+        "title": "Configuración"
     },
     "stats": {
-      "legend": "Estadísticas",
-      "button": "Reiniciar",
-      "confirm": "¿Seguro que quieres restablecer las estadísticas? Esta acción no se puede deshacer."
-    },
-    "footer": {
-      "github": "Repositorio en GitHub"
-    },
-    "close": "Cerrar"
-  }
+        "score": {
+            "correct_one": "{{count}} acierto",
+            "correct_other": "{{count}} aciertos",
+            "question_one": "{{count}} pregunta",
+            "question_other": "{{count}} preguntas"
+        },
+        "summary": "{{correct}}/{{total}} · {{percentage}}%"
+    }
 }

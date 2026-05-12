@@ -53,6 +53,42 @@ input[type="radio"] {
 }
 
 
+/* Botones */
+.button {
+  padding: 0.5rem 0.8rem;
+  border: 0;
+  border-radius: 0.3rem;
+  font-family: "Roboto", sans-serif;
+  font-size: 0.9rem;
+  color: var(--color-white);
+  font-weight: 600;
+}
+
+.button.danger {
+  background-color: var(--color-red-2);
+}
+
+.button.danger:hover {
+  background-color: color-mix(in srgb, var(--color-red-2) 85%, black);
+}
+
+.button.danger:focus {
+  background-color: color-mix(in srgb, var(--color-red-2) 75%, black);
+}
+
+.button.default {
+  background-color: var(--color-blue-5);
+}
+
+.button.default:hover {
+  background-color: color-mix(in srgb, var(--color-blue-5) 90%, white);
+}
+
+.button.default:focus {
+  background-color: color-mix(in srgb, var(--color-blue-5) 80%, white);
+}
+
+
 /* Raíz */
 #root {
   max-width: 40rem;
@@ -178,7 +214,7 @@ input[type="radio"] {
   font-family: "Roboto", sans-serif;
   font-size: 1rem;
   color: var(--color-white);
-  animation: box-shadow 0.6s ease, transform 0.2s ease-in-out;
+  transition: box-shadow 0.1s ease, transform 0.1s ease-in-out;
   font-weight: 600;
 }
 
@@ -311,23 +347,6 @@ input[type="radio"] {
   gap: 1rem;
 }
 
-#settings .reset-stats .action {
-  padding: 0.5rem 0.8rem;
-  background-color: var(--color-red-2);
-  border: 0;
-  border-radius: 0.3rem;
-  font-family: "Roboto", sans-serif;
-  font-size: 1rem;
-  color: var(--color-white);
-  animation: box-shadow 0.6s ease, transform 0.2s ease-in-out;
-  font-weight: 600;
-}
-
-#settings .reset-stats .action:hover {
-  transform: scale(1.03);
-  box-shadow: 0 0.1rem 0.6rem rgb(from var(--color-red-2) r g b / 0.6);
-}
-
 #settings .reset-stats .summary {
   font-size: 0.8rem;
 }
@@ -407,6 +426,10 @@ input[type="radio"] {
   border-bottom: 0.1rem solid rgb(from var(--color-blue-5) r g b / 0.4);
 }
 
+.dialog-description {
+  padding: 0.5rem 0;
+}
+
 .dialog-close {
   position: absolute;
   top: 1rem;
@@ -416,6 +439,13 @@ input[type="radio"] {
   font-size: 1.2rem;
   font-family: "Roboto", sans-serif;
   color: var(--color-blue-1);
+}
+
+.dialog-actions {
+  display: flex;
+  justify-content: end;
+  gap: 0.5rem;
+  margin-top: 1rem;
 }
 
 

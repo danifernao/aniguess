@@ -6,6 +6,7 @@ import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import { useTranslation } from "react-i18next";
 import SettingsRadioGroups from "./SettingsRadioGroups";
 import * as Dialog from "@radix-ui/react-dialog";
+import SettingsResetStatsDialog from "./SettingsResetStats";
 
 interface SettingsProps {
   settings: SettingsType;
@@ -35,14 +36,6 @@ function Settings({
 
   const scorePercentage =
     score.total > 0 ? Math.round((score.correct / score.total) * 100) : 0;
-
-  const reset = () => {
-    const confirmation = confirm(t("settings.stats.confirm"));
-
-    if (confirmation) {
-      resetScore();
-    }
-  };
 
   return (
     <Dialog.Root open={isOpen} onOpenChange={setIsOpen}>
@@ -100,9 +93,7 @@ function Settings({
               {score.total > 0 && (
                 <fieldset className="reset-stats">
                   <legend>{t("settings.stats.legend")}</legend>
-                  <button className="action" onClick={() => reset()}>
-                    {t("settings.stats.button")}
-                  </button>
+                  <SettingsResetStatsDialog resetScore={resetScore} />
                   <span className="summary">
                     {t("stats.summary", {
                       correct: score.correct,
