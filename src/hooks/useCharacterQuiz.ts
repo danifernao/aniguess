@@ -10,6 +10,8 @@ import { fetchAniListData, fetchLastCharacterId } from "../services/anilist";
 import { filterValidCharacters } from "../filters/characters";
 import i18n from "../i18n";
 import { loadGameState, saveGameState } from "../storage/gameState";
+import { toast } from "sonner";
+import { t } from "i18next";
 
 export function useCharacterQuiz(answerOptionCount: number) {
   // ID más alto de un personaje registrado en AniList.
@@ -180,6 +182,9 @@ export function useCharacterQuiz(answerOptionCount: number) {
     if (triggerNewQuestion) {
       newQuestion();
     }
+
+    toast.dismiss();
+    toast.success(t(`settings.changesApplied`));
   };
 
 

@@ -7,6 +7,7 @@
     },
     "common": {
         "cancel": "Cancel",
+        "close": "Close",
         "confirm": "Confirm",
         "of": "out of"
     },
@@ -21,7 +22,7 @@
         "series": "What series is this character from?"
     },
     "settings": {
-        "close": "Close",
+        "changesApplied": "Changes applied",
         "footer": {
             "github": "GitHub repository"
         },

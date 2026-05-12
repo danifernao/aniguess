@@ -120,8 +120,8 @@ function Settings({
           <Dialog.Close asChild>
             <button
               type="button"
-              title={t("settings.close")}
-              aria-label={t("settings.close")}
+              title={t("common.close")}
+              aria-label={t("common.close")}
               className="dialog-close"
             >
               <FontAwesomeIcon icon={faXmark} />

@@ -4,6 +4,7 @@ import Question from "./components/Question";
 import Settings from "./components/Settings";
 import { useCharacterQuiz } from "./hooks/useCharacterQuiz";
 import Stats from "./components/Stats";
+import { Toaster } from "sonner";
 
 function App() {
   const answerOptionCount = 3;
@@ -55,6 +56,8 @@ function App() {
         score={score}
         resetScore={resetScore}
       />
+
+      <Toaster position="top-center" richColors />
     </div>
   );
 }
