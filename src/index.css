@@ -245,55 +245,6 @@ input[type="radio"] {
 
 
 /* Configuración */
-.settings-trigger {
-  position: fixed;
-  bottom: 1rem;
-  left: 1rem;
-  font-size: 1.5rem;
-  color: var(--color-blue-1) !important;
-}
-
-.settings-trigger button {
-  background-color: transparent;
-  border: none;
-  color: var(--color-blue-1);
-  font-size: 1.5rem;
-  transition: color 0.2s ease;
-}
-
-.settings-trigger button:hover {
-  color: var(--color-blue-2);
-}
-
-#settings {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  padding: 1.5rem;
-  width: 100%;
-  max-width: 30rem;
-  max-height: 90vh;
-  background-color: var(--color-blue-4);
-  border-radius: 0.5rem;
-}
-
-#settings .modal-close {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  background-color: transparent;
-  border: none;
-  font-size: 1.2rem;
-  font-family: "Roboto", sans-serif;
-  color: var(--color-blue-1);
-}
-
-#settings .title {
-  margin: 0 0 1rem;
-  padding-bottom: 0.5rem;
-  border-bottom: 0.1rem solid rgb(from var(--color-blue-5) r g b / 0.4);
-}
-
 #settings .content {
   display: flex;
   flex-direction: column;
@@ -402,20 +353,69 @@ input[type="radio"] {
 }
 
 
-/* react-modal */
-.ReactModalPortal .overlay {
+/* Botón que abre la configuración */
+#settings-trigger {
+  position: fixed;
+  bottom: 1rem;
+  left: 1rem;
+  font-size: 1.5rem;
+  color: var(--color-blue-1) !important;
+}
+
+#settings-trigger button {
+  background-color: transparent;
+  border: none;
+  color: var(--color-blue-1);
+  font-size: 1.5rem;
+  transition: color 0.2s ease;
+}
+
+#settings-trigger button:hover {
+  color: var(--color-blue-2);
+}
+
+
+/* Diálogo */
+.dialog-overlay {
   position: fixed;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 1rem;
   background-color: rgb(from var(--color-blue-5) r g b / 0.8);
   backdrop-filter: blur(0.2rem);
+}
+
+.dialog-content {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+  width: calc(100% - 1.5rem);;
+  max-width: 30rem;
+  max-height: 90vh;
+  background-color: var(--color-blue-4);
+  border-radius: 0.5rem;
+}
+
+.dialog-title {
+  margin: 0 0 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 0.1rem solid rgb(from var(--color-blue-5) r g b / 0.4);
+}
+
+.dialog-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background-color: transparent;
+  border: none;
+  font-size: 1.2rem;
+  font-family: "Roboto", sans-serif;
+  color: var(--color-blue-1);
 }
 
 

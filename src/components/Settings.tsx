@@ -1,13 +1,11 @@
 import type { ScoreType, SettingsType } from "../types/types";
-import Modal from "react-modal";
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGear, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import { useTranslation } from "react-i18next";
 import SettingsRadioGroups from "./SettingsRadioGroups";
-
-Modal.setAppElement("#root");
+import * as Dialog from "@radix-ui/react-dialog";
 
 interface SettingsProps {
   settings: SettingsType;
@@ -47,103 +45,100 @@ function Settings({
   };
 
   return (
-    <>
-      <div className="settings-trigger">
-        <button
-          type="button"
-          onClick={() => setIsOpen(true)}
-          title={t("settings.title")}
-          aria-label={t("settings.title")}
-          aria-haspopup="dialog"
-          aria-expanded={isOpen}
-          aria-controls="settings-modal"
-        >
-          <FontAwesomeIcon icon={faGear} aria-hidden="true" />
-        </button>
+    <Dialog.Root open={isOpen} onOpenChange={setIsOpen}>
+      <div id="settings-trigger">
+        <Dialog.Trigger asChild>
+          <button
+            type="button"
+            title={t("settings.title")}
+            aria-label={t("settings.title")}
+          >
+            <FontAwesomeIcon icon={faGear} aria-hidden="true" />
+          </button>
+        </Dialog.Trigger>
       </div>
 
-      {/* Ventana modal */}
-      <Modal
-        id="settings"
-        isOpen={isOpen}
-        onRequestClose={() => setIsOpen(false)}
-        overlayClassName="overlay"
-        contentLabel={t("settings.title")}
-        className="modal"
-      >
-        <h2 className="title">{t("settings.title")}</h2>
+      <Dialog.Portal>
+        <Dialog.Overlay className="dialog-overlay" />
 
-        <div className="content">
-          {/* Opciones de configuración */}
-          <div className="controls">
-            {/* Selector de idioma */}
-            <fieldset>
-              <legend>{t("settings.language.legend")}</legend>
+        <Dialog.Content id="settings" className="dialog-content">
+          <Dialog.Title className="dialog-title">
+            {t("settings.title")}
+          </Dialog.Title>
 
-              <div className="fields">
-                <select
-                  value={i18n.language}
-                  onChange={(event) => {
-                    saveSettings("language", event.target.value, false);
-                  }}
-                  className="language"
-                >
-                  {languageOptions.map((option) => (
-                    <option key={option.value} value={option.value}>
-                      {option.label}
-                    </option>
-                  ))}
-                </select>
-              </div>
-            </fieldset>
+          <div className="content">
+            {/* Opciones de configuración */}
+            <div className="controls">
+              {/* Selector de idioma */}
+              <fieldset>
+                <legend>{t("settings.language.legend")}</legend>
 
-            {/* Grupos de opciones radio */}
-            <SettingsRadioGroups
-              settings={settings}
-              saveSettings={saveSettings}
-            />
-
-            {/* Reinicio de puntaje */}
-            {score.total > 0 && (
-              <fieldset className="reset-stats">
-                <legend>{t("settings.stats.legend")}</legend>
-                <button className="action" onClick={() => reset()}>
-                  {t("settings.stats.button")}
-                </button>
-                <span className="summary">
-                  {t("stats.summary", {
-                    correct: score.correct,
-                    total: score.total,
-                    percentage: scorePercentage,
-                  })}
-                </span>
+                <div className="fields">
+                  <select
+                    value={i18n.language}
+                    onChange={(event) => {
+                      saveSettings("language", event.target.value, false);
+                    }}
+                    className="language"
+                  >
+                    {languageOptions.map((option) => (
+                      <option key={option.value} value={option.value}>
+                        {option.label}
+                      </option>
+                    ))}
+                  </select>
+                </div>
               </fieldset>
-            )}
+
+              {/* Grupos de opciones radio */}
+              <SettingsRadioGroups
+                settings={settings}
+                saveSettings={saveSettings}
+              />
+
+              {/* Reinicio de puntaje */}
+              {score.total > 0 && (
+                <fieldset className="reset-stats">
+                  <legend>{t("settings.stats.legend")}</legend>
+                  <button className="action" onClick={() => reset()}>
+                    {t("settings.stats.button")}
+                  </button>
+                  <span className="summary">
+                    {t("stats.summary", {
+                      correct: score.correct,
+                      total: score.total,
+                      percentage: scorePercentage,
+                    })}
+                  </span>
+                </fieldset>
+              )}
+            </div>
+
+            {/* Pie de la ventana modal */}
+            <div className="footer">
+              <a
+                href="https://github.com/danifernao/aniguess"
+                target="_blank"
+                title={t("settings.footer.github")}
+              >
+                <FontAwesomeIcon icon={faGithub} aria-hidden="true" />
+              </a>
+            </div>
           </div>
 
-          {/* Pie de la ventana modal */}
-          <div className="footer">
-            <a
-              href="https://github.com/danifernao/aniguess"
-              target="_blank"
-              title={t("settings.footer.github")}
+          <Dialog.Close asChild>
+            <button
+              type="button"
+              title={t("settings.close")}
+              aria-label={t("settings.close")}
+              className="dialog-close"
             >
-              <FontAwesomeIcon icon={faGithub} aria-hidden="true" />
-            </a>
-          </div>
-        </div>
-
-        {/* Botón para cerrar ventana modal */}
-        <button
-          className="modal-close"
-          onClick={() => setIsOpen(false)}
-          title={t("settings.close")}
-          aria-label={t("settings.close")}
-        >
-          <FontAwesomeIcon icon={faXmark} />
-        </button>
-      </Modal>
-    </>
+              <FontAwesomeIcon icon={faXmark} />
+            </button>
+          </Dialog.Close>
+        </Dialog.Content>
+      </Dialog.Portal>
+    </Dialog.Root>
   );
 }
 
