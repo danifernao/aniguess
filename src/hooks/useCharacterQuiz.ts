@@ -28,6 +28,11 @@ export function useCharacterQuiz(answerOptionCount: number) {
   const [questionCharacter, setQuestionCharacter] =
     useState<CharacterType | null>(null);
 
+  // IDs recuperados del almacenamiento local para restaurar la pregunta activa
+  // al inicializar la aplicación.
+  const [savedOptionCharacterIds, setSavedOptionCharacterIds] = useState<number[] | null>(null);
+  const [savedQuestionCharacterId, setSavedQuestionCharacterId] = useState<number | null>(null);
+
   // Indica si la respuesta es correcta o no.
   // Es NULL cuando no se ha respondido aún.
   const [isAnswerCorrect, setIsAnswerCorrect] = useState<boolean | null>(null);
@@ -51,12 +56,14 @@ export function useCharacterQuiz(answerOptionCount: number) {
   const [errorFound, setErrorFound] = useState<boolean>(false);
 
 
-  // Obtiene personajes aleatorios.
-  const fetchRandomCharacters = useCallback((): void => {
-    // Genera IDs únicos de manera aleatoria.
+  // Obtiene personajes desde AniList.
+  // Si se proporcionan IDs recuperados del almacenamiento local,
+  // estos se utilizan para restaurar la pregunta activa; de lo
+  // contrario, se generan IDs aleatorios nuevos.
+  const fetchRandomCharacters = useCallback((savedIds: number[] | null = null): void => {
     const excludedIds = new Set(usedCharacterIds);
     const totalIds = answerOptionCount * (settings.mediaNsfw ? 3 : 4);
-    const randomIds: number[] = generateUniqueIds(totalIds, maxCharacterId!, excludedIds);
+    const randomIds: number[] = savedIds ?? generateUniqueIds(totalIds, maxCharacterId!, excludedIds);
 
     const query = `query($idIn: [Int], $type: MediaType) {
       Page {
@@ -109,12 +116,11 @@ export function useCharacterQuiz(answerOptionCount: number) {
   ]);
 
 
-  /* Verifica si la respuesta es correcta y actualiza el puntaje de la partida.
-   *
-   * La respuesta es correcta si el personaje seleccionado es el mismo
-   * que el preguntado o si la obra que representa la opción elegida
-   * coincide con alguna de las obras del personaje preguntado.
-   */
+  //  Verifica si la respuesta es correcta y actualiza el puntaje de la partida.
+  // 
+  // La respuesta es correcta si el personaje seleccionado es el mismo
+  // que el preguntado o si la obra que representa la opción elegida
+  // coincide con alguna de las obras del personaje preguntado.
   const checkAnswer = (selected: CharacterType): void => {
     const isCorrect =
       selected.id === questionCharacter!.id ||
@@ -185,51 +191,88 @@ export function useCharacterQuiz(answerOptionCount: number) {
     // variables estado correspondientes.
     if (localState) {
       setUsedCharacterIds(localState.usedCharacterIds);
+      setSavedOptionCharacterIds(localState.optionCharacterIds ?? null);
+      setSavedQuestionCharacterId(localState.questionCharacterId ?? null);
       setScore(localState.score);
       setSettings(localState.settings);
     }
 
     // Obtiene el ID más alto de los personajes registrados en AniList.
-    fetchLastCharacterId().then((id) => {
-      if (id) {
-        setMaxCharacterId(id);
-      } else {
-        setErrorFound(true);
-      }
-    });
+    fetchLastCharacterId()
+      .then((id) => {
+        if (id) {
+          setMaxCharacterId(id);
+        } else {
+          setErrorFound(true);
+        }
+      });
   }, []);
 
 
   // Obtiene más personajes si es necesario.
+  // Los IDs recuperados del almacenamiento local solo se reutilizan
+  // durante la inicialización para restaurar la pregunta previa.
   useEffect(() => {
     if (maxCharacterId && optionCharacters.length < answerOptionCount) {
-      fetchRandomCharacters();
+      fetchRandomCharacters(savedOptionCharacterIds);
+
+      if (savedOptionCharacterIds) {
+        setSavedOptionCharacterIds(null);
+      }
     }
-  }, [maxCharacterId, optionCharacters, answerOptionCount, fetchRandomCharacters]);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [maxCharacterId, optionCharacters]);
 
 
   // Elige aleatoriamente un personaje para preguntar.
+  // Si existe un ID recuperado del almacenamiento local,
+  // se restaura el personaje previamente preguntado.
   useEffect(() => {
     if (optionCharacters.length === answerOptionCount) {
-      const index = getRandomInt(0, answerOptionCount - 1);
-      const selected = optionCharacters[index];
+      let selected;
+
+      if (savedQuestionCharacterId) {
+        selected = optionCharacters.find(
+          (character) => character.id === savedQuestionCharacterId
+        );
+
+        setSavedQuestionCharacterId(null);
+      }
+
+      if (!selected) {
+        const index = getRandomInt(0, answerOptionCount - 1);
+        selected = optionCharacters[index];
+      }
 
       setQuestionCharacter(selected);
       setUsedCharacterIds((prev) => [...prev, selected.id].slice(-usedCharactersLimit));
     }
-  }, [optionCharacters, answerOptionCount]);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [optionCharacters]);
+
 
   // Guarda en el almacenamiento local del navegador la información del juego.
+  // La pregunta activa solo se almacena mientras no haya sido respondida.
   useEffect(() => {
     if (maxCharacterId) {
       saveGameState({
         maxCharacterId,
         usedCharacterIds,
+        optionCharacterIds:
+          isAnswerCorrect === null && optionCharacters.length
+          ? optionCharacters.map((c) => c.id)
+          : null,
+        questionCharacterId:
+          isAnswerCorrect === null
+          ? questionCharacter?.id ?? null
+          : null,
         score,
         settings,
       });
     }
-  }, [maxCharacterId, usedCharacterIds, score, settings]);
+  }, [maxCharacterId, usedCharacterIds, isAnswerCorrect, optionCharacters, questionCharacter, score, settings]);
 
   return {
     maxCharacterId,
