@@ -1,3 +1,5 @@
+import { characterIdsWithInvalidImages } from "../constants/characterIdsWithInvalidImages";
+
 // Obtiene un número entero aleatorio dentro de un rango.
 export const getRandomInt = (
   from: number,                       // Límite inferior.
@@ -20,7 +22,10 @@ export const generateUniqueIds = (
   excluded: Set<number>,  // IDs excluidos.
 ): number[] => {
   const ids: number[] = [];
-  const localExcluded = new Set(excluded);
+  const localExcluded = new Set([
+    ...excluded,
+    ...characterIdsWithInvalidImages,
+  ]);
 
   for (let i = 0; i < count; i++) {
     const id = getRandomInt(1, maxId, localExcluded);
