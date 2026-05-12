@@ -21,12 +21,12 @@ function SettingsResetStatsDialog({
       <AlertDialog.Portal>
         <AlertDialog.Overlay className="dialog-overlay" />
 
-        <AlertDialog.Content className="dialog-content">
+        <AlertDialog.Content className="alert dialog-content">
           <AlertDialog.Title className="dialog-title">
             {t("settings.stats.confirm.title")}
           </AlertDialog.Title>
 
-          <AlertDialog.Description className="dialog-description">
+          <AlertDialog.Description>
             {t("settings.stats.confirm.description")}
           </AlertDialog.Description>
 

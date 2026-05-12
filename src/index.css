@@ -426,10 +426,6 @@ input[type="radio"] {
   border-bottom: 0.1rem solid rgb(from var(--color-blue-5) r g b / 0.4);
 }
 
-.dialog-description {
-  padding: 0.5rem 0;
-}
-
 .dialog-close {
   position: absolute;
   top: 1rem;
@@ -446,6 +442,16 @@ input[type="radio"] {
   justify-content: end;
   gap: 0.5rem;
   margin-top: 1rem;
+}
+
+
+/* Alertas */
+.alert {
+  max-width: 25rem;
+}
+
+.alert .dialog-title {
+  font-size: 1.4rem;
 }
 
 
