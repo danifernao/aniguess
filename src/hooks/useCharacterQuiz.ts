@@ -271,7 +271,7 @@ export function useCharacterQuiz(answerOptionCount: number) {
         settings,
       });
     }
-  }, [usedCharacterIds, optionCharacters, questionCharacter, isAnswerCorrect, score, settings]);
+  }, [maxCharacterId, usedCharacterIds, optionCharacters, questionCharacter, isAnswerCorrect, score, settings]);
 
   return {
     maxCharacterId,
