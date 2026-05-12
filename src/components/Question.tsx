@@ -48,6 +48,11 @@ function Question({
         alt={t("question.image_alt")}
         onLoad={() => setIsImageLoading(false)}
         onError={() => setIsImageLoading(false)}
+        ref={(img) => {
+          if (img && img.complete) {
+            setIsImageLoading(false);
+          }
+        }}
         style={{
           display: isImageLoading ? "none" : "block",
         }}
