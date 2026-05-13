@@ -11,9 +11,11 @@ import { filterValidCharacters } from "../filters/characters";
 import i18n from "../i18n";
 import { loadGameState, saveGameState } from "../storage/gameState";
 import { toast } from "sonner";
-import { t } from "i18next";
+import { useTranslation } from "react-i18next";
 
 export function useCharacterQuiz(answerOptionCount: number) {
+  const { t } = useTranslation();
+
   // ID más alto de un personaje registrado en AniList.
   const [maxCharacterId, setMaxCharacterId] = useState<number | null>(null);
 

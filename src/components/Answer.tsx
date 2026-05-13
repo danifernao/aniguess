@@ -2,6 +2,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
 import type { CharacterType } from "../types/types";
 import { useTranslation } from "react-i18next";
+import CharacterImage from "./CharacterImage";
 
 interface AnswerProps {
   questionMode: "character" | "series";
@@ -27,10 +28,12 @@ function Answer({
           <b>{isCorrect ? t("answer.correct") : t("answer.incorrect")}</b>
         </p>
 
-        <img
+        <CharacterImage
           src={questionCharacter.image.large}
-          alt={t("answer.image_alt", { name: questionCharacter.name.full })}
-          className="answer-image character-image"
+          alt={t("answer.image_alt", {
+            name: questionCharacter.name.full,
+          })}
+          className="answer-image"
         />
 
         <div className={`answer-details ${questionMode}`}>

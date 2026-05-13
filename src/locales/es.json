@@ -5,6 +5,9 @@
         "incorrect": "¡Incorrecto!",
         "next": "Siguiente"
     },
+    "characterImage": {
+        "loading": "Cargando imagen..."
+    },
     "common": {
         "cancel": "Cancel",
         "close": "Cerrar",
@@ -18,7 +21,6 @@
     "question": {
         "character": "¿Cómo se llama este personaje?",
         "image_alt": "Imagen del personaje",
-        "loading": "Cargando imagen...",
         "series": "¿A qué obra pertenece este personaje?"
     },
     "settings": {
