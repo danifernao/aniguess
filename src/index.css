@@ -171,12 +171,16 @@ select {
 
 .question-options {
   display: flex;
-  align-items: baseline;
+  align-items: start;
   gap: 0.3rem;
 }
 
 .question-options:not(:last-of-type) {
   margin-bottom: 0.5rem;
+}
+
+.question-options input[type="radio"] {
+  margin-top: 0.15rem;
 }
 
 
@@ -486,10 +490,6 @@ select {
 
   .question-options:not(:last-of-type) {
     margin-bottom: 1rem;
-  }
-
-  .question-options input {
-    margin-top: 0.1rem;
   }
 
   .answer-details {
