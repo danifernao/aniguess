@@ -35,7 +35,7 @@ function Question({
     <div id="question">
       {isImageLoading && (
         <div
-          className="loading-image"
+          className="question-image-loading"
           aria-label={t("question.loading")}
           role="status"
         >
@@ -56,18 +56,18 @@ function Question({
         style={{
           display: isImageLoading ? "none" : "block",
         }}
-        className="character-image"
+        className="question-image character-image"
       />
 
-      <fieldset>
-        <legend>
+      <div className="question-block">
+        <h2 className="question-title">
           {questionMode === "character"
             ? t("question.character")
             : t("question.series")}
-        </legend>
+        </h2>
 
         {shuffledCharacters.map((character: CharacterType) => (
-          <div className="options" key={character.id}>
+          <div className="question-options" key={character.id}>
             <input
               type="radio"
               id={`media-${character.id}`}
@@ -86,7 +86,7 @@ function Question({
             </label>
           </div>
         ))}
-      </fieldset>
+      </div>
     </div>
   );
 }

@@ -22,19 +22,19 @@ function Answer({
 
   return (
     <div id="answer" className={`${isCorrect ? "correct" : "incorrect"}`}>
-      <div>
-        <p className="result">
+      <div className="answer-content">
+        <p className="answer-result">
           <b>{isCorrect ? t("answer.correct") : t("answer.incorrect")}</b>
         </p>
 
         <img
           src={questionCharacter.image.large}
           alt={t("answer.image_alt", { name: questionCharacter.name.full })}
-          className="character-image"
+          className="answer-image character-image"
         />
 
-        <div className={`description ${questionMode}`}>
-          <p className="character-name">
+        <div className={`answer-details ${questionMode}`}>
+          <p className="answer-character">
             <a href={questionCharacter.siteUrl} target="_blank">
               {questionCharacter.name.full}
               <FontAwesomeIcon
@@ -45,7 +45,7 @@ function Answer({
             </a>
           </p>
 
-          <p className="series-title">
+          <p className="answer-series">
             <a href={questionCharacter.media.nodes[0].siteUrl} target="_blank">
               {seriesTitleLanguage === "english"
                 ? questionCharacter.media.nodes[0].title.english ||
@@ -62,7 +62,7 @@ function Answer({
         </div>
       </div>
 
-      <button onClick={newQuestion} className="next">
+      <button onClick={newQuestion} className="next-question">
         {t("answer.next")}
       </button>
     </div>

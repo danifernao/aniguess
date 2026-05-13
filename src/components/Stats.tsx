@@ -25,7 +25,7 @@ function Stats({ score }: StatsProps) {
   return (
     <div id="stats">
       <div
-        className="score"
+        className="stats-score"
         title={`${t("stats.score.correct", { count: score.correct })} ${t("common.of")} ${t("stats.score.question", { count: score.total })}`}
       >
         {score.correct} / {score.total}
@@ -35,7 +35,7 @@ function Stats({ score }: StatsProps) {
         value={percentage}
         text={`${percentage}%`}
         strokeWidth={10}
-        className={`progress-bar ${status}`}
+        className={`stats-progress ${status}`}
       />
     </div>
   );

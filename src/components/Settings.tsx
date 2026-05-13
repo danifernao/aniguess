@@ -45,6 +45,7 @@ function Settings({
             type="button"
             title={t("settings.title")}
             aria-label={t("settings.title")}
+            className="icon-link"
           >
             <FontAwesomeIcon icon={faGear} aria-hidden="true" />
           </button>
@@ -54,25 +55,26 @@ function Settings({
       <Dialog.Portal>
         <Dialog.Overlay className="dialog-overlay" />
 
-        <Dialog.Content id="settings" className="dialog-content">
+        <Dialog.Content className="dialog-content">
           <Dialog.Title className="dialog-title">
             {t("settings.title")}
           </Dialog.Title>
 
-          <div className="content">
+          <div className="settings">
             {/* Opciones de configuración */}
-            <div className="controls">
+            <div className="settings-content">
               {/* Selector de idioma */}
-              <fieldset>
-                <legend>{t("settings.language.legend")}</legend>
+              <div className="setting-item">
+                <h3 className="setting-item-title">
+                  {t("settings.language.legend")}
+                </h3>
 
-                <div className="fields">
+                <div className="setting-item-content">
                   <select
                     value={i18n.language}
                     onChange={(event) => {
                       saveSettings("language", event.target.value, false);
                     }}
-                    className="language"
                   >
                     {languageOptions.map((option) => (
                       <option key={option.value} value={option.value}>
@@ -81,7 +83,7 @@ function Settings({
                     ))}
                   </select>
                 </div>
-              </fieldset>
+              </div>
 
               {/* Grupos de opciones radio */}
               <SettingsRadioGroups
@@ -91,26 +93,33 @@ function Settings({
 
               {/* Reinicio de puntaje */}
               {score.total > 0 && (
-                <fieldset className="reset-stats">
-                  <legend>{t("settings.stats.legend")}</legend>
-                  <SettingsResetStatsDialog resetScore={resetScore} />
-                  <span className="summary">
-                    {t("stats.summary", {
-                      correct: score.correct,
-                      total: score.total,
-                      percentage: scorePercentage,
-                    })}
-                  </span>
-                </fieldset>
+                <div className="setting-item reset-stats">
+                  <h3 className="setting-item-title">
+                    {t("settings.stats.legend")}
+                  </h3>
+
+                  <div className="setting-item-content">
+                    <SettingsResetStatsDialog resetScore={resetScore} />
+
+                    <span className="stats-summary">
+                      {t("stats.summary", {
+                        correct: score.correct,
+                        total: score.total,
+                        percentage: scorePercentage,
+                      })}
+                    </span>
+                  </div>
+                </div>
               )}
             </div>
 
             {/* Pie de la ventana modal */}
-            <div className="footer">
+            <div className="settings-footer">
               <a
                 href="https://github.com/danifernao/aniguess"
                 target="_blank"
                 title={t("settings.footer.github")}
+                className="icon-link"
               >
                 <FontAwesomeIcon icon={faGithub} aria-hidden="true" />
               </a>

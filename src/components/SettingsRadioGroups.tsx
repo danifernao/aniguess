@@ -96,10 +96,12 @@ function SettingsRadioGroups({
   };
 
   return radioGroups.map((group, i) => (
-    <fieldset key={i}>
-      <legend>{t(`settings.${group.name}.legend`)}</legend>
+    <div className="setting-item" key={i}>
+      <h3 className="setting-item-title">
+        {t(`settings.${group.name}.legend`)}
+      </h3>
 
-      <div className="fields">
+      <div className="setting-item-content">
         {group.options.map((option, j) => (
           <div className="option" key={j}>
             <input
@@ -124,7 +126,7 @@ function SettingsRadioGroups({
           </div>
         ))}
       </div>
-    </fieldset>
+    </div>
   ));
 }
 
