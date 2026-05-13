@@ -55,12 +55,12 @@ function Settings({
       <Dialog.Portal>
         <Dialog.Overlay className="dialog-overlay" />
 
-        <Dialog.Content className="dialog-content">
+        <Dialog.Content className="dialog-content settings">
           <Dialog.Title className="dialog-title">
             {t("settings.title")}
           </Dialog.Title>
 
-          <div className="settings">
+          <div className="settings-body">
             {/* Opciones de configuración */}
             <div className="settings-content">
               {/* Selector de idioma */}
