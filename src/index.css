@@ -349,6 +349,10 @@ select {
   align-items: center;
 }
 
+.setting-item-content select {
+  outline-offset: -0.3rem;
+}
+
 .setting-item-content .option {
   display: flex;
   gap: 0.3rem;
