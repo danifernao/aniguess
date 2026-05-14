@@ -103,25 +103,19 @@ body {
 
 body,
 #root,
-#main {
+.wrapper {
   display: flex;
   flex-direction: column;
   min-width: 100vw;
   min-height: 100vh;
 }
 
-/* Raíz */
-#root {
-  max-width: 40rem;
-}
-
-/* Principal */
-#main {
+.wrapper {
   gap: 1rem;
   padding: 1rem;
 }
 
-#main > section {
+.wrapper > section {
   margin-top: -1rem;
 }
 
@@ -209,6 +203,9 @@ body,
   align-items: center;
   justify-content: center;
   gap: 1rem;
+  max-width: 40rem;
+  margin: 0 auto;
+  padding: 1rem;
 }
 
 .question-title {
@@ -400,7 +397,6 @@ body,
 
 /* Error */
 #error {
-  display: flex;
   flex-direction: column;
   gap: 2rem;
   text-align: center;

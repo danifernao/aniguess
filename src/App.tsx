@@ -43,7 +43,7 @@ function App() {
   }, []);
 
   return (
-    <div id="main">
+    <div className="wrapper">
       {!errorContext && (
         <>
           <Stats score={score} />
