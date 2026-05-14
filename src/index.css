@@ -11,7 +11,6 @@
   --color-orange: #f2a365;
 }
 
-
 /* Cuerpo */
 body {
   position: relative;
@@ -26,13 +25,13 @@ body {
   color: var(--color-blue-1);
 }
 
-body, #root {
+body,
+#root {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
-
 
 /* General */
 * {
@@ -66,7 +65,6 @@ select {
   font-size: 0.9rem;
   color: var(--color-blue-1);
 }
-
 
 /* Botones */
 .button {
@@ -103,7 +101,6 @@ select {
   background-color: color-mix(in srgb, var(--color-blue-5) 80%, white);
 }
 
-
 /* Iconos con enlace */
 .icon-link svg {
   color: var(--color-blue-1);
@@ -115,12 +112,10 @@ select {
   color: var(--color-blue-2);
 }
 
-
 /* Raíz */
 #root {
   max-width: 40rem;
 }
-
 
 /* Principal */
 #main,
@@ -128,7 +123,6 @@ select {
   display: flex;
   align-items: center;
 }
-
 
 /* Cargando */
 #loading {
@@ -138,7 +132,6 @@ select {
 .loading-icon {
   font-size: 1.5rem;
 }
-
 
 /* Error */
 #error {
@@ -162,7 +155,6 @@ select {
   text-decoration: none;
 }
 
-
 /* Imagen del personaje */
 .character-image {
   max-width: 10rem;
@@ -179,7 +171,6 @@ select {
   height: 5rem;
   font-size: 1.5rem;
 }
-
 
 /* Pregunta */
 #question {
@@ -205,7 +196,6 @@ select {
 .question-options input[type="radio"] {
   margin-top: 0.15rem;
 }
-
 
 /* Respuesta */
 #answer {
@@ -273,7 +263,9 @@ select {
   font-family: "Roboto", sans-serif;
   font-size: 1rem;
   color: var(--color-white);
-  transition: box-shadow 0.1s ease, transform 0.1s ease-in-out;
+  transition:
+    box-shadow 0.1s ease,
+    transform 0.1s ease-in-out;
   font-weight: 600;
 }
 
@@ -281,7 +273,6 @@ select {
   transform: scale(1.03);
   box-shadow: 0 0.1rem 0.6rem rgb(from var(--color-blue-3) r g b / 0.6);
 }
-
 
 /* Estadísticas */
 #stats {
@@ -337,7 +328,6 @@ select {
   stroke: var(--color-red);
   fill: var(--color-red);
 }
-
 
 /* Configuración */
 .settings-body {
@@ -406,7 +396,6 @@ select {
   font-size: 1.5rem;
 }
 
-
 /* Botón que abre la configuración */
 #settings-trigger {
   position: fixed;
@@ -421,7 +410,6 @@ select {
   border: none;
   font-size: 1.5rem;
 }
-
 
 /* Diálogo */
 .dialog-overlay {
@@ -442,7 +430,7 @@ select {
   display: flex;
   flex-direction: column;
   padding: 2rem;
-  width: calc(100% - 4rem);;
+  width: calc(100% - 4rem);
   max-width: 30rem;
   max-height: 90vh;
   background-color: var(--color-blue-4);
@@ -474,7 +462,6 @@ select {
   margin-top: 1rem;
 }
 
-
 /* Alertas */
 .alert {
   padding: 1.5rem;
@@ -485,12 +472,10 @@ select {
   font-size: 1.3rem;
 }
 
-
 /* Toasts */
 [data-sonner-toast] {
   font-family: "Roboto", sans-serif;
 }
-
 
 /* React medium image zoom */
 [data-rmiz-modal-overlay="visible"] {
@@ -503,7 +488,6 @@ select {
   color: var(--color-blue-5) !important;
   box-shadow: none !important;
 }
-
 
 /* Pantallas pequeñas */
 @media only screen and (max-width: 600px) {
