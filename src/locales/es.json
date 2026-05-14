@@ -6,13 +6,16 @@
     "next": "Siguiente"
   },
   "characterImage": {
-    "loading": "Cargando imagen..."
+    "loading": "Cargando imagen...",
+    "viewFullSize": "Ver tamaño completo"
   },
   "common": {
     "cancel": "Cancel",
     "close": "Cerrar",
     "confirm": "Confirm",
-    "of": "de"
+    "of": "de",
+    "zoomIn": "Acercar",
+    "zoomOut": "Alejar"
   },
   "error": {
     "message": "No fue posible completar la solicitud. Esto puede ocurrir por falta de conexión a internet o porque AniList no está disponible en este momento. <0>Haz clic aquí</0> para intentar de nuevo."

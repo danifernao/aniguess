@@ -6,13 +6,16 @@
     "next": "Next"
   },
   "characterImage": {
-    "loading": "Loading image..."
+    "loading": "Loading image...",
+    "viewFullSize": "View full size"
   },
   "common": {
     "cancel": "Cancel",
     "close": "Close",
     "confirm": "Confirm",
-    "of": "out of"
+    "of": "out of",
+    "zoomIn": "Zoom in",
+    "zoomOut": "Zoom out"
   },
   "error": {
     "message": "We couldn't complete your request. This may be due to an internet connection issue or AniList being unavailable. <0>Try again</0>."

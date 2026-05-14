@@ -183,6 +183,13 @@ body,
   border-radius: 0.5rem;
 }
 
+.character-image-button {
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: zoom-in;
+}
+
 .character-image-loading {
   display: flex;
   justify-content: center;
@@ -479,16 +486,13 @@ body,
   font-family: "Roboto", sans-serif;
 }
 
-/* React medium image zoom */
-[data-rmiz-modal-overlay="visible"] {
-  background-color: rgb(from var(--color-blue-5) r g b / 0.8) !important;
+/* Yet Another React Lightbox */
+.yarl__root {
+  --yarl__color_backdrop: rgb(from var(--color-blue-5) r g b / 0.8);
+  --yarl__color_button: var(--color-blue-1);
+  --yarl__color_button_active: var(--color-blue-2);
+  --yarl__color_button_disabled: rgb(from var(--color-blue-1) r g b / 0.4);
   backdrop-filter: blur(0.5rem) !important;
-}
-
-[data-rmiz-btn-unzoom] {
-  background-color: var(--color-blue-1) !important;
-  color: var(--color-blue-5) !important;
-  box-shadow: none !important;
 }
 
 /* Pantallas pequeñas */

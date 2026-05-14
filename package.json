@@ -21,8 +21,8 @@
     "react-circular-progressbar": "^2.2.0",
     "react-dom": "^19.0.0",
     "react-i18next": "^17.0.6",
-    "react-medium-image-zoom": "^5.4.5",
-    "sonner": "^2.0.7"
+    "sonner": "^2.0.7",
+    "yet-another-react-lightbox": "^3.32.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.21.0",

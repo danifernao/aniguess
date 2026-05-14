@@ -139,7 +139,7 @@ function Settings({
               type="button"
               title={t("common.close")}
               aria-label={t("common.close")}
-              className="dialog-close"
+              className="dialog-close icon-link"
             >
               <FontAwesomeIcon icon={faXmark} />
             </button>
