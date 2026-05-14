@@ -14,6 +14,8 @@
 /* General */
 * {
   box-sizing: border-box;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-blue-1) var(--color-blue-5);
 }
 
 a {
@@ -316,8 +318,6 @@ body,
   flex-direction: column;
   gap: 2rem;
   overflow-y: auto;
-  scrollbar-width: thin;
-  scrollbar-color: var(--color-blue-1) var(--color-blue-5);
 }
 
 .setting-item {

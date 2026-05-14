@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useMemo, useRef } from "react";
 import type { CharacterType } from "../types/types";
 import { useTranslation } from "react-i18next";
 import { shuffle } from "../utils/shuffle";
@@ -21,18 +21,29 @@ function Question({
 }: QuestionProps) {
   const { t } = useTranslation();
 
-  // Verifica la respuesta solo en clics reales del ratón.
-  const handleInputClick = (e: React.MouseEvent, character: CharacterType) => {
-    const isKeyboardClick = e.detail === 0;
+  const isKeyboardAction = useRef(false);
 
-    if (!isKeyboardClick) {
+  // Si no se usa teclado, valida la respuesta.
+  const handleChange = (character: CharacterType) => {
+    if (!isKeyboardAction.current) {
       checkAnswer(character);
     }
+
+    isKeyboardAction.current = false;
   };
 
-  // Verifica la respuesta al presionar Enter con teclado.
+  // Si se usa teclado, valida la respuesta solo cuando se presiona Enter.
   const handleKeyDown = (e: React.KeyboardEvent, character: CharacterType) => {
-    if (e.key === "Enter") {
+    if (
+      e.key === "ArrowUp" ||
+      e.key === "ArrowDown" ||
+      e.key === "ArrowLeft" ||
+      e.key === "ArrowRight"
+    ) {
+      isKeyboardAction.current = true;
+    }
+
+    if (e.key === "Enter" || e.key === " ") {
       checkAnswer(character);
     }
   };
@@ -63,7 +74,7 @@ function Question({
               id={`media-${character.id}`}
               value={character.id}
               name="series-title"
-              onClick={(e) => handleInputClick(e, character)}
+              onChange={() => handleChange(character)}
               onKeyDown={(e) => handleKeyDown(e, character)}
             />
             <label htmlFor={`media-${character.id}`}>
