@@ -14,8 +14,10 @@
         "confirm": "Confirm",
         "of": "out of"
     },
+    "error": {
+        "message": "We couldn't complete your request. This may be due to an internet connection issue or AniList being unavailable. <0>Try again</0>."
+    },
     "loading": {
-        "error": "An unexpected error occurred. Please try again later.",
         "message": "Loading..."
     },
     "question": {

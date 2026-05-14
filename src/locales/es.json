@@ -14,8 +14,10 @@
         "confirm": "Confirm",
         "of": "de"
     },
+    "error": {
+        "message": "No fue posible completar la solicitud. Esto puede ocurrir por falta de conexión a internet o porque AniList no está disponible en este momento. <0>Haz clic aquí</0> para intentar de nuevo."
+    },
     "loading": {
-        "error": "Se presentó un error inesperado, inténtalo más tarde.",
         "message": "Cargando..."
     },
     "question": {

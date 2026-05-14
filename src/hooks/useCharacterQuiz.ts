@@ -3,6 +3,7 @@ import type {
   ScoreType,
   SettingsType,
   CharacterType,
+  ErrorType,
 } from "../types/types";
 
 import { getRandomInt, generateUniqueIds } from "../utils/random";
@@ -56,8 +57,8 @@ export function useCharacterQuiz(answerOptionCount: number) {
     mediaNsfw: true,
   });
 
-  // Indica si se encontró un error o no con la gestión de la API.
-  const [errorFound, setErrorFound] = useState<boolean>(false);
+  // Contexto donde ocurrió un error.
+  const [errorContext, setErrorContext] = useState<ErrorType>(null);
 
   // Muestra un mensaje indicando que los cambios fueron aplicados.
   const showChangesAppliedToast = (): void => {
@@ -115,7 +116,13 @@ export function useCharacterQuiz(answerOptionCount: number) {
 
         setOptionCharacters((c) => [...c, ...filtered]);
       })
-      .catch(() => setErrorFound(true));
+      .catch((error) => {
+        if (import.meta.env.DEV) {
+          console.error(error);
+        }
+
+        setErrorContext("quiz");
+      });
   }, [
     maxCharacterId,
     usedCharacterIds,
@@ -198,7 +205,7 @@ export function useCharacterQuiz(answerOptionCount: number) {
 
 
   // Inicialización.
-  useEffect(() => {
+  const init = useCallback(() => {
     const localState = loadGameState();
 
     // Se recupera la información guardada localmente y se actualizan las
@@ -214,19 +221,27 @@ export function useCharacterQuiz(answerOptionCount: number) {
     // Obtiene el ID más alto de los personajes registrados en AniList.
     fetchLastCharacterId()
       .then((id) => {
-        if (id) {
-          setMaxCharacterId(id);
-        } else {
-          setErrorFound(true);
+        setMaxCharacterId(id);
+      })
+      .catch((error) => {
+        if (import.meta.env.DEV) {
+          console.error(error);
         }
+
+        setErrorContext("init");
       });
   }, []);
+
+
+  useEffect(() => {
+    init();
+  }, [init]);
 
 
   // Obtiene más personajes si es necesario.
   // Los IDs recuperados del almacenamiento local solo se reutilizan
   // durante la inicialización para restaurar la pregunta previa.
-  useEffect(() => {
+  const getCharacters = () => {
     if (maxCharacterId && optionCharacters.length < answerOptionCount) {
       fetchRandomCharacters(savedOptionCharacterIds);
 
@@ -234,9 +249,27 @@ export function useCharacterQuiz(answerOptionCount: number) {
         setSavedOptionCharacterIds(null);
       }
     }
+  };
+
+  useEffect(() => {
+    getCharacters();
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [maxCharacterId, optionCharacters]);
+
+
+  // Reintenta la acción según el contexto del error.
+  const resumeFlow = () => {
+    if (errorContext === "init") {
+      init();
+    }
+
+    if (errorContext === "quiz") {
+      getCharacters();
+    }
+
+    setErrorContext(null);
+  };
 
 
   // Elige aleatoriamente un personaje para preguntar.
@@ -295,10 +328,11 @@ export function useCharacterQuiz(answerOptionCount: number) {
     isAnswerCorrect,
     score,
     settings,
-    errorFound,
+    errorContext,
     checkAnswer,
     newQuestion,
     resetScore,
     saveSettings,
+    resumeFlow,
   };
 }

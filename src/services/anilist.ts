@@ -20,41 +20,33 @@ export const fetchAniListData = async (
   };
 
   while (true) {
-    try {
-      const response = await fetch(url, options);
+    const response = await fetch(url, options);
 
-      // Si se ha excedido el límite de solicitudes,
-      // espera un tiempo determinado antes de volver a intentar.
-      if (response.status === 429) {
-        let delay = 30000;
+    // Si se ha excedido el límite de solicitudes,
+    // espera un tiempo determinado antes de volver a intentar.
+    if (response.status === 429) {
+      let delay = 30000;
 
-        const rateLimitReset = response.headers.get("X-RateLimit-Reset");
+      const rateLimitReset = response.headers.get("X-RateLimit-Reset");
 
-        if (rateLimitReset) {
-          delay = Math.ceil(
-            new Date(parseInt(rateLimitReset) * 1000).getTime() -
-              Date.now(),
-          );
-        }
-
-        await new Promise((resolve) => setTimeout(resolve, delay));
-        continue;
+      if (rateLimitReset) {
+        delay = Math.ceil(
+          new Date(parseInt(rateLimitReset) * 1000).getTime() -
+            Date.now(),
+        );
       }
 
-      const json = await response.json();
-
-      if (response.ok) {
-        return json;
-      }
-
-      throw json;
-    } catch (error) {
-      if (import.meta.env.DEV) {
-        console.error(error);
-      }
-      
-      await new Promise((resolve) => setTimeout(resolve, 10000));
+      await new Promise((resolve) => setTimeout(resolve, delay));
+      continue;
     }
+
+    const json = await response.json();
+
+    if (response.ok) {
+      return json;
+    }
+
+    throw json;
   }
 };
 
@@ -69,7 +61,13 @@ export const fetchLastCharacterId = async (): Promise<number> => {
       }
     }`;
 
-  return fetchAniListData(query)
-    .then((response) => response.data.Page.characters[0].id || 0)
-    .catch(() => 0);
+  const response = await fetchAniListData(query);
+
+  const id = response.data.Page.characters[0].id;
+
+  if (!id) {
+    throw new Error("Invalid API response");
+  }
+
+  return id;
 };
