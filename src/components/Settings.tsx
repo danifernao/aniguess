@@ -129,7 +129,8 @@ function Settings({
               <div className="settings-footer-right">
                 <Trans i18nKey="settings.footer.attribution">
                   <a href="https://docs.anilist.co/" target="_blank" />
-                </Trans>
+                </Trans>{" "}
+                | <span>v{__APP_VERSION__}</span>
               </div>
             </div>
           </div>
