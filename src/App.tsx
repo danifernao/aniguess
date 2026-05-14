@@ -46,6 +46,8 @@ function App() {
     <div id="main">
       {!errorContext && (
         <>
+          <Stats score={score} />
+
           {questionCharacter && isAnswerCorrect === null && (
             <Question
               questionMode={settings.questionMode}
@@ -67,8 +69,6 @@ function App() {
           )}
 
           {!questionCharacter && <Loading />}
-
-          <Stats score={score} />
 
           <Settings
             settings={settings}

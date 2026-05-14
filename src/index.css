@@ -11,28 +11,6 @@
   --color-orange: #f2a365;
 }
 
-/* Cuerpo */
-body {
-  position: relative;
-  margin: 0;
-  padding: 1rem !important;
-  min-height: 100vh;
-  background-color: var(--color-blue-5);
-  font-family: "Roboto", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 400;
-  font-style: normal;
-  color: var(--color-blue-1);
-}
-
-body,
-#root {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
 /* General */
 * {
   box-sizing: border-box;
@@ -112,47 +90,89 @@ select {
   color: var(--color-blue-2);
 }
 
+/* Cuerpo */
+body {
+  margin: 0;
+  background-color: var(--color-blue-5);
+  font-family: "Roboto", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  color: var(--color-blue-1);
+}
+
+body,
+#root,
+#main {
+  display: flex;
+  flex-direction: column;
+  min-width: 100vw;
+  min-height: 100vh;
+}
+
 /* Raíz */
 #root {
   max-width: 40rem;
 }
 
 /* Principal */
-#main,
-#main > * {
+#main {
+  gap: 1rem;
+  padding: 1rem;
+}
+
+#main > section {
+  margin-top: -1rem;
+}
+
+/* Estadísticas */
+#stats {
   display: flex;
-  align-items: center;
+  gap: 1rem;
+  align-items: start;
 }
 
-/* Cargando */
-#loading {
-  gap: 0.5rem;
-}
-
-.loading-icon {
+.stats-score {
+  flex: 1;
   font-size: 1.5rem;
+  font-weight: 700;
 }
 
-/* Error */
-#error {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-  text-align: center;
+.stats-progress {
+  width: 4rem !important;
+  height: 4rem;
 }
 
-.error-icon {
-  font-size: 5rem;
+.stats-progress .CircularProgressbar-trail {
+  stroke: var(--color-blue-1);
 }
 
-.error-message button {
-  background: none;
-  border: none;
-  padding: 0;
-  font: inherit;
-  cursor: pointer;
-  color: var(--color-blue-2);
-  text-decoration: none;
+.stats-progress .CircularProgressbar-text {
+  font-size: 1.3rem;
+}
+
+.stats-progress.neutral .CircularProgressbar-path,
+.stats-progress.neutral .CircularProgressbar-text {
+  stroke: var(--color-blue-1);
+  fill: var(--color-blue-1);
+}
+
+.stats-progress.good .CircularProgressbar-path,
+.stats-progress.good .CircularProgressbar-text {
+  stroke: var(--color-green);
+  fill: var(--color-green);
+}
+
+.stats-progress.medium .CircularProgressbar-path,
+.stats-progress.medium .CircularProgressbar-text {
+  stroke: var(--color-orange);
+  fill: var(--color-orange);
+}
+
+.stats-progress.bad .CircularProgressbar-path,
+.stats-progress.bad .CircularProgressbar-text {
+  stroke: var(--color-red);
+  fill: var(--color-red);
 }
 
 /* Imagen del personaje */
@@ -173,7 +193,14 @@ select {
 }
 
 /* Pregunta */
-#question {
+#question,
+#answer,
+#loading,
+#error {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   gap: 1rem;
 }
 
@@ -200,8 +227,6 @@ select {
 /* Respuesta */
 #answer {
   flex-direction: column;
-  max-width: 25rem;
-  gap: 1rem;
 }
 
 .answer-content {
@@ -274,61 +299,6 @@ select {
   box-shadow: 0 0.1rem 0.6rem rgb(from var(--color-blue-3) r g b / 0.6);
 }
 
-/* Estadísticas */
-#stats {
-  position: absolute;
-  top: 0;
-  right: 0;
-  left: 0;
-  display: flex;
-  gap: 1rem;
-  align-items: start;
-  padding: 1rem;
-}
-
-.stats-score {
-  flex: 1;
-  font-size: 1.5rem;
-  font-weight: 700;
-}
-
-.stats-progress {
-  width: 4rem !important;
-  height: 4rem;
-}
-
-.stats-progress .CircularProgressbar-trail {
-  stroke: var(--color-blue-1);
-}
-
-.stats-progress .CircularProgressbar-text {
-  font-size: 1.3rem;
-}
-
-.stats-progress.neutral .CircularProgressbar-path,
-.stats-progress.neutral .CircularProgressbar-text {
-  stroke: var(--color-blue-1);
-  fill: var(--color-blue-1);
-}
-
-.stats-progress.good .CircularProgressbar-path,
-.stats-progress.good .CircularProgressbar-text {
-  stroke: var(--color-green);
-  fill: var(--color-green);
-}
-
-.stats-progress.medium .CircularProgressbar-path,
-.stats-progress.medium .CircularProgressbar-text {
-  stroke: var(--color-orange);
-  fill: var(--color-orange);
-}
-
-.stats-progress.bad .CircularProgressbar-path,
-.stats-progress.bad .CircularProgressbar-text {
-  stroke: var(--color-red);
-  fill: var(--color-red);
-}
-
 /* Configuración */
 .settings-body {
   display: flex;
@@ -398,9 +368,6 @@ select {
 
 /* Botón que abre la configuración */
 #settings-trigger {
-  position: fixed;
-  bottom: 1rem;
-  left: 1rem;
   font-size: 1.5rem;
   color: var(--color-blue-1) !important;
 }
@@ -409,6 +376,37 @@ select {
   background-color: transparent;
   border: none;
   font-size: 1.5rem;
+}
+
+/* Cargando */
+#loading {
+  gap: 0.5rem;
+}
+
+.loading-icon {
+  font-size: 1.5rem;
+}
+
+/* Error */
+#error {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  text-align: center;
+}
+
+.error-icon {
+  font-size: 5rem;
+}
+
+.error-message button {
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  color: var(--color-blue-2);
+  text-decoration: none;
 }
 
 /* Diálogo */
@@ -462,7 +460,7 @@ select {
   margin-top: 1rem;
 }
 
-/* Alertas */
+/* Alerta */
 .alert {
   padding: 1.5rem;
   max-width: 25rem;
@@ -472,7 +470,7 @@ select {
   font-size: 1.3rem;
 }
 
-/* Toasts */
+/* Toast */
 [data-sonner-toast] {
   font-family: "Roboto", sans-serif;
 }
