@@ -21,6 +21,22 @@ function Question({
 }: QuestionProps) {
   const { t } = useTranslation();
 
+  // Verifica la respuesta solo en clics reales del ratón.
+  const handleInputClick = (e: React.MouseEvent, character: CharacterType) => {
+    const isKeyboardClick = e.detail === 0;
+
+    if (!isKeyboardClick) {
+      checkAnswer(character);
+    }
+  };
+
+  // Verifica la respuesta al presionar Enter con teclado.
+  const handleKeyDown = (e: React.KeyboardEvent, character: CharacterType) => {
+    if (e.key === "Enter") {
+      checkAnswer(character);
+    }
+  };
+
   const shuffledCharacters = useMemo(() => {
     return shuffle([...optionCharacters]);
   }, [optionCharacters]);
@@ -47,7 +63,8 @@ function Question({
               id={`media-${character.id}`}
               value={character.id}
               name="series-title"
-              onClick={() => checkAnswer(character)}
+              onClick={(e) => handleInputClick(e, character)}
+              onKeyDown={(e) => handleKeyDown(e, character)}
             />
             <label htmlFor={`media-${character.id}`}>
               {questionMode === "character"
