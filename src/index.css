@@ -135,7 +135,7 @@ select {
   gap: 0.5rem;
 }
 
-#loading svg {
+.loading-icon {
   font-size: 1.5rem;
 }
 
@@ -148,11 +148,11 @@ select {
   text-align: center;
 }
 
-#error svg {
+.error-icon {
   font-size: 5rem;
 }
 
-#error button {
+.error-message button {
   background: none;
   border: none;
   padding: 0;

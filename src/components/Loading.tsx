@@ -7,8 +7,13 @@ function Loading() {
 
   return (
     <div id="loading" role="status">
-      <FontAwesomeIcon icon={faCircleNotch} spin aria-hidden="true" />
-      <p>{t("loading.message")}</p>
+      <FontAwesomeIcon
+        icon={faCircleNotch}
+        spin
+        aria-hidden="true"
+        className="loading-icon"
+      />
+      <p className="loading-message">{t("loading.message")}</p>
     </div>
   );
 }

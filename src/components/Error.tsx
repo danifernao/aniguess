@@ -9,8 +9,12 @@ interface ErrorProps {
 function Error({ resume }: ErrorProps) {
   return (
     <div id="error" role="alert">
-      <FontAwesomeIcon icon={faPlugCircleXmark} aria-hidden="true" />
-      <p>
+      <FontAwesomeIcon
+        icon={faPlugCircleXmark}
+        aria-hidden="true"
+        className="error-icon"
+      />
+      <p className="error-message">
         <Trans i18nKey="error.message">
           <button type="button" onClick={resume} />
         </Trans>
