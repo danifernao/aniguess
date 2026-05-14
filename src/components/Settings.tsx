@@ -3,7 +3,7 @@ import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGear, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
-import { useTranslation } from "react-i18next";
+import { Trans, useTranslation } from "react-i18next";
 import SettingsRadioGroups from "./SettingsRadioGroups";
 import * as Dialog from "@radix-ui/react-dialog";
 import SettingsResetStatsDialog from "./SettingsResetStats";
@@ -115,14 +115,22 @@ function Settings({
 
             {/* Pie de la ventana modal */}
             <div className="settings-footer">
-              <a
-                href="https://github.com/danifernao/aniguess"
-                target="_blank"
-                title={t("settings.footer.github")}
-                className="icon-link"
-              >
-                <FontAwesomeIcon icon={faGithub} aria-hidden="true" />
-              </a>
+              <div className="settings-footer-left">
+                <a
+                  href="https://github.com/danifernao/aniguess"
+                  target="_blank"
+                  title={t("settings.footer.github")}
+                  className="icon-link"
+                >
+                  <FontAwesomeIcon icon={faGithub} aria-hidden="true" />
+                </a>
+              </div>
+
+              <div className="settings-footer-right">
+                <Trans i18nKey="settings.footer.attribution">
+                  <a href="https://docs.anilist.co/" target="_blank" />
+                </Trans>
+              </div>
             </div>
           </div>
 

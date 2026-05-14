@@ -28,6 +28,7 @@
   "settings": {
     "changesApplied": "Changes applied",
     "footer": {
+      "attribution": "Powered by <0>AniList</0>",
       "github": "GitHub repository"
     },
     "language": {
