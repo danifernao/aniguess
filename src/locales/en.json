@@ -1,88 +1,88 @@
 {
-    "answer": {
-        "correct": "Correct!",
-        "image_alt": "Character image of {{name}}",
-        "incorrect": "Incorrect!",
-        "next": "Next"
+  "answer": {
+    "correct": "Correct!",
+    "image_alt": "Character image of {{name}}",
+    "incorrect": "Incorrect!",
+    "next": "Next"
+  },
+  "characterImage": {
+    "loading": "Loading image..."
+  },
+  "common": {
+    "cancel": "Cancel",
+    "close": "Close",
+    "confirm": "Confirm",
+    "of": "out of"
+  },
+  "error": {
+    "message": "We couldn't complete your request. This may be due to an internet connection issue or AniList being unavailable. <0>Try again</0>."
+  },
+  "loading": {
+    "message": "Loading..."
+  },
+  "question": {
+    "character": "What is this character's name?",
+    "image_alt": "Character image",
+    "series": "What series is this character from?"
+  },
+  "settings": {
+    "changesApplied": "Changes applied",
+    "footer": {
+      "github": "GitHub repository"
     },
-    "characterImage": {
-        "loading": "Loading image..."
+    "language": {
+      "legend": "Interface language",
+      "options": {
+        "en": "English",
+        "es": "Spanish"
+      }
     },
-    "common": {
-        "cancel": "Cancel",
-        "close": "Close",
-        "confirm": "Confirm",
-        "of": "out of"
+    "mediaNsfw": {
+      "legend": "NSFW content",
+      "options": {
+        "no": "No",
+        "yes": "Yes"
+      }
     },
-    "error": {
-        "message": "We couldn't complete your request. This may be due to an internet connection issue or AniList being unavailable. <0>Try again</0>."
+    "mediaType": {
+      "legend": "Media type",
+      "options": {
+        "anime": "Anime",
+        "both": "Both",
+        "manga": "Manga"
+      }
     },
-    "loading": {
-        "message": "Loading..."
+    "questionMode": {
+      "legend": "Question type",
+      "options": {
+        "character": "Character name",
+        "series": "Series title"
+      }
     },
-    "question": {
-        "character": "What is this character's name?",
-        "image_alt": "Character image",
-        "series": "What series is this character from?"
-    },
-    "settings": {
-        "changesApplied": "Changes applied",
-        "footer": {
-            "github": "GitHub repository"
-        },
-        "language": {
-            "legend": "Interface language",
-            "options": {
-                "en": "English",
-                "es": "Spanish"
-            }
-        },
-        "mediaNsfw": {
-            "legend": "NSFW content",
-            "options": {
-                "no": "No",
-                "yes": "Yes"
-            }
-        },
-        "mediaType": {
-            "legend": "Media type",
-            "options": {
-                "anime": "Anime",
-                "both": "Both",
-                "manga": "Manga"
-            }
-        },
-        "questionMode": {
-            "legend": "Question type",
-            "options": {
-                "character": "Character name",
-                "series": "Series title"
-            }
-        },
-        "seriesTitleLanguage": {
-            "legend": "Series title language",
-            "options": {
-                "english": "English",
-                "romaji": "Romaji"
-            }
-        },
-        "stats": {
-            "button": "Reset",
-            "confirm": {
-                "description": "Are you sure you want to reset your stats? This action cannot be undone.",
-                "title": "Reset stats"
-            },
-            "legend": "Stats"
-        },
-        "title": "Settings"
+    "seriesTitleLanguage": {
+      "legend": "Series title language",
+      "options": {
+        "english": "English",
+        "romaji": "Romaji"
+      }
     },
     "stats": {
-        "score": {
-            "correct_one": "{{count}} correct answer",
-            "correct_other": "{{count}} correct answers",
-            "question_one": "{{count}} question",
-            "question_other": "{{count}} questions"
-        },
-        "summary": "{{correct}}/{{total}} · {{percentage}}%"
-    }
+      "button": "Reset",
+      "confirm": {
+        "description": "Are you sure you want to reset your stats? This action cannot be undone.",
+        "title": "Reset stats"
+      },
+      "legend": "Stats"
+    },
+    "title": "Settings"
+  },
+  "stats": {
+    "score": {
+      "correct_one": "{{count}} correct answer",
+      "correct_other": "{{count}} correct answers",
+      "question_one": "{{count}} question",
+      "question_other": "{{count}} questions"
+    },
+    "summary": "{{correct}}/{{total}} · {{percentage}}%"
+  }
 }

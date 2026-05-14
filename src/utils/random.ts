@@ -2,9 +2,9 @@ import { characterIdsWithInvalidImages } from "../constants/characterIdsWithInva
 
 // Obtiene un número entero aleatorio dentro de un rango.
 export const getRandomInt = (
-  from: number,                       // Límite inferior.
-  to: number,                         // Límite superior.
-  exclude: Set<number> = new Set(),   // Valores excluidos.
+  from: number, // Límite inferior.
+  to: number, // Límite superior.
+  exclude: Set<number> = new Set(), // Valores excluidos.
 ): number => {
   let num: number;
 
@@ -17,9 +17,9 @@ export const getRandomInt = (
 
 // Genera IDs aleatorios únicos.
 export const generateUniqueIds = (
-  count: number,          // Cantidad de IDs.
-  maxId: number,          // Valor máximo permitido.
-  excluded: Set<number>,  // IDs excluidos.
+  count: number, // Cantidad de IDs.
+  maxId: number, // Valor máximo permitido.
+  excluded: Set<number>, // IDs excluidos.
 ): number[] => {
   const ids: number[] = [];
   const localExcluded = new Set([

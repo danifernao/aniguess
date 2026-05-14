@@ -31,8 +31,7 @@ export const fetchAniListData = async (
 
       if (rateLimitReset) {
         delay = Math.ceil(
-          new Date(parseInt(rateLimitReset) * 1000).getTime() -
-            Date.now(),
+          new Date(parseInt(rateLimitReset) * 1000).getTime() - Date.now(),
         );
       }
 
