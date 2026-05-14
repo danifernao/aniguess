@@ -6,6 +6,7 @@ import { useCharacterQuiz } from "./hooks/useCharacterQuiz";
 import Stats from "./components/Stats";
 import { Toaster } from "sonner";
 import Error from "./components/Error";
+import { useEffect } from "react";
 
 function App() {
   const answerOptionCount = 3;
@@ -23,6 +24,23 @@ function App() {
     saveSettings,
     resumeFlow,
   } = useCharacterQuiz(answerOptionCount);
+
+  // Desactiva el menú contextual (clic derecho) en producción.
+  useEffect(() => {
+    if (!import.meta.env.PROD) {
+      return;
+    }
+
+    const handleContextMenu = (event: MouseEvent) => {
+      event.preventDefault();
+    };
+
+    document.body.addEventListener("contextmenu", handleContextMenu);
+
+    return () => {
+      document.body.removeEventListener("contextmenu", handleContextMenu);
+    };
+  }, []);
 
   return (
     <div id="main">
