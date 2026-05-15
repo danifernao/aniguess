@@ -489,10 +489,15 @@ body,
 }
 
 .dialog-title {
-  margin: 0 0 1rem;
+  margin: 0 0 0.5rem;
   padding-bottom: 0.5rem;
   border-bottom: 0.1rem solid rgb(from var(--color-blue-5) r g b / 0.4);
   font-size: 1.4rem;
+}
+
+.dialog-description {
+  margin-bottom: 2rem;
+  font-size: 0.9rem;
 }
 
 .dialog-close {

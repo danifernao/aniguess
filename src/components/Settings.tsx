@@ -60,6 +60,10 @@ function Settings({
             {t("settings.title")}
           </Dialog.Title>
 
+          <Dialog.Description className="dialog-description">
+            {t("settings.description")}
+          </Dialog.Description>
+
           <div className="settings-body">
             {/* Opciones de configuración */}
             <div className="settings-content">

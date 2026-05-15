@@ -31,6 +31,7 @@
   },
   "settings": {
     "changesApplied": "Cambios aplicados",
+    "description": "Personaliza tu experiencia ajustando las siguientes opciones.",
     "footer": {
       "attribution": "Con tecnología de <0>AniList</0>",
       "github": "Repositorio en GitHub"
