@@ -80,6 +80,10 @@
     },
     "title": "Configuración"
   },
+  "shortcutsHint": {
+    "nextQuestion": "Siguiente pregunta",
+    "selectAnswer": "Seleccionar respuesta"
+  },
   "stats": {
     "score": {
       "correct_one": "{{count}} acierto",

@@ -8,7 +8,7 @@ interface ErrorProps {
 
 function Error({ resume }: ErrorProps) {
   return (
-    <div id="error" role="alert">
+    <div className="error" role="alert">
       <FontAwesomeIcon
         icon={faPlugCircleXmark}
         aria-hidden="true"

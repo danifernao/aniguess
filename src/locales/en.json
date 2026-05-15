@@ -80,6 +80,10 @@
     },
     "title": "Settings"
   },
+  "shortcutsHint": {
+    "nextQuestion": "Next question",
+    "selectAnswer": "Select answer"
+  },
   "stats": {
     "score": {
       "correct_one": "{{count}} correct answer",

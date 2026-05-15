@@ -39,7 +39,7 @@ function Settings({
 
   return (
     <Dialog.Root open={isOpen} onOpenChange={setIsOpen}>
-      <div id="settings-trigger">
+      <div className="settings-trigger">
         <Dialog.Trigger asChild>
           <button
             type="button"

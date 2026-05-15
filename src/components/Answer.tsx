@@ -3,6 +3,7 @@ import { faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
 import type { CharacterType } from "../types/types";
 import { useTranslation } from "react-i18next";
 import CharacterImage from "./CharacterImage";
+import { useCallback, useEffect } from "react";
 
 interface AnswerProps {
   questionMode: "character" | "series";
@@ -21,8 +22,26 @@ function Answer({
 }: AnswerProps) {
   const { t } = useTranslation();
 
+  // Avanza a la siguiente pregunta presionando la tecla "n".
+  const handleShortcut = useCallback(
+    (e: KeyboardEvent) => {
+      if (e.key.toLowerCase() === "n") {
+        newQuestion();
+      }
+    },
+    [newQuestion],
+  );
+
+  useEffect(() => {
+    document.addEventListener("keydown", handleShortcut);
+
+    return () => {
+      document.removeEventListener("keydown", handleShortcut);
+    };
+  }, [handleShortcut]);
+
   return (
-    <div id="answer" className={`${isCorrect ? "correct" : "incorrect"}`}>
+    <div className={`answer ${isCorrect ? "correct" : "incorrect"}`}>
       <div className="answer-content">
         <p className="answer-result">
           <b>{isCorrect ? t("answer.correct") : t("answer.incorrect")}</b>

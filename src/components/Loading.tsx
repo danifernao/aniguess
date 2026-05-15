@@ -6,7 +6,7 @@ function Loading() {
   const { t } = useTranslation();
 
   return (
-    <div id="loading" role="status">
+    <div className="loading" role="status">
       <FontAwesomeIcon
         icon={faCircleNotch}
         spin

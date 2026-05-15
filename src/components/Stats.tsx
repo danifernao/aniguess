@@ -23,7 +23,7 @@ function Stats({ score }: StatsProps) {
           : "bad";
 
   return (
-    <div id="stats">
+    <div className="stats">
       <div
         className="stats-score"
         title={`${t("stats.score.correct", { count: score.correct })} ${t("common.of")} ${t("stats.score.question", { count: score.total })}`}

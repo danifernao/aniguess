@@ -92,7 +92,7 @@ select {
   color: var(--color-blue-2);
 }
 
-/* Cuerpo */
+/* Estructura principal */
 body {
   margin: 0;
   background-color: var(--color-blue-5);
@@ -121,8 +121,31 @@ body,
   margin-top: -1rem;
 }
 
+.main {
+  padding: 1rem;
+}
+
+.main,
+.main > div {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.main > div {
+  gap: 1rem;
+  max-width: 40rem;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 /* Estadísticas */
-#stats {
+.stats {
   display: flex;
   gap: 1rem;
   align-items: start;
@@ -196,20 +219,6 @@ body,
 }
 
 /* Pregunta */
-#question,
-#answer,
-#loading,
-#error {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-  max-width: 40rem;
-  margin: 0 auto;
-  padding: 1rem;
-}
-
 .question-title {
   margin: 0 0 1rem 0;
   font-weight: 700;
@@ -231,7 +240,7 @@ body,
 }
 
 /* Respuesta */
-#answer {
+.answer {
   flex-direction: column;
 }
 
@@ -259,15 +268,15 @@ body,
   color: var(--color-blue-1);
 }
 
-#answer.correct .answer-result,
-#answer.correct .answer-details.character .answer-character a,
-#answer.correct .answer-details.series .answer-series a {
+.answer.correct .answer-result,
+.answer.correct .answer-details.character .answer-character a,
+.answer.correct .answer-details.series .answer-series a {
   color: var(--color-green);
 }
 
-#answer.incorrect .answer-result,
-#answer.incorrect .answer-details.character .answer-character a,
-#answer.incorrect .answer-details.series .answer-series a {
+.answer.incorrect .answer-result,
+.answer.incorrect .answer-details.character .answer-character a,
+.answer.incorrect .answer-details.series .answer-series a {
   color: var(--color-red);
 }
 
@@ -362,6 +371,7 @@ body,
 .settings-footer {
   display: flex;
   align-items: center;
+  justify-content: space-between;
 }
 
 .settings-footer svg {
@@ -369,21 +379,42 @@ body,
 }
 
 .settings-footer-right {
-  flex: 1;
-  text-align: right;
   font-size: 0.8rem;
 }
 
 /* Botón que abre la configuración */
-#settings-trigger {
+.settings-trigger {
   font-size: 1.5rem;
   color: var(--color-blue-1) !important;
 }
 
-#settings-trigger button {
+.settings-trigger button {
   background-color: transparent;
   border: none;
   font-size: 1.5rem;
+}
+
+/* Atajos de teclado */
+.shortcuts-hint {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.shortcuts-hint .keys {
+  display: flex;
+  align-items: center;
+}
+
+.shortcuts-hint .keys kbd:not(:last-of-type):after {
+  content: ",";
+  margin-right: 0.1rem;
+}
+
+.shortcuts-hint .action:before {
+  content: "·";
+  margin-right: 0.5rem;
 }
 
 /* Cargando */
@@ -493,7 +524,7 @@ body,
 
 /* Pantallas pequeñas */
 @media only screen and (max-width: 600px) {
-  #question {
+  .question {
     flex-direction: column;
   }
 
@@ -503,5 +534,12 @@ body,
 
   .answer-details {
     gap: 1rem;
+  }
+}
+
+/* Dispositivos táctiles */
+@media (pointer: coarse) {
+  .shortcuts-hint {
+    display: none;
   }
 }

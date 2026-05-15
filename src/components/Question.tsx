@@ -1,4 +1,4 @@
-import { useMemo, useRef } from "react";
+import { useCallback, useEffect, useMemo, useRef } from "react";
 import type { CharacterType } from "../types/types";
 import { useTranslation } from "react-i18next";
 import { shuffle } from "../utils/shuffle";
@@ -48,12 +48,33 @@ function Question({
     }
   };
 
+  // Mezcla las opciones cada vez que cambian.
   const shuffledCharacters = useMemo(() => {
     return shuffle([...optionCharacters]);
   }, [optionCharacters]);
 
+  // Selecciona una opción usando las teclas numéricas.
+  const handleShortcut = useCallback(
+    (e: KeyboardEvent) => {
+      const index = parseInt(e.key) - 1;
+
+      if (!isNaN(index) && index >= 0 && index < shuffledCharacters.length) {
+        checkAnswer(shuffledCharacters[index]);
+      }
+    },
+    [shuffledCharacters, checkAnswer],
+  );
+
+  useEffect(() => {
+    document.addEventListener("keydown", handleShortcut);
+
+    return () => {
+      document.removeEventListener("keydown", handleShortcut);
+    };
+  }, [handleShortcut]);
+
   return (
-    <div id="question">
+    <div className="question">
       <CharacterImage
         src={questionCharacter.image.large}
         alt={t("question.image_alt")}

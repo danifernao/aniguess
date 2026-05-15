@@ -7,6 +7,7 @@ import Stats from "./components/Stats";
 import { Toaster } from "sonner";
 import Error from "./components/Error";
 import { useEffect } from "react";
+import ShortcutsHint from "./components/ShortcutsHint";
 
 function App() {
   const answerOptionCount = 3;
@@ -24,6 +25,12 @@ function App() {
     saveSettings,
     resumeFlow,
   } = useCharacterQuiz(answerOptionCount);
+
+  // Determina el estado actual del juego.
+  const hasQuestion = questionCharacter !== null;
+  const isQuestionReady = hasQuestion && isAnswerCorrect === null;
+  const isAnswerReady = hasQuestion && isAnswerCorrect !== null;
+  const isLoading = !questionCharacter;
 
   // Desactiva el menú contextual (clic derecho) en producción.
   useEffect(() => {
@@ -48,34 +55,43 @@ function App() {
         <>
           <Stats score={score} />
 
-          {questionCharacter && isAnswerCorrect === null && (
-            <Question
-              questionMode={settings.questionMode}
-              seriesTitleLanguage={settings.seriesTitleLanguage}
-              optionCharacters={optionCharacters}
-              questionCharacter={questionCharacter}
-              checkAnswer={checkAnswer}
+          <div className="main">
+            {isQuestionReady && (
+              <Question
+                questionMode={settings.questionMode}
+                seriesTitleLanguage={settings.seriesTitleLanguage}
+                optionCharacters={optionCharacters}
+                questionCharacter={questionCharacter}
+                checkAnswer={checkAnswer}
+              />
+            )}
+
+            {isAnswerReady && (
+              <Answer
+                questionMode={settings.questionMode}
+                seriesTitleLanguage={settings.seriesTitleLanguage}
+                questionCharacter={questionCharacter}
+                isCorrect={isAnswerCorrect}
+                newQuestion={newQuestion}
+              />
+            )}
+
+            {isLoading && <Loading />}
+          </div>
+
+          <div className="footer">
+            <Settings
+              settings={settings}
+              saveSettings={saveSettings}
+              score={score}
+              resetScore={resetScore}
             />
-          )}
-
-          {questionCharacter && isAnswerCorrect !== null && (
-            <Answer
-              questionMode={settings.questionMode}
-              seriesTitleLanguage={settings.seriesTitleLanguage}
-              questionCharacter={questionCharacter}
-              isCorrect={isAnswerCorrect}
-              newQuestion={newQuestion}
+            <ShortcutsHint
+              isQuestionReady={isQuestionReady}
+              isAnswerReady={isAnswerReady}
+              totalOptions={answerOptionCount}
             />
-          )}
-
-          {!questionCharacter && <Loading />}
-
-          <Settings
-            settings={settings}
-            saveSettings={saveSettings}
-            score={score}
-            resetScore={resetScore}
-          />
+          </div>
         </>
       )}
 
