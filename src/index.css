@@ -284,6 +284,7 @@ body,
   margin-left: 0.5rem;
   font-size: 0.8rem;
   vertical-align: middle;
+  transform: translateY(-0.05em);
 }
 
 .answer-details .answer-character {
@@ -306,6 +307,7 @@ body,
   font-size: 0.7rem;
   border-radius: 0.2rem;
   vertical-align: middle;
+  transform: translateY(-0.05em);
 }
 
 .next-question {
