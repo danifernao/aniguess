@@ -36,18 +36,18 @@
       "attribution": "Con tecnología de <0>AniList</0>",
       "github": "Repositorio en GitHub"
     },
+    "includeAdultMedia": {
+      "legend": "Incluir contenido para adultos",
+      "options": {
+        "no": "No",
+        "yes": "Sí"
+      }
+    },
     "language": {
       "legend": "Idioma de la interfaz",
       "options": {
         "en": "Inglés",
         "es": "Español"
-      }
-    },
-    "mediaNsfw": {
-      "legend": "Incluir contenido para adultos",
-      "options": {
-        "no": "No",
-        "yes": "Sí"
       }
     },
     "mediaType": {
@@ -90,12 +90,12 @@
     "selectAnswer": "Seleccionar respuesta"
   },
   "stats": {
+    "progress": "Progreso: {{percentage}}%",
     "score": {
       "correct_one": "{{count}} acierto",
       "correct_other": "{{count}} aciertos",
       "question_one": "{{count}} pregunta",
       "question_other": "{{count}} preguntas"
-    },
-    "progress": "Progreso: {{percentage}}%"
+    }
   }
 }

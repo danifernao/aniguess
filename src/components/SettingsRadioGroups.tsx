@@ -24,7 +24,7 @@ function SettingsRadioGroups({
 }: SettingsRadioGroupsProps) {
   const { t } = useTranslation();
 
-  const triggersNewQuestion = ["mediaType", "mediaNsfw"];
+  const triggersNewQuestion = ["mediaType", "includeAdultMedia"];
 
   const radioGroups: radioGroup[] = [
     {
@@ -71,7 +71,7 @@ function SettingsRadioGroups({
       ],
     },
     {
-      name: "mediaNsfw",
+      name: "includeAdultMedia",
       options: [
         {
           name: "yes",

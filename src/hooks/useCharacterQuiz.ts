@@ -52,7 +52,7 @@ export function useCharacterQuiz(answerOptionCount: number) {
     questionMode: "series",
     mediaType: null,
     seriesTitleLanguage: "english",
-    mediaNsfw: true,
+    includeAdultMedia: true,
   });
 
   // Contexto donde ocurrió un error.
@@ -70,7 +70,8 @@ export function useCharacterQuiz(answerOptionCount: number) {
 
     const excludedIds = new Set(usedCharacterIds);
     const totalIds =
-      answerOptionCount * (!settings.mediaType && settings.mediaNsfw ? 3 : 6);
+      answerOptionCount *
+      (!settings.mediaType && settings.includeAdultMedia ? 3 : 6);
 
     const randomIds: number[] =
       savedOptionCharacterIds ??
@@ -109,7 +110,7 @@ export function useCharacterQuiz(answerOptionCount: number) {
           apiCharacters,
           {
             mediaType: settings.mediaType,
-            mediaNsfw: settings.mediaNsfw,
+            includeAdultMedia: settings.includeAdultMedia,
           },
           answerOptionCount - optionCharacters.length,
         );
@@ -194,7 +195,7 @@ export function useCharacterQuiz(answerOptionCount: number) {
           ? value === "NULL"
             ? null
             : value
-          : key === "mediaNsfw"
+          : key === "includeAdultMedia"
             ? value === "true"
             : value,
     }));

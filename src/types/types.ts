@@ -37,7 +37,7 @@ export interface SettingsType {
   questionMode: "character" | "series";
   seriesTitleLanguage: "english" | "romaji";
   mediaType: string | null;
-  mediaNsfw: boolean;
+  includeAdultMedia: boolean;
 }
 
 export interface ScoreType {

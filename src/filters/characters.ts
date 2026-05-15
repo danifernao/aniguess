@@ -6,7 +6,7 @@ export const filterValidCharacters = (
   apiCharacters: CharacterType[],
   settings: {
     mediaType: string | null;
-    mediaNsfw: boolean;
+    includeAdultMedia: boolean;
   },
   limit: number,
 ): CharacterType[] => {
@@ -29,7 +29,7 @@ export const filterValidCharacters = (
         (m.title.english || m.title.romaji) &&
         // Solo se consideran las obras que coincidan con la configuración de
         // contenido NSFW establecida por el jugador.
-        (settings.mediaNsfw || !m.isAdult) &&
+        (settings.includeAdultMedia || !m.isAdult) &&
         // Solo se consideran las obras que no estén presentes en el resultado.
         !result.some((resultCharacter) =>
           resultCharacter.media.nodes.some(
