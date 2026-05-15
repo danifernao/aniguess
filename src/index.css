@@ -1,5 +1,6 @@
 :root {
   --color-white: #ffffff;
+  --color-white-2: #f2f2f2;
   --color-red: #e85d75;
   --color-red-2: #d41e3e;
   --color-green: #75f088;
@@ -547,7 +548,7 @@ body,
   padding: 0.4rem 0.6rem;
   max-width: 16rem;
   white-space: normal;
-  background-color: rgb(from var(--color-white) r g b / 0.8);
+  background-color: var(--color-white-2);
   color: var(--color-blue-4);
   border-radius: 0.3rem;
   font-size: 0.85rem;
@@ -555,7 +556,7 @@ body,
 }
 
 .tooltip-arrow {
-  fill: rgb(from var(--color-white) r g b / 0.8);
+  fill: var(--color-white-2);
 }
 
 @keyframes tooltip-fade {
