@@ -69,7 +69,8 @@ export function useCharacterQuiz(answerOptionCount: number) {
     if (!maxCharacterId) return;
 
     const excludedIds = new Set(usedCharacterIds);
-    const totalIds = answerOptionCount * (settings.mediaNsfw ? 3 : 4);
+    const totalIds =
+      answerOptionCount * (!settings.mediaType && settings.mediaNsfw ? 3 : 6);
 
     const randomIds: number[] =
       savedOptionCharacterIds ??
