@@ -55,7 +55,7 @@ function App() {
         <>
           <Stats score={score} />
 
-          <div className="main">
+          <main className="main" aria-live="polite" aria-busy={isLoading}>
             {isQuestionReady && (
               <Question
                 questionMode={settings.questionMode}
@@ -77,9 +77,9 @@ function App() {
             )}
 
             {isLoading && <Loading />}
-          </div>
+          </main>
 
-          <div className="footer">
+          <footer className="footer">
             <Settings
               settings={settings}
               saveSettings={saveSettings}
@@ -91,7 +91,7 @@ function App() {
               isAnswerReady={isAnswerReady}
               totalOptions={answerOptionCount}
             />
-          </div>
+          </footer>
         </>
       )}
 

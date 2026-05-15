@@ -25,7 +25,7 @@
   },
   "question": {
     "character": "¿Cómo se llama este personaje?",
-    "image_alt": "Imagen del personaje",
+    "image_alt": "Imagen del personaje a adivinar",
     "series": "¿A qué obra pertenece este personaje?"
   },
   "settings": {
@@ -76,12 +76,15 @@
         "description": "¿Seguro que quieres restablecer las estadísticas? Esta acción no se puede deshacer.",
         "title": "Reiniciar estadísticas"
       },
-      "legend": "Estadísticas"
+      "legend": "Estadísticas",
+      "summary": "{{correct}}/{{total}} · {{percentage}}%"
     },
     "title": "Configuración"
   },
   "shortcutsHint": {
+    "answerKeys": "Teclas numéricas del 1 al {{total}}",
     "nextQuestion": "Siguiente pregunta",
+    "regionLabel": "Atajos de teclado",
     "selectAnswer": "Seleccionar respuesta"
   },
   "stats": {
@@ -91,6 +94,6 @@
       "question_one": "{{count}} pregunta",
       "question_other": "{{count}} preguntas"
     },
-    "summary": "{{correct}}/{{total}} · {{percentage}}%"
+    "progress": "Progreso: {{percentage}}%"
   }
 }

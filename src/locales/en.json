@@ -25,7 +25,7 @@
   },
   "question": {
     "character": "What is this character's name?",
-    "image_alt": "Character image",
+    "image_alt": "Image of the character to guess",
     "series": "What series is this character from?"
   },
   "settings": {
@@ -76,12 +76,15 @@
         "description": "Are you sure you want to reset your stats? This action cannot be undone.",
         "title": "Reset stats"
       },
-      "legend": "Stats"
+      "legend": "Stats",
+      "summary": "{{correct}}/{{total}} · {{percentage}}%"
     },
     "title": "Settings"
   },
   "shortcutsHint": {
+    "answerKeys": "Number keys 1 to {{total}}",
     "nextQuestion": "Next question",
+    "regionLabel": "Keyboard shortcuts",
     "selectAnswer": "Select answer"
   },
   "stats": {
@@ -91,6 +94,6 @@
       "question_one": "{{count}} question",
       "question_other": "{{count}} questions"
     },
-    "summary": "{{correct}}/{{total}} · {{percentage}}%"
+    "progress": "Progress: {{percentage}}%"
   }
 }

@@ -57,7 +57,11 @@ function Answer({
 
         <div className={`answer-details ${questionMode}`}>
           <p className="answer-character">
-            <a href={questionCharacter.siteUrl} target="_blank">
+            <a
+              href={questionCharacter.siteUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               {questionCharacter.name.full}
               <FontAwesomeIcon
                 icon={faArrowUpRightFromSquare}
@@ -68,7 +72,11 @@ function Answer({
           </p>
 
           <p className="answer-series">
-            <a href={questionCharacter.media.nodes[0].siteUrl} target="_blank">
+            <a
+              href={questionCharacter.media.nodes[0].siteUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               {seriesTitleLanguage === "english"
                 ? questionCharacter.media.nodes[0].title.english ||
                   questionCharacter.media.nodes[0].title.romaji
@@ -84,7 +92,11 @@ function Answer({
         </div>
       </div>
 
-      <button onClick={newQuestion} className="next-question">
+      <button
+        onClick={newQuestion}
+        className="next-question"
+        aria-keyshortcuts="n"
+      >
         {t("answer.next")}
       </button>
     </div>

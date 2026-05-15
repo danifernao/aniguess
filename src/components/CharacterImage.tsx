@@ -19,44 +19,48 @@ function CharacterImage({ src, alt, className = "" }: CharacterImageProps) {
   const [isImageLoading, setIsImageLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    setIsImageLoading(true);
+    const img = new Image();
+
+    img.src = src;
+
+    img.onload = () => {
+      setIsImageLoading(false);
+    };
+
+    img.onerror = () => {
+      setIsImageLoading(false);
+    };
   }, [src]);
 
   return (
     <>
-      {isImageLoading && (
-        <div
-          className="character-image-loading"
-          aria-label={t("characterImage.loading")}
-          role="status"
-        >
-          <FontAwesomeIcon icon={faCircleNotch} spin aria-hidden="true" />
-        </div>
-      )}
+      <div className="character-image" aria-busy={isImageLoading}>
+        {isImageLoading && (
+          <div
+            className="character-image-loading"
+            aria-label={t("characterImage.loading")}
+            role="status"
+          >
+            <FontAwesomeIcon icon={faCircleNotch} spin aria-hidden="true" />
+          </div>
+        )}
 
-      <button
-        type="button"
-        onClick={() => setOpen(true)}
-        className="character-image-button"
-        title={t("characterImage.viewFullSize")}
-        aria-label={t("characterImage.viewFullSize")}
-      >
-        <img
-          src={src}
-          alt={alt}
-          onLoad={() => setIsImageLoading(false)}
-          onError={() => setIsImageLoading(false)}
-          ref={(img) => {
-            if (img && img.complete) {
-              setIsImageLoading(false);
-            }
-          }}
-          style={{
-            display: isImageLoading ? "none" : "block",
-          }}
-          className={`character-image ${className}`}
-        />
-      </button>
+        {!isImageLoading && (
+          <button
+            type="button"
+            onClick={() => setOpen(true)}
+            className="character-image-button"
+            title={t("characterImage.viewFullSize")}
+            aria-label={t("characterImage.viewFullSize")}
+          >
+            <img
+              src={src}
+              alt={alt}
+              className={`character-image-element ${className}`}
+            />
+          </button>
+        )}
+      </div>
 
       <Lightbox
         open={open}

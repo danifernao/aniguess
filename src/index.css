@@ -195,11 +195,13 @@ body,
 }
 
 /* Imagen del personaje */
-.character-image {
-  max-width: 10rem;
-  max-height: 18rem;
-  background-color: var(--color-blue-4);
-  border-radius: 0.5rem;
+.character-image-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 5rem;
+  height: 5rem;
+  font-size: 1.5rem;
 }
 
 .character-image-button {
@@ -209,13 +211,11 @@ body,
   cursor: zoom-in;
 }
 
-.character-image-loading {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 5rem;
-  height: 5rem;
-  font-size: 1.5rem;
+.character-image-element {
+  max-width: 10rem;
+  max-height: 18rem;
+  background-color: var(--color-blue-4);
+  border-radius: 0.5rem;
 }
 
 /* Pregunta */

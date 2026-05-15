@@ -22,21 +22,27 @@ function Stats({ score }: StatsProps) {
           ? "medium"
           : "bad";
 
+  const scoreLabel = `${t("stats.score.correct", { count: score.correct })} ${t("common.of")} ${t("stats.score.question", { count: score.total })}`;
+
   return (
     <div className="stats">
       <div
         className="stats-score"
-        title={`${t("stats.score.correct", { count: score.correct })} ${t("common.of")} ${t("stats.score.question", { count: score.total })}`}
+        title={scoreLabel}
+        aria-label={scoreLabel}
+        role="status"
       >
         {score.correct} / {score.total}
       </div>
 
-      <CircularProgressbar
-        value={percentage}
-        text={`${percentage}%`}
-        strokeWidth={10}
-        className={`stats-progress ${status}`}
-      />
+      <div aria-label={t("stats.progress", { percentage })}>
+        <CircularProgressbar
+          value={percentage}
+          text={`${percentage}%`}
+          strokeWidth={10}
+          className={`stats-progress ${status}`}
+        />
+      </div>
     </div>
   );
 }

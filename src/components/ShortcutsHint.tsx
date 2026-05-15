@@ -18,15 +18,28 @@ function ShortcutsHint({
   if (!isQuestionReady && !isAnswerReady) return;
 
   return (
-    <div className="shortcuts-hint">
+    <div
+      className="shortcuts-hint"
+      role="region"
+      aria-label={t("shortcutsHint.regionLabel")}
+    >
       <FontAwesomeIcon icon={faKeyboard} aria-hidden="true" />
 
       {isQuestionReady && (
         <>
-          <span className="keys">
+          <span
+            className="keys"
+            aria-label={t("shortcutsHint.answerKeys", {
+              total: totalOptions,
+            })}
+          >
             {Array.from({ length: totalOptions }).map((_, index) => {
               const number = index + 1;
-              return <kbd key={number}>{number}</kbd>;
+              return (
+                <kbd key={number} aria-hidden="true">
+                  {number}
+                </kbd>
+              );
             })}
           </span>
 

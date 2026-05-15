@@ -32,7 +32,7 @@ function Question({
     isKeyboardAction.current = false;
   };
 
-  // Si se usa teclado, valida la respuesta solo cuando se presiona Enter.
+  // Si se usa teclado, valida la respuesta solo cuando se presiona Enter o espacio.
   const handleKeyDown = (e: React.KeyboardEvent, character: CharacterType) => {
     if (
       e.key === "ArrowUp" ||
@@ -88,7 +88,7 @@ function Question({
             : t("question.series")}
         </h2>
 
-        {shuffledCharacters.map((character: CharacterType) => (
+        {shuffledCharacters.map((character: CharacterType, index: number) => (
           <div className="question-options" key={character.id}>
             <input
               type="radio"
@@ -97,6 +97,7 @@ function Question({
               name="series-title"
               onChange={() => handleChange(character)}
               onKeyDown={(e) => handleKeyDown(e, character)}
+              aria-keyshortcuts={`${index + 1}`}
             />
             <label htmlFor={`media-${character.id}`}>
               {questionMode === "character"

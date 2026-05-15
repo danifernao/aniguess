@@ -102,7 +102,7 @@ function Settings({
                     <SettingsResetStatsDialog resetScore={resetScore} />
 
                     <span className="stats-summary">
-                      {t("stats.summary", {
+                      {t("settings.stats.summary", {
                         correct: score.correct,
                         total: score.total,
                         percentage: scorePercentage,
@@ -119,6 +119,7 @@ function Settings({
                 <a
                   href="https://github.com/danifernao/aniguess"
                   target="_blank"
+                  rel="noopener noreferrer"
                   title={t("settings.footer.github")}
                   className="icon-link"
                 >
@@ -128,7 +129,11 @@ function Settings({
 
               <div className="settings-footer-right">
                 <Trans i18nKey="settings.footer.attribution">
-                  <a href="https://docs.anilist.co/" target="_blank" />
+                  <a
+                    href="https://docs.anilist.co/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  />
                 </Trans>{" "}
                 | <span>v{__APP_VERSION__}</span>
               </div>
