@@ -23,17 +23,23 @@ export const filterValidCharacters = (
     // Verifica si la imagen del personaje es la predeterminada o no.
     const imageIsDefault = /default\.jpg$/.test(character.image.large);
 
-    // Filtra los personajes que tengan obras con título en inglés o
-    // romaji y que cumplan con la configuración de contenido NSFW establecida
-    // por el jugador.
     const media = character.media.nodes.filter(
       (m) =>
+        // Solo se consideran las obras que tengan título en inglés o romaji.
         (m.title.english || m.title.romaji) &&
-        (settings.mediaNsfw || !m.isAdult),
+        // Solo se consideran las obras que coincidan con la configuración de
+        // contenido NSFW establecida por el jugador.
+        (settings.mediaNsfw || !m.isAdult) &&
+        // Solo se consideran las obras que no estén presentes en el resultado.
+        !result.some((resultCharacter) =>
+          resultCharacter.media.nodes.some(
+            (resultMedia) => resultMedia.id === m.id,
+          ),
+        ),
     );
 
-    // Solo se consideran los personajes que tengan imagen y no sea la
-    // utilizada por defecto.
+    // Solo se consideran los personajes que tengan una imagen válida
+    // y obras asociadas.
     if (imageIsDefault || media.length === 0) {
       continue;
     }

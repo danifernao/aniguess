@@ -155,16 +155,8 @@ export function useCharacterQuiz(answerOptionCount: number) {
   };
 
   // Verifica si la respuesta es correcta y actualiza el puntaje de la partida.
-  // La respuesta es correcta si el personaje seleccionado es el mismo
-  // que el preguntado o si la obra que representa la opción elegida
-  // coincide con alguna de las obras del personaje preguntado.
   const checkAnswer = (selected: CharacterType): void => {
-    const isCorrect =
-      selected.id === questionCharacter!.id ||
-      (settings.questionMode === "series" &&
-        questionCharacter!.media.nodes.some(
-          (m) => m.id === selected.media.nodes[0].id,
-        ));
+    const isCorrect = selected.id === questionCharacter!.id;
 
     setIsAnswerCorrect(isCorrect);
 
