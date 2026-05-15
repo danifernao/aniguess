@@ -14,6 +14,7 @@ export default defineConfig({
 
     VitePWA({
       injectRegister: "auto",
+      registerType: "autoUpdate",
       includeAssets: ["favicon.png", "apple-touch-icon.png"],
       manifest: {
         name: "AniGuess",
