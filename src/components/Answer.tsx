@@ -4,6 +4,7 @@ import type { CharacterType } from "../types/types";
 import { useTranslation } from "react-i18next";
 import CharacterImage from "./CharacterImage";
 import { useCallback, useEffect } from "react";
+import CustomTooltip from "./Tooltip";
 
 interface AnswerProps {
   questionMode: "character" | "series";
@@ -72,6 +73,12 @@ function Answer({
           </p>
 
           <p className="answer-series">
+            {questionCharacter.media.nodes[0].isAdult && (
+              <CustomTooltip content={t("answer.nsfwTooltip")}>
+                <button className="nsfw-badge">+18</button>
+              </CustomTooltip>
+            )}
+
             <a
               href={questionCharacter.media.nodes[0].siteUrl}
               target="_blank"

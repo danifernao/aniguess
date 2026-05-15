@@ -295,6 +295,19 @@ body,
   font-size: 1rem;
 }
 
+.answer-details .nsfw-badge {
+  display: inline-block;
+  margin-right: 0.5rem;
+  padding: 0.1rem 0.3rem;
+  background-color: var(--color-red-2);
+  border: none;
+  color: var(--color-white);
+  font-family: "Roboto", sans-serif;
+  font-size: 0.7rem;
+  border-radius: 0.2rem;
+  vertical-align: middle;
+}
+
 .next-question {
   padding: 0.5rem 0.8rem;
   background-color: var(--color-blue-3);
@@ -520,6 +533,34 @@ body,
   --yarl__color_button_active: var(--color-blue-2);
   --yarl__color_button_disabled: rgb(from var(--color-blue-1) r g b / 0.4);
   backdrop-filter: blur(0.5rem) !important;
+}
+
+/* Tooltip */
+.tooltip-content {
+  padding: 0.4rem 0.6rem;
+  max-width: 16rem;
+  white-space: normal;
+  background-color: rgb(from var(--color-white) r g b / 0.8);
+  color: var(--color-blue-4);
+  border-radius: 0.3rem;
+  font-size: 0.85rem;
+  animation: tooltip-fade 0.15s ease;
+}
+
+.tooltip-arrow {
+  fill: rgb(from var(--color-white) r g b / 0.8);
+}
+
+@keyframes tooltip-fade {
+  from {
+    opacity: 0;
+    transform: translateY(0.2rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* Pantallas pequeñas */

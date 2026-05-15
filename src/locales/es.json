@@ -3,7 +3,8 @@
     "correct": "¡Correcto!",
     "image_alt": "Imagen del personaje {{name}}",
     "incorrect": "¡Incorrecto!",
-    "next": "Siguiente"
+    "next": "Siguiente",
+    "nsfwTooltip": "Contenido para adultos. Requiere cuenta de AniList para ver la página."
   },
   "characterImage": {
     "loading": "Cargando imagen...",
@@ -42,7 +43,7 @@
       }
     },
     "mediaNsfw": {
-      "legend": "Contenido para adultos",
+      "legend": "Incluir contenido para adultos",
       "options": {
         "no": "No",
         "yes": "Sí"
