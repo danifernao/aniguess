@@ -16,7 +16,7 @@ function Error({ resume }: ErrorProps) {
       />
       <p className="error-message">
         <Trans i18nKey="error.message">
-          <button type="button" onClick={resume} />
+          <button type="button" className="button-unstyled" onClick={resume} />
         </Trans>
       </p>
     </div>

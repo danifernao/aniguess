@@ -45,7 +45,7 @@ function Settings({
             type="button"
             title={t("settings.title")}
             aria-label={t("settings.title")}
-            className="icon-link"
+            className="button-unstyled icon-link"
           >
             <FontAwesomeIcon icon={faGear} aria-hidden="true" />
           </button>
@@ -149,7 +149,7 @@ function Settings({
               type="button"
               title={t("common.close")}
               aria-label={t("common.close")}
-              className="dialog-close icon-link"
+              className="dialog-close button-unstyled icon-link"
             >
               <FontAwesomeIcon icon={faXmark} />
             </button>

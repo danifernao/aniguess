@@ -91,6 +91,18 @@
     },
     "title": "Settings"
   },
+  "shareCard": {
+    "accuracy": "Accuracy",
+    "correctAnswers": "Correct Answers",
+    "footer": "Test your anime and manga knowledge at <0>aniguess.netlify.app</0>",
+    "rank": {
+      "casual": "The Casual",
+      "enthusiast": "The Enthusiast",
+      "otaku": "The Otaku",
+      "sensei": "The Sensei"
+    },
+    "totalQuestions": "Total Questions"
+  },
   "stats": {
     "progress": "Progress: {{percentage}}%",
     "score": {
@@ -98,6 +110,10 @@
       "correct_other": "{{count}} correct answers",
       "question_one": "{{count}} question",
       "question_other": "{{count}} questions"
+    },
+    "share": {
+      "error": "Failed to generate image.",
+      "label": "Share score"
     }
   }
 }
