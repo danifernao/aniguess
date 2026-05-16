@@ -7,7 +7,7 @@ import Stats from "./components/Stats";
 import { Toaster } from "sonner";
 import Error from "./components/Error";
 import { useEffect } from "react";
-import ShortcutsHint from "./components/ShortcutsHint";
+import KeyboardShortcuts from "./components/KeyboardShortcuts";
 
 function App() {
   const answerOptionCount = 3;
@@ -15,10 +15,12 @@ function App() {
   const {
     optionCharacters,
     questionCharacter,
+    isHintAvailable,
     isAnswerCorrect,
     score,
     settings,
     errorContext,
+    setHintAvailability,
     checkAnswer,
     newQuestion,
     resetScore,
@@ -62,6 +64,8 @@ function App() {
                 seriesTitleLanguage={settings.seriesTitleLanguage}
                 optionCharacters={optionCharacters}
                 questionCharacter={questionCharacter}
+                isHintAvailable={isHintAvailable}
+                setHintAvailability={setHintAvailability}
                 checkAnswer={checkAnswer}
               />
             )}
@@ -86,9 +90,10 @@ function App() {
               score={score}
               resetScore={resetScore}
             />
-            <ShortcutsHint
+            <KeyboardShortcuts
               isQuestionReady={isQuestionReady}
               isAnswerReady={isAnswerReady}
+              isHintAvailable={isHintAvailable}
               totalOptions={answerOptionCount}
             />
           </footer>

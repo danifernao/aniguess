@@ -40,6 +40,9 @@ export function useCharacterQuiz(answerOptionCount: number) {
   // Opciones de respuesta.
   const [optionCharacters, setOptionCharacters] = useState<CharacterType[]>([]);
 
+  // Disponibilidad de una pista para la pregunta.
+  const [isHintAvailable, setIsHintAvailable] = useState(false);
+
   // Indica si la respuesta es correcta o no. Es NULL cuando no se ha respondido aún.
   const [isAnswerCorrect, setIsAnswerCorrect] = useState<boolean | null>(null);
 
@@ -155,6 +158,12 @@ export function useCharacterQuiz(answerOptionCount: number) {
       [...prev, selected.id].slice(-usedCharactersLimit),
     );
   };
+
+  // Alterna el estado de disponibilidad de la pista.
+  const setHintAvailability = useCallback(
+    (value: boolean) => setIsHintAvailable(value),
+    [],
+  );
 
   // Verifica si la respuesta es correcta y actualiza el puntaje de la partida.
   const checkAnswer = (selected: CharacterType): void => {
@@ -284,10 +293,12 @@ export function useCharacterQuiz(answerOptionCount: number) {
     usedCharacterIds,
     optionCharacters,
     questionCharacter,
+    isHintAvailable,
     isAnswerCorrect,
     score,
     settings,
     errorContext,
+    setHintAvailability,
     checkAnswer,
     newQuestion,
     resetScore,

@@ -21,11 +21,19 @@
   "error": {
     "message": "No fue posible completar la solicitud. Esto puede ocurrir por falta de conexión a internet o porque AniList no está disponible en este momento. <0>Haz clic aquí</0> para intentar de nuevo."
   },
+  "keyboardShortcuts": {
+    "answerShortcuts": "Teclas numéricas del 1 al {{total}}",
+    "nextQuestion": "Siguiente pregunta",
+    "regionLabel": "Atajos de teclado",
+    "selectAnswer": "Seleccionar respuesta",
+    "useHint": "Usar pista"
+  },
   "loading": {
     "message": "Cargando..."
   },
   "question": {
     "character": "¿Cómo se llama este personaje?",
+    "hintTooltip": "Usa una pista para descartar una respuesta incorrecta.",
     "image_alt": "Imagen del personaje a adivinar",
     "series": "¿A qué obra pertenece este personaje?"
   },
@@ -82,12 +90,6 @@
       "summary": "{{correct}}/{{total}} · {{percentage}}%"
     },
     "title": "Configuración"
-  },
-  "shortcutsHint": {
-    "answerKeys": "Teclas numéricas del 1 al {{total}}",
-    "nextQuestion": "Siguiente pregunta",
-    "regionLabel": "Atajos de teclado",
-    "selectAnswer": "Seleccionar respuesta"
   },
   "stats": {
     "progress": "Progreso: {{percentage}}%",
