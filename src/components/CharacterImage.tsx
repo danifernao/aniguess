@@ -10,9 +10,15 @@ interface CharacterImageProps {
   src: string;
   alt: string;
   className?: string;
+  onComplete?: () => void;
 }
 
-function CharacterImage({ src, alt, className = "" }: CharacterImageProps) {
+function CharacterImage({
+  src,
+  alt,
+  className = "",
+  onComplete,
+}: CharacterImageProps) {
   const { t } = useTranslation();
 
   const [open, setOpen] = useState<boolean>(false);
@@ -25,12 +31,14 @@ function CharacterImage({ src, alt, className = "" }: CharacterImageProps) {
 
     img.onload = () => {
       setIsImageLoading(false);
+      onComplete?.();
     };
 
     img.onerror = () => {
       setIsImageLoading(false);
+      onComplete?.();
     };
-  }, [src]);
+  }, [src, onComplete]);
 
   return (
     <>

@@ -28,12 +28,18 @@ function Question({
 }: QuestionProps) {
   const { t } = useTranslation();
 
+  // Controla si la acción de selección se realizó mediante teclado
+  // para evitar validar la respuesta en eventos onChange.
   const isKeyboardAction = useRef(false);
 
   // Mezcla las opciones de respuesta.
   const shuffledCharacters = useMemo(() => {
     return shuffle([...optionCharacters]);
   }, [optionCharacters]);
+
+  // Indica si el proceso de carga de la imagen del personaje ya finalizó
+  // para permitir mostrar la pista después de un tiempo.
+  const [isImageReady, setIsImageReady] = useState(false);
 
   // Opciones descartadas por las pistas.
   const [hiddenOptionIds, setHiddenOptionIds] = useState<number[]>([]);
@@ -122,14 +128,14 @@ function Question({
 
   // Muestra una pista después de un minuto.
   useEffect(() => {
-    if (isHintAvailable || !canUseHint) return;
+    if (isHintAvailable || !canUseHint || !isImageReady) return;
 
     const timer = setTimeout(() => {
       setHintAvailability(true);
-    }, 60000);
+    }, 20000);
 
     return () => clearTimeout(timer);
-  }, [isHintAvailable, canUseHint, setHintAvailability]);
+  }, [isHintAvailable, canUseHint, setHintAvailability, isImageReady]);
 
   // Reinicia el estado de la pista al desmontar la pregunta actual.
   useEffect(() => {
@@ -144,6 +150,7 @@ function Question({
         src={questionCharacter.image.large}
         alt={t("question.image_alt")}
         className="question-image"
+        onComplete={() => setIsImageReady(true)}
       />
 
       <div className="question-block">
