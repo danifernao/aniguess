@@ -151,10 +151,10 @@ body,
   display: flex;
   gap: 1rem;
   align-items: start;
+  justify-content: space-between;
 }
 
 .stats-score {
-  flex: 1;
   font-size: 1.5rem;
   font-weight: 700;
 }
