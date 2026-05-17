@@ -42,7 +42,9 @@ function Stats({ score }: StatsProps) {
     })
       .then((dataUrl) => {
         const link = document.createElement("a");
-        link.download = "aniguess-score.png";
+        const appName = import.meta.env.VITE_APP_NAME ?? "app";
+
+        link.download = `${appName.toLowerCase()}-score.png`;
         link.href = dataUrl;
         link.click();
       })

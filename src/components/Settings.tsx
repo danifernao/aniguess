@@ -121,7 +121,7 @@ function Settings({
             <div className="settings-footer">
               <div className="settings-footer-left">
                 <a
-                  href="https://github.com/danifernao/aniguess"
+                  href={import.meta.env.VITE_APP_REPO}
                   target="_blank"
                   rel="noopener noreferrer"
                   title={t("settings.footer.github")}

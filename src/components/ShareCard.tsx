@@ -63,7 +63,12 @@ function ShareCard({ correct, total, percentage }: ShareCardProps) {
       </div>
 
       <div className="share-card-footer">
-        <Trans i18nKey="shareCard.footer">
+        <Trans
+          i18nKey="shareCard.footer"
+          values={{
+            host: import.meta.env.VITE_APP_HOST,
+          }}
+        >
           <b />
         </Trans>
       </div>

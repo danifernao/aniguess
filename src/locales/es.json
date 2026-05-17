@@ -94,7 +94,7 @@
   "shareCard": {
     "accuracy": "Precisión",
     "correctAnswers": "Respuestas correctas",
-    "footer": "Pon a prueba tus conocimientos sobre anime y manga en <0>aniguess.netlify.app</0>",
+    "footer": "Pon a prueba tus conocimientos sobre anime y manga en <0>{{host}}</0>",
     "rank": {
       "casual": "El Casual",
       "enthusiast": "El Entusiasta",
