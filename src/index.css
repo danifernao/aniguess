@@ -141,7 +141,7 @@ body,
 }
 
 .main {
-  padding: 1rem;
+  padding: 1rem 2rem;
 }
 
 .main,
@@ -188,7 +188,7 @@ body,
 
 .stats-progress {
   width: 3rem !important;
-  height: 3rem;
+  height: 3rem !important;
 }
 
 .stats-progress .CircularProgressbar-trail {
@@ -196,7 +196,7 @@ body,
 }
 
 .stats-progress .CircularProgressbar-text {
-  font-size: 1.3rem;
+  font-size: 1.3rem !important;
 }
 
 .stats-progress.neutral .CircularProgressbar-path,
