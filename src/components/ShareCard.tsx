@@ -66,7 +66,7 @@ function ShareCard({ correct, total, percentage }: ShareCardProps) {
         <Trans
           i18nKey="shareCard.footer"
           values={{
-            host: import.meta.env.VITE_APP_HOST,
+            host: location.hostname,
           }}
         >
           <b />
