@@ -1,12 +1,12 @@
 import { Trans, useTranslation } from "react-i18next";
 
-interface ShareCardProps {
+interface StatsShareCardProps {
   correct: number;
   total: number;
   percentage: number;
 }
 
-function ShareCard({ correct, total, percentage }: ShareCardProps) {
+function StatsShareCard({ correct, total, percentage }: StatsShareCardProps) {
   const { t } = useTranslation();
 
   const rank =
@@ -76,4 +76,4 @@ function ShareCard({ correct, total, percentage }: ShareCardProps) {
   );
 }
 
-export default ShareCard;
+export default StatsShareCard;

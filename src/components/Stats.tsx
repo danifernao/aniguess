@@ -2,12 +2,7 @@ import type { ScoreType } from "../types/types";
 import "react-circular-progressbar/dist/styles.css";
 import { CircularProgressbar } from "react-circular-progressbar";
 import { useTranslation } from "react-i18next";
-import { faShare } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useRef } from "react";
-import ShareCard from "./ShareCard";
-import { toPng } from "html-to-image";
-import { toast } from "sonner";
+import StatsShare from "./StatsShare";
 
 interface StatsProps {
   score: ScoreType;
@@ -30,30 +25,6 @@ function Stats({ score }: StatsProps) {
 
   const scoreLabel = `${t("stats.score.correct", { count: score.correct })} ${t("common.of")} ${t("stats.score.question", { count: score.total })}`;
 
-  const cardRef = useRef<HTMLDivElement>(null);
-
-  // Genera y descarga una imagen con las estadísticas del jugador.
-  const downloadImage = () => {
-    if (!cardRef.current) return;
-
-    toPng(cardRef.current, {
-      cacheBust: true,
-      pixelRatio: 2,
-    })
-      .then((dataUrl) => {
-        const link = document.createElement("a");
-        const appName = import.meta.env.VITE_APP_NAME ?? "app";
-
-        link.download = `${appName.toLowerCase()}-score.png`;
-        link.href = dataUrl;
-        link.click();
-      })
-      .catch((error) => {
-        if (import.meta.env.DEV) console.error(error);
-        toast.error(t("stats.share.error"));
-      });
-  };
-
   return (
     <div className="stats">
       <div className="stats-score-wrapper">
@@ -66,22 +37,11 @@ function Stats({ score }: StatsProps) {
           {score.correct} / {score.total}
         </div>
 
-        <button
-          className="stats-share button-unstyled icon-link"
-          title={t("stats.share.label")}
-          aria-label={t("stats.share.label")}
-          onClick={downloadImage}
-        >
-          <FontAwesomeIcon icon={faShare} aria-hidden="true" />
-        </button>
-
-        <div ref={cardRef} className="share-card-wrapper" aria-hidden="true">
-          <ShareCard
-            correct={score.correct}
-            total={score.total}
-            percentage={percentage}
-          />
-        </div>
+        <StatsShare
+          total={score.total}
+          correct={score.correct}
+          percentage={percentage}
+        />
       </div>
 
       <div aria-label={t("stats.progress", { percentage })}>
