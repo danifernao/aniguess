@@ -8,18 +8,18 @@ import CustomTooltip from "./Tooltip";
 
 interface AnswerProps {
   questionMode: "character" | "series";
-  seriesTitleLanguage: "english" | "romaji";
   questionCharacter: CharacterType;
   isCorrect: boolean;
   newQuestion: () => void;
+  seriesTitleLanguage: "english" | "romaji";
 }
 
 function Answer({
   questionMode,
-  seriesTitleLanguage,
   questionCharacter,
   isCorrect,
   newQuestion,
+  seriesTitleLanguage,
 }: AnswerProps) {
   const { t } = useTranslation();
 

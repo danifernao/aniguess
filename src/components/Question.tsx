@@ -1,7 +1,6 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import type { CharacterType } from "../types/types";
 import { useTranslation } from "react-i18next";
-import { shuffle } from "../utils/shuffle";
 import CharacterImage from "./CharacterImage";
 import { faLightbulb } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -9,21 +8,25 @@ import CustomTooltip from "./Tooltip";
 
 interface QuestionProps {
   questionMode: "character" | "series";
-  seriesTitleLanguage: "english" | "romaji";
-  optionCharacters: CharacterType[];
   questionCharacter: CharacterType;
+  answerOptions: CharacterType[];
+  hiddenOptionIds: number[];
   isHintAvailable: boolean;
+  seriesTitleLanguage: "english" | "romaji";
   setHintAvailability: (value: boolean) => void;
+  triggerHint: () => void;
   checkAnswer: (char: CharacterType) => void;
 }
 
 function Question({
   questionMode,
-  seriesTitleLanguage,
-  optionCharacters,
   questionCharacter,
+  answerOptions,
+  hiddenOptionIds,
   isHintAvailable,
+  seriesTitleLanguage,
   setHintAvailability,
+  triggerHint,
   checkAnswer,
 }: QuestionProps) {
   const { t } = useTranslation();
@@ -32,43 +35,21 @@ function Question({
   // para evitar validar la respuesta en eventos onChange.
   const isKeyboardAction = useRef(false);
 
-  // Mezcla las opciones de respuesta.
-  const shuffledCharacters = useMemo(() => {
-    return shuffle([...optionCharacters]);
-  }, [optionCharacters]);
-
   // Indica si el proceso de carga de la imagen del personaje ya finalizó
   // para permitir mostrar la pista después de un tiempo.
   const [isImageReady, setIsImageReady] = useState(false);
 
-  // Opciones descartadas por las pistas.
-  const [hiddenOptionIds, setHiddenOptionIds] = useState<number[]>([]);
-
   // Número máximo de opciones que se pueden descartar.
-  const maxHints = Math.floor(shuffledCharacters.length / 2);
+  const maxHints = Math.floor(answerOptions.length / 2);
 
-  // Determina si se pueden usar pistas.
+  // Indica si se pueden usar pistas (si no se han descartado demasiadas opciones).
   const canUseHint = hiddenOptionIds.length < maxHints;
 
-  // Determina si una opción ha sido descartada.
-  const isHidden = useCallback(
+  // Determina si una opción ha sido descartada por una pista.
+  const isOptionHidden = useCallback(
     (id: number) => hiddenOptionIds.includes(id),
     [hiddenOptionIds],
   );
-
-  // Descarta (por ID menor) una opción incorrecta .
-  const handleHint = useCallback(() => {
-    const wrongOptions = shuffledCharacters.filter(
-      (c) => c.id !== questionCharacter.id && !isHidden(c.id),
-    );
-
-    const selected = wrongOptions.reduce((min, current) =>
-      current.id < min.id ? current : min,
-    );
-
-    setHiddenOptionIds((ids) => [...ids, selected.id]);
-    setHintAvailability(false);
-  }, [isHidden, questionCharacter.id, setHintAvailability, shuffledCharacters]);
 
   // Si no se usa teclado, valida la respuesta cuando input cambia.
   const handleChange = (character: CharacterType) => {
@@ -103,19 +84,19 @@ function Question({
       let character = null;
       const index = parseInt(e.key) - 1;
 
-      if (!isNaN(index) && index >= 0 && index < shuffledCharacters.length) {
-        character = shuffledCharacters[index];
+      if (!isNaN(index) && index >= 0 && index < answerOptions.length) {
+        character = answerOptions[index];
       }
 
-      if (character && !isHidden(character.id)) {
+      if (character && !isOptionHidden(character.id)) {
         checkAnswer(character);
       }
 
       if (e.key.toLowerCase() === "h" && isHintAvailable) {
-        handleHint();
+        triggerHint();
       }
     },
-    [shuffledCharacters, checkAnswer, isHintAvailable, isHidden, handleHint],
+    [answerOptions, checkAnswer, isHintAvailable, isOptionHidden, triggerHint],
   );
 
   useEffect(() => {
@@ -136,13 +117,6 @@ function Question({
 
     return () => clearTimeout(timer);
   }, [isHintAvailable, canUseHint, setHintAvailability, isImageReady]);
-
-  // Reinicia el estado de la pista al desmontar la pregunta actual.
-  useEffect(() => {
-    return () => {
-      setHintAvailability(false);
-    };
-  }, [setHintAvailability]);
 
   return (
     <div className="question">
@@ -168,7 +142,7 @@ function Question({
               <button
                 type="button"
                 className="question-hint"
-                onClick={handleHint}
+                onClick={triggerHint}
                 aria-keyshortcuts="h"
               >
                 <FontAwesomeIcon icon={faLightbulb} />
@@ -177,9 +151,9 @@ function Question({
           )}
         </div>
 
-        {shuffledCharacters.map((character: CharacterType, index: number) => (
+        {answerOptions.map((character: CharacterType, index: number) => (
           <div
-            className={`question-options ${isHidden(character.id) ? "hidden" : ""}`}
+            className={`question-options ${isOptionHidden(character.id) ? "hidden" : ""}`}
             key={character.id}
           >
             <input
@@ -190,7 +164,7 @@ function Question({
               onChange={() => handleChange(character)}
               onKeyDown={(e) => handleKeyDown(e, character)}
               aria-keyshortcuts={`${index + 1}`}
-              disabled={isHidden(character.id)}
+              disabled={isOptionHidden(character.id)}
             />
             <label htmlFor={`media-${character.id}`}>
               {questionMode === "character"

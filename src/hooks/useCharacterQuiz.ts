@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import type {
   ScoreType,
   SettingsType,
@@ -12,6 +12,7 @@ import i18n from "../i18n";
 import { loadGameState, saveGameState } from "../storage/gameState";
 import { toast } from "sonner";
 import { useTranslation } from "react-i18next";
+import { shuffle } from "../utils/shuffle";
 
 export function useCharacterQuiz(answerOptionCount: number) {
   const { t } = useTranslation();
@@ -42,6 +43,9 @@ export function useCharacterQuiz(answerOptionCount: number) {
 
   // Disponibilidad de una pista para la pregunta.
   const [isHintAvailable, setIsHintAvailable] = useState(false);
+
+  // Opciones descartadas por las pistas.
+  const [hiddenOptionIds, setHiddenOptionIds] = useState<number[]>([]);
 
   // Indica si la respuesta es correcta o no. Es NULL cuando no se ha respondido aún.
   const [isAnswerCorrect, setIsAnswerCorrect] = useState<boolean | null>(null);
@@ -159,6 +163,27 @@ export function useCharacterQuiz(answerOptionCount: number) {
     );
   };
 
+  // Mezcla las opciones de respuesta.
+  const answerOptions = useMemo(() => {
+    return shuffle([...optionCharacters]);
+  }, [optionCharacters]);
+
+  // Proporciona una pista ocultando una opción incorrecta.
+  const triggerHint = useCallback((): void => {
+    if (!questionCharacter) return;
+
+    const wrongOptions = optionCharacters.filter(
+      (c) => c.id !== questionCharacter.id && !hiddenOptionIds.includes(c.id),
+    );
+
+    const selected = wrongOptions.reduce((min, current) =>
+      current.id < min.id ? current : min,
+    );
+
+    setHiddenOptionIds((prev) => [...prev, selected.id]);
+    setIsHintAvailable(false);
+  }, [optionCharacters, hiddenOptionIds, questionCharacter]);
+
   // Alterna el estado de disponibilidad de la pista.
   const setHintAvailability = useCallback(
     (value: boolean) => setIsHintAvailable(value),
@@ -180,7 +205,9 @@ export function useCharacterQuiz(answerOptionCount: number) {
   // Procede con una nueva pregunta.
   const newQuestion = (): void => {
     setOptionCharacters([]);
+    setHiddenOptionIds([]);
     setQuestionCharacter(null);
+    setIsHintAvailable(false);
     setIsAnswerCorrect(null);
   };
 
@@ -289,16 +316,16 @@ export function useCharacterQuiz(answerOptionCount: number) {
   ]);
 
   return {
-    maxCharacterId,
-    usedCharacterIds,
-    optionCharacters,
     questionCharacter,
+    answerOptions,
+    hiddenOptionIds,
     isHintAvailable,
     isAnswerCorrect,
     score,
     settings,
     errorContext,
     setHintAvailability,
+    triggerHint,
     checkAnswer,
     newQuestion,
     resetScore,

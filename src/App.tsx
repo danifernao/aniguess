@@ -13,14 +13,16 @@ function App() {
   const answerOptionCount = 3;
 
   const {
-    optionCharacters,
     questionCharacter,
+    answerOptions,
+    hiddenOptionIds,
     isHintAvailable,
     isAnswerCorrect,
     score,
     settings,
     errorContext,
     setHintAvailability,
+    triggerHint,
     checkAnswer,
     newQuestion,
     resetScore,
@@ -61,11 +63,13 @@ function App() {
             {isQuestionReady && (
               <Question
                 questionMode={settings.questionMode}
-                seriesTitleLanguage={settings.seriesTitleLanguage}
-                optionCharacters={optionCharacters}
                 questionCharacter={questionCharacter}
+                answerOptions={answerOptions}
+                hiddenOptionIds={hiddenOptionIds}
                 isHintAvailable={isHintAvailable}
+                seriesTitleLanguage={settings.seriesTitleLanguage}
                 setHintAvailability={setHintAvailability}
+                triggerHint={triggerHint}
                 checkAnswer={checkAnswer}
               />
             )}
@@ -73,10 +77,10 @@ function App() {
             {isAnswerReady && (
               <Answer
                 questionMode={settings.questionMode}
-                seriesTitleLanguage={settings.seriesTitleLanguage}
                 questionCharacter={questionCharacter}
                 isCorrect={isAnswerCorrect}
                 newQuestion={newQuestion}
+                seriesTitleLanguage={settings.seriesTitleLanguage}
               />
             )}
 
@@ -93,6 +97,8 @@ function App() {
             <KeyboardShortcuts
               isQuestionReady={isQuestionReady}
               isAnswerReady={isAnswerReady}
+              answerOptions={answerOptions}
+              hiddenOptionIds={hiddenOptionIds}
               isHintAvailable={isHintAvailable}
               totalOptions={answerOptionCount}
             />

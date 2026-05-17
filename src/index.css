@@ -437,7 +437,7 @@ body,
 
 .question-options.hidden {
   text-decoration: line-through;
-  opacity: 0.7;
+  opacity: 0.5;
 }
 
 /* Respuesta */
@@ -618,17 +618,21 @@ body,
   font-size: 0.9rem;
 }
 
-.shortcuts-hint .keys {
+.shortcuts-hint-keys {
   display: flex;
   align-items: center;
 }
 
-.shortcuts-hint .keys kbd:not(:last-of-type):after {
+.shortcuts-hint-keys kbd:not(:last-of-type):after {
   content: ",";
   margin-right: 0.1rem;
 }
 
-.shortcuts-hint .action:before {
+.shortcuts-hint-keys kbd.shortcut-disabled {
+  opacity: 0.5;
+}
+
+.shortcuts-hint-action:before {
   content: "·";
   margin-right: 0.5rem;
 }

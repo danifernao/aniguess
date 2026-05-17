@@ -1,10 +1,13 @@
 import { faKeyboard } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useTranslation } from "react-i18next";
+import { CharacterType } from "../types/types";
 
 interface KeyboardShortcutsProps {
   isQuestionReady: boolean;
   isAnswerReady: boolean;
+  answerOptions: CharacterType[];
+  hiddenOptionIds: number[];
   isHintAvailable: boolean;
   totalOptions: number;
 }
@@ -12,6 +15,8 @@ interface KeyboardShortcutsProps {
 function KeyboardShortcuts({
   isQuestionReady,
   isAnswerReady,
+  answerOptions,
+  hiddenOptionIds,
   isHintAvailable,
   totalOptions,
 }: KeyboardShortcutsProps) {
@@ -31,33 +36,40 @@ function KeyboardShortcuts({
         <>
           {isHintAvailable && (
             <>
-              <span className="keys">
+              <span className="shortcuts-hint-keys">
                 <kbd>H</kbd>
               </span>
 
-              <span className="action">{t("keyboardShortcuts.useHint")}</span>
+              <span className="shortcuts-hint-action">
+                {t("keyboardShortcuts.useHint")}
+              </span>
             </>
           )}
 
           {!isHintAvailable && (
             <>
               <span
-                className="keys"
+                className="shortcuts-hint-keys"
                 aria-label={t("keyboardShortcuts.answerShortcuts", {
                   total: totalOptions,
                 })}
               >
-                {Array.from({ length: totalOptions }).map((_, index) => {
-                  const number = index + 1;
+                {answerOptions.map((option, index) => {
+                  const isHidden = hiddenOptionIds.includes(option.id);
+
                   return (
-                    <kbd key={number} aria-hidden="true">
-                      {number}
+                    <kbd
+                      key={option.id}
+                      className={isHidden ? "shortcut-disabled" : ""}
+                      aria-disabled={isHidden}
+                    >
+                      {index + 1}
                     </kbd>
                   );
                 })}
               </span>
 
-              <span className="action">
+              <span className="shortcuts-hint-action">
                 {t("keyboardShortcuts.selectAnswer")}
               </span>
             </>
@@ -67,10 +79,12 @@ function KeyboardShortcuts({
 
       {isAnswerReady && (
         <>
-          <span className="keys">
+          <span className="shortcuts-hint-keys">
             <kbd>N</kbd>
           </span>
-          <span className="action">{t("keyboardShortcuts.nextQuestion")}</span>
+          <span className="shortcuts-hint-action">
+            {t("keyboardShortcuts.nextQuestion")}
+          </span>
         </>
       )}
     </div>
