@@ -132,7 +132,8 @@ body,
 
 .wrapper {
   gap: 1rem;
-  padding: 1rem;
+  max-width: 60rem;
+  margin: 0 auto;
 }
 
 .wrapper > section {
@@ -160,14 +161,18 @@ body,
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding: 1rem;
+  border-top: 0.1rem solid var(--color-blue-4);
 }
 
 /* Estadísticas */
 .stats {
   display: flex;
   gap: 1rem;
-  align-items: start;
+  align-items: center;
   justify-content: space-between;
+  padding: 1rem;
+  border-bottom: 0.1rem solid var(--color-blue-4);
 }
 
 .stats-score-wrapper {
@@ -182,8 +187,8 @@ body,
 }
 
 .stats-progress {
-  width: 4rem !important;
-  height: 4rem;
+  width: 3rem !important;
+  height: 3rem;
 }
 
 .stats-progress .CircularProgressbar-trail {
