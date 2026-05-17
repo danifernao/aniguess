@@ -354,7 +354,7 @@ body,
 
 .character-image-element {
   max-width: 10rem;
-  max-height: 18rem;
+  max-height: 15rem;
   background-color: var(--color-blue-4);
   border-radius: 0.5rem;
 }
