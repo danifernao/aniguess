@@ -131,7 +131,7 @@ function Question({
           onComplete={() => setIsImageReady(true)}
         />
 
-        {isImageReady && (
+        {import.meta.env.VITE_FUNCTIONS_ENABLED && isImageReady && (
           <QuestionImageFlag
             questionCharacter={questionCharacter}
             newQuestion={newQuestion}
