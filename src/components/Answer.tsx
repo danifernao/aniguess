@@ -1,10 +1,10 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
-import type { CharacterType } from "../types/types";
-import { useTranslation } from "react-i18next";
-import CharacterImage from "./CharacterImage";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useCallback, useEffect } from "react";
-import CustomTooltip from "./Tooltip";
+import { useTranslation } from "react-i18next";
+import type { CharacterType } from "../types/types";
+import CharacterImage from "./CharacterImage";
+import Tooltip from "./Tooltip";
 
 interface AnswerProps {
   questionMode: "character" | "series";
@@ -74,9 +74,14 @@ function Answer({
 
           <p className="answer-series">
             {questionCharacter.media.nodes[0].isAdult && (
-              <CustomTooltip content={t("answer.nsfwTooltip")}>
-                <button className="nsfw-badge">+18</button>
-              </CustomTooltip>
+              <Tooltip content={t("answer.nsfwTooltip")}>
+                <button
+                  className="nsfw-badge"
+                  aria-label={t("answer.nsfwLabel")}
+                >
+                  +18
+                </button>
+              </Tooltip>
             )}
 
             <a

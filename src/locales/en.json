@@ -4,6 +4,7 @@
     "image_alt": "Character image of {{name}}",
     "incorrect": "Incorrect!",
     "next": "Next",
+    "nsfwLabel": "Adult content",
     "nsfwTooltip": "Adult content. Requires an AniList account to view the page."
   },
   "characterImage": {
@@ -33,6 +34,7 @@
   },
   "question": {
     "character": "What is this character's name?",
+    "hintLabel": "Use a hint",
     "hintTooltip": "Use a hint to discard an incorrect answer.",
     "image_alt": "Image of the character to guess",
     "series": "What series is this character from?"

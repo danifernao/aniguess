@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 import { toast } from "sonner";
 import type { CharacterType } from "../types/types";
 import { isPlaceholder } from "../utils/placeholder-detector";
-import CustomTooltip from "./Tooltip";
+import Tooltip from "./Tooltip";
 
 interface QuestionImageFlagProps {
   questionCharacter: CharacterType;
@@ -47,7 +47,7 @@ function QuestionImageFlag({
   if (hidden) return;
 
   return (
-    <CustomTooltip content={t("questionImageFlag.tooltip")}>
+    <Tooltip content={t("questionImageFlag.tooltip")}>
       <button
         onClick={flagImage}
         disabled={loading}
@@ -61,7 +61,7 @@ function QuestionImageFlag({
           aria-hidden="true"
         />
       </button>
-    </CustomTooltip>
+    </Tooltip>
   );
 }
 

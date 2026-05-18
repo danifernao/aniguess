@@ -4,6 +4,7 @@
     "image_alt": "Imagen del personaje {{name}}",
     "incorrect": "¡Incorrecto!",
     "next": "Siguiente",
+    "nsfwLabel": "Contenido para adultos",
     "nsfwTooltip": "Contenido para adultos. Requiere cuenta de AniList para ver la página."
   },
   "characterImage": {
@@ -33,6 +34,7 @@
   },
   "question": {
     "character": "¿Cómo se llama este personaje?",
+    "hintLabel": "Usa una pista",
     "hintTooltip": "Usa una pista para descartar una respuesta incorrecta.",
     "image_alt": "Imagen del personaje a adivinar",
     "series": "¿A qué obra pertenece este personaje?"

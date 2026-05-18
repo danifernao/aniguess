@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 import type { CharacterType } from "../types/types";
 import CharacterImage from "./CharacterImage";
 import QuestionImageFlag from "./QuestionImageFlag";
-import CustomTooltip from "./Tooltip";
+import Tooltip from "./Tooltip";
 
 interface QuestionProps {
   questionMode: "character" | "series";
@@ -150,16 +150,17 @@ function Question({
           </h2>
 
           {isHintAvailable && (
-            <CustomTooltip content={t("question.hintTooltip")}>
+            <Tooltip content={t("question.hintTooltip")}>
               <button
                 type="button"
                 className="question-hint"
                 onClick={triggerHint}
                 aria-keyshortcuts="h"
+                aria-label={t("question.hintLabel")}
               >
-                <FontAwesomeIcon icon={faLightbulb} />
+                <FontAwesomeIcon icon={faLightbulb} aria-hidden="true" />
               </button>
-            </CustomTooltip>
+            </Tooltip>
           )}
         </div>
 

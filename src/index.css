@@ -787,6 +787,7 @@ body,
 
 .tooltip-arrow {
   fill: var(--color-white-2);
+  transform: translateY(-0.06rem);
 }
 
 @keyframes tooltip-fade {

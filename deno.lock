@@ -19,6 +19,7 @@
         "npm:@netlify/functions@^5.2.1",
         "npm:@radix-ui/react-alert-dialog@^1.1.15",
         "npm:@radix-ui/react-dialog@^1.1.15",
+        "npm:@radix-ui/react-popover@^1.1.15",
         "npm:@radix-ui/react-tooltip@^1.2.8",
         "npm:@types/node@^25.8.0",
         "npm:@types/react-dom@^19.0.4",
