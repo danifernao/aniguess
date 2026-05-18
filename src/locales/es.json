@@ -37,6 +37,12 @@
     "image_alt": "Imagen del personaje a adivinar",
     "series": "¿A qué obra pertenece este personaje?"
   },
+  "questionImageFlag": {
+    "analysisError": "Error al analizar la imagen",
+    "ariaLabel": "Marcar como imagen no disponible",
+    "notPlaceholder": "La imagen está disponible",
+    "tooltip": "¿La imagen no está disponible? Márcala para saltar la pregunta si corresponde."
+  },
   "settings": {
     "changesApplied": "Cambios aplicados",
     "description": "Personaliza tu experiencia ajustando las siguientes opciones.",

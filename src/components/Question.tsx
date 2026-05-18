@@ -1,9 +1,10 @@
-import { useCallback, useEffect, useRef, useState } from "react";
-import type { CharacterType } from "../types/types";
-import { useTranslation } from "react-i18next";
-import CharacterImage from "./CharacterImage";
 import { faLightbulb } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
+import type { CharacterType } from "../types/types";
+import CharacterImage from "./CharacterImage";
+import QuestionImageFlag from "./QuestionImageFlag";
 import CustomTooltip from "./Tooltip";
 
 interface QuestionProps {
@@ -16,6 +17,7 @@ interface QuestionProps {
   setHintAvailability: (value: boolean) => void;
   triggerHint: () => void;
   checkAnswer: (char: CharacterType) => void;
+  newQuestion: () => void;
 }
 
 function Question({
@@ -28,6 +30,7 @@ function Question({
   setHintAvailability,
   triggerHint,
   checkAnswer,
+  newQuestion,
 }: QuestionProps) {
   const { t } = useTranslation();
 
@@ -120,12 +123,21 @@ function Question({
 
   return (
     <div className="question">
-      <CharacterImage
-        src={questionCharacter.image.large}
-        alt={t("question.image_alt")}
-        className="question-image"
-        onComplete={() => setIsImageReady(true)}
-      />
+      <div className="question-image-wrapper">
+        <CharacterImage
+          src={questionCharacter.image.large}
+          alt={t("question.image_alt")}
+          className="question-image"
+          onComplete={() => setIsImageReady(true)}
+        />
+
+        {isImageReady && (
+          <QuestionImageFlag
+            questionCharacter={questionCharacter}
+            newQuestion={newQuestion}
+          />
+        )}
+      </div>
 
       <div className="question-block">
         <div

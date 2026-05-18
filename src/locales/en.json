@@ -37,6 +37,12 @@
     "image_alt": "Image of the character to guess",
     "series": "What series is this character from?"
   },
+  "questionImageFlag": {
+    "analysisError": "Error analyzing image",
+    "ariaLabel": "Flag as placeholder",
+    "notPlaceholder": "Image is not a placeholder",
+    "tooltip": "Is this image a placeholder? Flag it to skip this question if applicable."
+  },
   "settings": {
     "changesApplied": "Changes applied",
     "description": "Customize your experience by adjusting the following options.",

@@ -1,13 +1,13 @@
+import { useEffect } from "react";
+import { Toaster } from "sonner";
 import Answer from "./components/Answer";
+import Error from "./components/Error";
+import KeyboardShortcuts from "./components/KeyboardShortcuts";
 import Loading from "./components/Loading";
 import Question from "./components/Question";
 import Settings from "./components/Settings";
-import { useCharacterQuiz } from "./hooks/useCharacterQuiz";
 import Stats from "./components/Stats";
-import { Toaster } from "sonner";
-import Error from "./components/Error";
-import { useEffect } from "react";
-import KeyboardShortcuts from "./components/KeyboardShortcuts";
+import { useCharacterQuiz } from "./hooks/useCharacterQuiz";
 
 function App() {
   const answerOptionCount = 3;
@@ -71,6 +71,7 @@ function App() {
                 setHintAvailability={setHintAvailability}
                 triggerHint={triggerHint}
                 checkAnswer={checkAnswer}
+                newQuestion={newQuestion}
               />
             )}
 

@@ -360,6 +360,25 @@ body,
 }
 
 /* Pregunta */
+.question-image-wrapper {
+  position: relative;
+}
+
+.question-image-flag {
+  position: absolute;
+  top: 0.3rem;
+  left: 0.3rem;
+  padding: 0.3rem 0.5rem;
+  font-size: 0.9rem;
+  opacity: 0.8;
+  transition: opacity 0.2s ease;
+}
+
+.question-image-flag:hover,
+.question-image-flag:disabled {
+  opacity: 1;
+}
+
 .question-header {
   margin-bottom: 1rem;
 }
