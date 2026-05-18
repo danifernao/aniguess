@@ -31,7 +31,7 @@ export default function TooltipMobile({
   const handlePointerDown = () => {
     longPressTriggeredRef.current = false;
 
-    timerRef.current = setTimeout(() => {
+    timerRef.current = window.setTimeout(() => {
       longPressTriggeredRef.current = true;
 
       setOpen(true);
