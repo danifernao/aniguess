@@ -53,40 +53,44 @@
       "github": "Repositorio en GitHub"
     },
     "includeAdultMedia": {
-      "legend": "Incluir contenido para adultos",
       "options": {
         "no": "No",
         "yes": "Sí"
-      }
+      },
+      "title": "Incluir contenido para adultos"
     },
     "language": {
-      "legend": "Idioma de la interfaz",
       "options": {
         "en": "Inglés",
         "es": "Español"
-      }
+      },
+      "title": "Idioma de la interfaz"
     },
     "mediaType": {
-      "legend": "Tipo de obra",
       "options": {
         "anime": "Anime",
         "both": "Ambos",
         "manga": "Manga"
-      }
+      },
+      "title": "Tipo de obra"
     },
     "questionMode": {
-      "legend": "Tipo de pregunta",
       "options": {
         "character": "Nombre de personaje",
         "series": "Título de obra"
-      }
+      },
+      "title": "Tipo de pregunta"
     },
     "seriesTitleLanguage": {
-      "legend": "Idioma del título de la obra",
       "options": {
         "english": "Inglés",
         "romaji": "Romaji"
-      }
+      },
+      "title": "Idioma del título de la obra"
+    },
+    "soundEffects": {
+      "label": "Habilitar",
+      "title": "Efectos de sonido"
     },
     "stats": {
       "button": "Reiniciar",
@@ -94,8 +98,8 @@
         "description": "¿Seguro que quieres restablecer las estadísticas? Esta acción no se puede deshacer.",
         "title": "Reiniciar estadísticas"
       },
-      "legend": "Estadísticas",
-      "summary": "{{correct}}/{{total}} · {{percentage}}%"
+      "summary": "{{correct}}/{{total}} · {{percentage}}%",
+      "title": "Estadísticas"
     },
     "title": "Configuración"
   },

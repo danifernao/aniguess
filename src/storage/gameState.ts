@@ -14,6 +14,7 @@ const defaultGameState: GameStateType = {
     mediaType: null,
     seriesTitleLanguage: "english",
     includeAdultMedia: true,
+    enableSoundEffects: true,
   },
 };
 

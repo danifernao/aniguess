@@ -53,40 +53,44 @@
       "github": "GitHub repository"
     },
     "includeAdultMedia": {
-      "legend": "Include adult media",
       "options": {
         "no": "No",
         "yes": "Yes"
-      }
+      },
+      "title": "Include adult media"
     },
     "language": {
-      "legend": "Interface language",
       "options": {
         "en": "English",
         "es": "Spanish"
-      }
+      },
+      "title": "Interface language"
     },
     "mediaType": {
-      "legend": "Media type",
       "options": {
         "anime": "Anime",
         "both": "Both",
         "manga": "Manga"
-      }
+      },
+      "title": "Media type"
     },
     "questionMode": {
-      "legend": "Question type",
       "options": {
         "character": "Character name",
         "series": "Series title"
-      }
+      },
+      "title": "Question type"
     },
     "seriesTitleLanguage": {
-      "legend": "Title language",
       "options": {
         "english": "English",
         "romaji": "Romaji"
-      }
+      },
+      "title": "Title language"
+    },
+    "soundEffects": {
+      "label": "Enable",
+      "title": "Sound effects"
     },
     "stats": {
       "button": "Reset",
@@ -94,8 +98,8 @@
         "description": "Are you sure you want to reset your stats? This action cannot be undone.",
         "title": "Reset stats"
       },
-      "legend": "Stats",
-      "summary": "{{correct}}/{{total}} · {{percentage}}%"
+      "summary": "{{correct}}/{{total}} · {{percentage}}%",
+      "title": "Stats"
     },
     "title": "Settings"
   },

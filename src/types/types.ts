@@ -35,9 +35,10 @@ export interface MediaType {
 export interface SettingsType {
   language: "es" | "en";
   questionMode: "character" | "series";
-  seriesTitleLanguage: "english" | "romaji";
   mediaType: string | null;
+  seriesTitleLanguage: "english" | "romaji";
   includeAdultMedia: boolean;
+  enableSoundEffects: boolean;
 }
 
 export interface ScoreType {

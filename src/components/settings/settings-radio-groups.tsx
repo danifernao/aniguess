@@ -42,19 +42,6 @@ function SettingsRadioGroups({
       ],
     },
     {
-      name: "seriesTitleLanguage",
-      options: [
-        {
-          name: "english",
-          value: "english",
-        },
-        {
-          name: "romaji",
-          value: "romaji",
-        },
-      ],
-    },
-    {
       name: "mediaType",
       options: [
         {
@@ -68,6 +55,19 @@ function SettingsRadioGroups({
         {
           name: "both",
           value: "NULL",
+        },
+      ],
+    },
+    {
+      name: "seriesTitleLanguage",
+      options: [
+        {
+          name: "english",
+          value: "english",
+        },
+        {
+          name: "romaji",
+          value: "romaji",
         },
       ],
     },
@@ -98,7 +98,7 @@ function SettingsRadioGroups({
 
   return radioGroups.map((group, i) => (
     <div className={styles.item} key={i}>
-      <h3 className={styles.itemTitle}>{t(`settings.${group.name}.legend`)}</h3>
+      <h3 className={styles.itemTitle}>{t(`settings.${group.name}.title`)}</h3>
 
       <div className={styles.itemContent}>
         {group.options.map((option, j) => (

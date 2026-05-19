@@ -11,9 +11,9 @@ import styles from "./settings.module.css";
 
 interface SettingsProps {
   settings: SettingsType;
-  saveSettings: (
-    key: keyof SettingsType,
-    value: string,
+  saveSettings: <K extends keyof SettingsType>(
+    key: K,
+    value: SettingsType[K],
     restart?: boolean,
   ) => void;
   score: ScoreType;
@@ -71,14 +71,18 @@ function Settings({
               {/* Selector de idioma */}
               <div className={styles.item}>
                 <h3 className={styles.itemTitle}>
-                  {t("settings.language.legend")}
+                  {t("settings.language.title")}
                 </h3>
 
                 <div className={styles.itemContent}>
                   <select
                     value={i18n.language}
                     onChange={(event) => {
-                      saveSettings("language", event.target.value, false);
+                      saveSettings(
+                        "language",
+                        event.target.value as SettingsType["language"],
+                        false,
+                      );
                     }}
                   >
                     {languageOptions.map((option) => (
@@ -96,11 +100,38 @@ function Settings({
                 saveSettings={saveSettings}
               />
 
+              {/* Selector de idioma */}
+              <div className={styles.item}>
+                <h3 className={styles.itemTitle}>
+                  {t("settings.soundEffects.title")}
+                </h3>
+
+                <div className={styles.itemContent}>
+                  <div className={styles.option}>
+                    <input
+                      type="checkbox"
+                      id="soundEffects"
+                      checked={settings.enableSoundEffects}
+                      onChange={(event) => {
+                        saveSettings(
+                          "enableSoundEffects",
+                          event.target.checked,
+                          false,
+                        );
+                      }}
+                    />
+                    <label htmlFor="soundEffects">
+                      {t("settings.soundEffects.label")}
+                    </label>
+                  </div>
+                </div>
+              </div>
+
               {/* Reinicio de puntaje */}
               {score.total > 0 && (
                 <div className={`${styles.item} ${styles.resetStats}`}>
                   <h3 className={styles.itemTitle}>
-                    {t("settings.stats.legend")}
+                    {t("settings.stats.title")}
                   </h3>
 
                   <div className={styles.itemContent}>

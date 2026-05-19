@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { Toaster } from "sonner";
+import { audioManager } from "./audio/audio";
 import Answer from "./components/answer/answer";
 import Error from "./components/error/error";
 import Loading from "./components/loading/loading";
@@ -36,12 +37,12 @@ function App() {
   const isAnswerReady = hasQuestion && isAnswerCorrect !== null;
   const isLoading = !questionCharacter;
 
-  // Desactiva el menú contextual (clic derecho) en producción.
   useEffect(() => {
-    if (!import.meta.env.PROD) {
-      return;
-    }
+    audioManager.preload();
 
+    if (!import.meta.env.PROD) return;
+
+    // Desactiva el menú contextual (clic derecho) en producción.
     const handleContextMenu = (event: MouseEvent) => {
       event.preventDefault();
     };

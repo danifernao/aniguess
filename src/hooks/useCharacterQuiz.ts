@@ -1,3 +1,4 @@
+import { audioManager } from "@/audio/audio";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { toast } from "sonner";
@@ -61,6 +62,7 @@ export function useCharacterQuiz(answerOptionCount: number) {
     mediaType: null,
     seriesTitleLanguage: "english",
     includeAdultMedia: true,
+    enableSoundEffects: true,
   });
 
   // Contexto donde ocurrió un error.
@@ -197,6 +199,14 @@ export function useCharacterQuiz(answerOptionCount: number) {
 
     setIsAnswerCorrect(isCorrect);
 
+    if (settings.enableSoundEffects) {
+      if (isCorrect) {
+        audioManager.playSuccess();
+      } else {
+        audioManager.playError();
+      }
+    }
+
     setScore((s) => ({
       total: s.total + 1,
       correct: isCorrect ? s.correct + 1 : s.correct,
@@ -220,9 +230,9 @@ export function useCharacterQuiz(answerOptionCount: number) {
   };
 
   // Guarda las opciones de configuración del juego.
-  const saveSettings = (
-    key: keyof SettingsType,
-    value: string,
+  const saveSettings = <K extends keyof SettingsType>(
+    key: K,
+    value: SettingsType[K],
     triggerNewQuestion: boolean = true,
   ): void => {
     setSettings((s) => ({
@@ -237,7 +247,7 @@ export function useCharacterQuiz(answerOptionCount: number) {
             : value,
     }));
 
-    if (key === "language") i18n.changeLanguage(value);
+    if (key === "language") i18n.changeLanguage(value as string);
 
     if (triggerNewQuestion) newQuestion();
 
