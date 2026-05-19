@@ -1,17 +1,18 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
-import type {
-  ScoreType,
-  SettingsType,
-  CharacterType,
-  ErrorType,
-} from "../types/types";
-import { getRandomInt, generateUniqueIds } from "../utils/random";
-import { fetchAniListData, fetchLastCharacterId } from "../services/anilist";
+import { useTranslation } from "react-i18next";
+import { toast } from "sonner";
 import { filterValidCharacters } from "../filters/characters";
 import i18n from "../i18n";
+import { fetchAniListData } from "../services/anilist";
+import { getMaxCharacterId } from "../services/max-character-id";
 import { loadGameState, saveGameState } from "../storage/gameState";
-import { toast } from "sonner";
-import { useTranslation } from "react-i18next";
+import type {
+  CharacterType,
+  ErrorType,
+  ScoreType,
+  SettingsType,
+} from "../types/types";
+import { generateUniqueIds, getRandomInt } from "../utils/random";
 import { shuffle } from "../utils/shuffle";
 
 export function useCharacterQuiz(answerOptionCount: number) {
@@ -255,15 +256,13 @@ export function useCharacterQuiz(answerOptionCount: number) {
   const init = useCallback(() => {
     const localState = loadGameState();
 
-    if (localState) {
-      setUsedCharacterIds(localState.usedCharacterIds);
-      setSavedOptionCharacterIds(localState.optionCharacterIds ?? null);
-      setSavedQuestionCharacterId(localState.questionCharacterId ?? null);
-      setScore(localState.score);
-      setSettings(localState.settings);
-    }
+    setUsedCharacterIds(localState.usedCharacterIds);
+    setSavedOptionCharacterIds(localState.optionCharacterIds);
+    setSavedQuestionCharacterId(localState.questionCharacterId);
+    setScore(localState.score);
+    setSettings(localState.settings);
 
-    fetchLastCharacterId()
+    getMaxCharacterId()
       .then((id) => setMaxCharacterId(id))
       .catch((error) => {
         if (import.meta.env.DEV) console.error(error);
@@ -294,7 +293,10 @@ export function useCharacterQuiz(answerOptionCount: number) {
   useEffect(() => {
     if (!maxCharacterId) return;
 
+    const currentState = loadGameState();
+
     saveGameState({
+      ...currentState,
       usedCharacterIds,
       optionCharacterIds:
         isAnswerCorrect === null && optionCharacters.length

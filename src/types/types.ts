@@ -46,6 +46,10 @@ export interface ScoreType {
 }
 
 export interface GameStateType {
+  maxCharacterId?: {
+    value: number;
+    updatedAt: number;
+  };
   usedCharacterIds: number[];
   optionCharacterIds: number[] | null;
   questionCharacterId: number | null;

@@ -48,25 +48,3 @@ export const fetchAniListData = async (
     throw json;
   }
 };
-
-// Obtiene el ID del último personaje registrado en AniList.
-export const fetchLastCharacterId = async (): Promise<number> => {
-  const query = `
-    query {
-      Page(perPage: 1) {
-        characters(sort: ID_DESC) {
-          id
-        }
-      }
-    }`;
-
-  const response = await fetchAniListData(query);
-
-  const id = response.data.Page.characters[0].id;
-
-  if (!id) {
-    throw new Error("Invalid API response");
-  }
-
-  return id;
-};
