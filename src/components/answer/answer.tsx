@@ -56,6 +56,7 @@ function Answer({
           alt={t("answer.image_alt", {
             name: questionCharacter.name.full,
           })}
+          skipLoading
         />
 
         <div className={`${styles.details} ${styles[questionMode]}`}>

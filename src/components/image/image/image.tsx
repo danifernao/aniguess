@@ -15,6 +15,7 @@ interface CharacterImageProps {
   alt: string;
   className?: string;
   onLoad?: () => void;
+  skipLoading?: boolean;
 }
 
 function CharacterImage({
@@ -22,11 +23,12 @@ function CharacterImage({
   alt,
   className = "",
   onLoad,
+  skipLoading = false,
 }: CharacterImageProps) {
   const { t } = useTranslation();
 
   const [open, setOpen] = useState<boolean>(false);
-  const [isImageLoading, setIsImageLoading] = useState<boolean>(true);
+  const [isImageLoading, setIsImageLoading] = useState<boolean>(!skipLoading);
   const [hasImageError, setHasImageError] = useState<boolean>(false);
 
   const loadImage = (src: string): void => {
@@ -52,6 +54,8 @@ function CharacterImage({
   };
 
   useEffect(() => {
+    if (skipLoading) return;
+
     loadImage(src);
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
