@@ -30,7 +30,7 @@ function QuestionImageFlag({
       const result = await isPlaceholder(questionCharacter.image.large);
 
       if (!result) {
-        toast.error(t("questionImageFlag.notPlaceholder"));
+        toast.info(t("questionImageFlag.notPlaceholder"));
         setHidden(true);
         return;
       }
