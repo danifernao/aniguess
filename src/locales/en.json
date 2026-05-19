@@ -9,6 +9,7 @@
   },
   "characterImage": {
     "loading": "Loading image...",
+    "retry": "Retry",
     "viewFullSize": "View full size"
   },
   "common": {

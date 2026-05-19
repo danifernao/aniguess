@@ -128,7 +128,7 @@ function Question({
         <CharacterImage
           src={questionCharacter.image.large}
           alt={t("question.image_alt")}
-          onComplete={() => setIsImageReady(true)}
+          onLoad={() => setIsImageReady(true)}
         />
 
         {import.meta.env.VITE_FUNCTIONS_ENABLED && isImageReady && (

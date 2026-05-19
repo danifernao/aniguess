@@ -1,4 +1,7 @@
-import { faCircleNotch } from "@fortawesome/free-solid-svg-icons";
+import {
+  faCircleNotch,
+  faFileCircleXmark,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -11,35 +14,48 @@ interface CharacterImageProps {
   src: string;
   alt: string;
   className?: string;
-  onComplete?: () => void;
+  onLoad?: () => void;
 }
 
 function CharacterImage({
   src,
   alt,
   className = "",
-  onComplete,
+  onLoad,
 }: CharacterImageProps) {
   const { t } = useTranslation();
 
   const [open, setOpen] = useState<boolean>(false);
   const [isImageLoading, setIsImageLoading] = useState<boolean>(true);
+  const [hasImageError, setHasImageError] = useState<boolean>(false);
 
-  useEffect(() => {
+  const loadImage = (src: string): void => {
     const img = new Image();
 
     img.src = src;
 
     img.onload = () => {
       setIsImageLoading(false);
-      onComplete?.();
+      onLoad?.();
     };
 
     img.onerror = () => {
+      setHasImageError(true);
       setIsImageLoading(false);
-      onComplete?.();
     };
-  }, [src, onComplete]);
+  };
+
+  const retry = (src: string) => {
+    setIsImageLoading(true);
+    setHasImageError(false);
+    loadImage(src);
+  };
+
+  useEffect(() => {
+    loadImage(src);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [src]);
 
   return (
     <>
@@ -54,7 +70,16 @@ function CharacterImage({
           </div>
         )}
 
-        {!isImageLoading && (
+        {hasImageError && (
+          <div className={styles.retry}>
+            <FontAwesomeIcon icon={faFileCircleXmark} aria-hidden="true" />
+            <button type="button" className="link" onClick={() => retry(src)}>
+              {t("characterImage.retry")}
+            </button>
+          </div>
+        )}
+
+        {!isImageLoading && !hasImageError && (
           <button
             type="button"
             onClick={() => setOpen(true)}
