@@ -40,10 +40,10 @@
     "series": "What series is this character from?"
   },
   "questionImageFlag": {
-    "analysisError": "Error analyzing image",
-    "ariaLabel": "Flag as placeholder",
-    "notPlaceholder": "Image is not a placeholder",
-    "tooltip": "Is this image a placeholder? Flag it to skip this question if applicable."
+    "analysisError": "Could not analyze the image",
+    "ariaLabel": "Verify image validity",
+    "notPlaceholder": "The image appears to be valid",
+    "tooltip": "Analyzes the image and automatically skips the question if a default image is detected."
   },
   "settings": {
     "changesApplied": "Changes applied",

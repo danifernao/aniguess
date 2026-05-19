@@ -40,10 +40,10 @@
     "series": "¿A qué obra pertenece este personaje?"
   },
   "questionImageFlag": {
-    "analysisError": "Error al analizar la imagen",
-    "ariaLabel": "Marcar como imagen no disponible",
-    "notPlaceholder": "La imagen está disponible",
-    "tooltip": "¿La imagen no está disponible? Márcala para saltar la pregunta si corresponde."
+    "analysisError": "No se pudo analizar la imagen",
+    "ariaLabel": "Verificar validez de la imagen",
+    "notPlaceholder": "La imagen parece válida",
+    "tooltip": "Analiza la imagen y omite automáticamente la pregunta si se detecta una imagen por defecto."
   },
   "settings": {
     "changesApplied": "Cambios aplicados",
