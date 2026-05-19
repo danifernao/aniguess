@@ -1,4 +1,5 @@
 import { Trans, useTranslation } from "react-i18next";
+import styles from "./card.module.css";
 
 interface StatsShareCardProps {
   correct: number;
@@ -35,34 +36,28 @@ function StatsShareCard({ correct, total, percentage }: StatsShareCardProps) {
             };
 
   return (
-    <div className={`share-card ${rank.className}`}>
-      <div className="share-card-main">
-        <div className="share-card-header">
-          <span className="share-card-medal">{rank.medal}</span>
-          <span className="share-card-rank">{rank.title}</span>
+    <div className={`${styles.card} ${styles[rank.className]}`}>
+      <div className={styles.main}>
+        <div className={styles.header}>
+          <span className={styles.medal}>{rank.medal}</span>
+          <span className={styles.rank}>{rank.title}</span>
         </div>
 
-        <div className="share-card-percentage">
-          <span className="share-card-percentage-value">{percentage}%</span>
-          <span className="share-card-percentage-label">
-            {t("shareCard.accuracy")}
-          </span>
+        <div className={styles.percentage}>
+          <span className={styles.value}>{percentage}%</span>
+          <span className={styles.label}>{t("shareCard.accuracy")}</span>
         </div>
 
-        <div className="share-card-details">
-          <div className="share-card-details-label">
-            {t("shareCard.totalQuestions")}
-          </div>
-          <div className="share-card-details-value">{total}</div>
+        <div className={styles.details}>
+          <div className={styles.label}>{t("shareCard.totalQuestions")}</div>
+          <div className={styles.value}>{total}</div>
 
-          <div className="share-card-details-label">
-            {t("shareCard.correctAnswers")}
-          </div>
-          <div className="share-card-details-value">{correct}</div>
+          <div className={styles.label}>{t("shareCard.correctAnswers")}</div>
+          <div className={styles.value}>{correct}</div>
         </div>
       </div>
 
-      <div className="share-card-footer">
+      <div className={styles.footer}>
         <Trans
           i18nKey="shareCard.footer"
           values={{

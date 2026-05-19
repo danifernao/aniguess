@@ -1,10 +1,11 @@
+import CharacterImage from "@/components/image/image/image";
+import type { CharacterType } from "@/types/types";
+import Tooltip from "@components/tooltip/tooltip";
 import { faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useCallback, useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import type { CharacterType } from "../types/types";
-import CharacterImage from "./CharacterImage";
-import Tooltip from "./Tooltip";
+import styles from "./answer.module.css";
 
 interface AnswerProps {
   questionMode: "character" | "series";
@@ -42,9 +43,11 @@ function Answer({
   }, [handleShortcut]);
 
   return (
-    <div className={`answer ${isCorrect ? "correct" : "incorrect"}`}>
-      <div className="answer-content">
-        <p className="answer-result">
+    <div
+      className={`${styles.answer} ${isCorrect ? styles.correct : styles.incorrect}`}
+    >
+      <div className={styles.content}>
+        <p className={styles.title}>
           <b>{isCorrect ? t("answer.correct") : t("answer.incorrect")}</b>
         </p>
 
@@ -53,11 +56,10 @@ function Answer({
           alt={t("answer.image_alt", {
             name: questionCharacter.name.full,
           })}
-          className="answer-image"
         />
 
-        <div className={`answer-details ${questionMode}`}>
-          <p className="answer-character">
+        <div className={`${styles.details} ${styles[questionMode]}`}>
+          <p className={styles.answerCharacter}>
             <a
               href={questionCharacter.siteUrl}
               target="_blank"
@@ -66,17 +68,17 @@ function Answer({
               {questionCharacter.name.full}
               <FontAwesomeIcon
                 icon={faArrowUpRightFromSquare}
-                className="link-icon"
+                className={styles.linkIcon}
                 aria-hidden="true"
               />
             </a>
           </p>
 
-          <p className="answer-series">
+          <p className={styles.answerSeries}>
             {questionCharacter.media.nodes[0].isAdult && (
               <Tooltip content={t("answer.nsfwTooltip")}>
                 <button
-                  className="nsfw-badge"
+                  className={styles.nsfwBadge}
                   aria-label={t("answer.nsfwLabel")}
                 >
                   +18
@@ -96,7 +98,7 @@ function Answer({
                   questionCharacter.media.nodes[0].title.english}
               <FontAwesomeIcon
                 icon={faArrowUpRightFromSquare}
-                className="link-icon"
+                className={styles.linkIcon}
                 aria-hidden="true"
               />
             </a>
@@ -106,7 +108,7 @@ function Answer({
 
       <button
         onClick={newQuestion}
-        className="next-question"
+        className={styles.next}
         aria-keyshortcuts="n"
       >
         {t("answer.next")}

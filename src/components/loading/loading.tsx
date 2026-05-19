@@ -1,19 +1,20 @@
 import { faCircleNotch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useTranslation } from "react-i18next";
+import styles from "./loading.module.css";
 
 function Loading() {
   const { t } = useTranslation();
 
   return (
-    <div className="loading" role="status">
+    <div className={styles.loading} role="status">
       <FontAwesomeIcon
         icon={faCircleNotch}
         spin
         aria-hidden="true"
-        className="loading-icon"
+        className={styles.icon}
       />
-      <p className="loading-message">{t("loading.message")}</p>
+      <p>{t("loading.message")}</p>
     </div>
   );
 }

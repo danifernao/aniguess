@@ -1,0 +1,93 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+  min-width: 32rem;
+  border-radius: 1.5rem;
+  color: var(--color-white);
+}
+
+.card.casual {
+  background: linear-gradient(135deg, #1a1a2e, #16213e);
+}
+
+.card.enthusiast {
+  background: linear-gradient(135deg, #2d1b69, #6d28d9);
+}
+
+.card.otaku {
+  background: linear-gradient(135deg, #831843, #db2777);
+}
+
+.card.sensei {
+  background: linear-gradient(135deg, #7f1d1d, #b45309);
+}
+
+.main {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  padding: 2rem 2rem 0;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.header .medal {
+  font-size: 3rem;
+}
+
+.header .rank {
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.percentage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+.percentage .value {
+  font-size: 4rem;
+  font-weight: 700;
+}
+
+.percentage .label {
+  font-size: 1rem;
+  text-transform: uppercase;
+  opacity: 0.75;
+}
+
+.details {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 1rem;
+  align-items: center;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.details .label {
+  opacity: 0.75;
+  font-size: 1rem;
+}
+
+.details .value {
+  font-size: 1.2rem;
+  font-weight: 700;
+  text-align: right;
+}
+
+.footer {
+  padding: 2rem 2rem 1.5rem;
+  font-style: italic;
+  font-size: 0.8rem;
+  text-align: right;
+  opacity: 0.75;
+}

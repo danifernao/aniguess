@@ -1,0 +1,22 @@
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 5rem;
+  height: 5rem;
+  font-size: 1.5rem;
+}
+
+.viewFullSize {
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: zoom-in;
+}
+
+.image {
+  max-width: 10rem;
+  max-height: 15rem;
+  background-color: var(--color-blue-4);
+  border-radius: 0.5rem;
+}

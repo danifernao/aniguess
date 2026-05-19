@@ -1,10 +1,11 @@
-import { useEffect, useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleNotch } from "@fortawesome/free-solid-svg-icons";
-import Zoom from "yet-another-react-lightbox/plugins/zoom";
-import "yet-another-react-lightbox/styles.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import Lightbox from "yet-another-react-lightbox";
+import Zoom from "yet-another-react-lightbox/plugins/zoom";
+import "yet-another-react-lightbox/styles.css";
+import styles from "./image.module.css";
 
 interface CharacterImageProps {
   src: string;
@@ -42,10 +43,10 @@ function CharacterImage({
 
   return (
     <>
-      <div className="character-image" aria-busy={isImageLoading}>
+      <div aria-busy={isImageLoading}>
         {isImageLoading && (
           <div
-            className="character-image-loading"
+            className={styles.loading}
             aria-label={t("characterImage.loading")}
             role="status"
           >
@@ -57,14 +58,14 @@ function CharacterImage({
           <button
             type="button"
             onClick={() => setOpen(true)}
-            className="character-image-button"
+            className={styles.viewFullSize}
             title={t("characterImage.viewFullSize")}
             aria-label={t("characterImage.viewFullSize")}
           >
             <img
               src={src}
               alt={alt}
-              className={`character-image-element ${className}`}
+              className={`${styles.image} ${className}`}
             />
           </button>
         )}

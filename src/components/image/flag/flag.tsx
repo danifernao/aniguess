@@ -1,21 +1,18 @@
+import Tooltip from "@components/tooltip/tooltip";
 import { faCircleNotch, faFlag } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { isPlaceholder } from "@utils/placeholder-detector";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { toast } from "sonner";
-import type { CharacterType } from "../types/types";
-import { isPlaceholder } from "../utils/placeholder-detector";
-import Tooltip from "./Tooltip";
+import styles from "./flag.module.css";
 
-interface QuestionImageFlagProps {
-  questionCharacter: CharacterType;
+interface ImageFlagProps {
+  src: string;
   newQuestion: () => void;
 }
 
-function QuestionImageFlag({
-  questionCharacter,
-  newQuestion,
-}: QuestionImageFlagProps) {
+function ImageFlag({ src, newQuestion }: ImageFlagProps) {
   const { t } = useTranslation();
 
   const [loading, setLoading] = useState(false);
@@ -27,7 +24,7 @@ function QuestionImageFlag({
     try {
       setLoading(true);
 
-      const result = await isPlaceholder(questionCharacter.image.large);
+      const result = await isPlaceholder(src);
 
       if (!result) {
         toast.info(t("questionImageFlag.notPlaceholder"));
@@ -51,7 +48,7 @@ function QuestionImageFlag({
       <button
         onClick={flagImage}
         disabled={loading}
-        className="question-image-flag button danger"
+        className={`${styles.flag} button danger`}
         aria-label={t("questionImageFlag.ariaLabel")}
         aria-busy={loading}
       >
@@ -65,4 +62,4 @@ function QuestionImageFlag({
   );
 }
 
-export default QuestionImageFlag;
+export default ImageFlag;

@@ -1,12 +1,12 @@
 import { useEffect } from "react";
 import { Toaster } from "sonner";
-import Answer from "./components/Answer";
-import Error from "./components/Error";
-import KeyboardShortcuts from "./components/KeyboardShortcuts";
-import Loading from "./components/Loading";
-import Question from "./components/Question";
-import Settings from "./components/Settings";
-import Stats from "./components/Stats";
+import Answer from "./components/answer/answer";
+import Error from "./components/error/error";
+import Loading from "./components/loading/loading";
+import Question from "./components/question/question";
+import Settings from "./components/settings/settings";
+import KeyboardShortcuts from "./components/shortcuts/shortcuts";
+import Stats from "./components/stats/stats/stats";
 import { useCharacterQuiz } from "./hooks/useCharacterQuiz";
 
 function App() {

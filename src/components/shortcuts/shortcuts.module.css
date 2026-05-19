@@ -1,0 +1,32 @@
+.shortcuts {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.keys {
+  display: flex;
+  align-items: center;
+}
+
+.keys kbd:not(:last-of-type):after {
+  content: ",";
+  margin-right: 0.1rem;
+}
+
+.keys kbd.disabled {
+  opacity: 0.5;
+}
+
+.action:before {
+  content: "·";
+  margin-right: 0.5rem;
+}
+
+/* Dispositivos táctiles */
+@media (pointer: coarse) {
+  .shortcuts {
+    display: none;
+  }
+}

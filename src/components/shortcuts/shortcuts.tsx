@@ -1,7 +1,8 @@
 import { faKeyboard } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useTranslation } from "react-i18next";
-import { CharacterType } from "../types/types";
+import { CharacterType } from "../../types/types";
+import styles from "./shortcuts.module.css";
 
 interface KeyboardShortcutsProps {
   isQuestionReady: boolean;
@@ -26,7 +27,7 @@ function KeyboardShortcuts({
 
   return (
     <div
-      className="shortcuts-hint"
+      className={styles.shortcuts}
       role="region"
       aria-label={t("keyboardShortcuts.regionLabel")}
     >
@@ -36,11 +37,11 @@ function KeyboardShortcuts({
         <>
           {isHintAvailable && (
             <>
-              <span className="shortcuts-hint-keys">
+              <span className={styles.keys}>
                 <kbd>H</kbd>
               </span>
 
-              <span className="shortcuts-hint-action">
+              <span className={styles.action}>
                 {t("keyboardShortcuts.useHint")}
               </span>
             </>
@@ -49,7 +50,7 @@ function KeyboardShortcuts({
           {!isHintAvailable && (
             <>
               <span
-                className="shortcuts-hint-keys"
+                className={styles.keys}
                 aria-label={t("keyboardShortcuts.answerShortcuts", {
                   total: totalOptions,
                 })}
@@ -60,7 +61,7 @@ function KeyboardShortcuts({
                   return (
                     <kbd
                       key={option.id}
-                      className={isHidden ? "shortcut-disabled" : ""}
+                      className={isHidden ? styles.disabled : ""}
                       aria-disabled={isHidden}
                     >
                       {index + 1}
@@ -69,7 +70,7 @@ function KeyboardShortcuts({
                 })}
               </span>
 
-              <span className="shortcuts-hint-action">
+              <span className={styles.action}>
                 {t("keyboardShortcuts.selectAnswer")}
               </span>
             </>
@@ -79,10 +80,10 @@ function KeyboardShortcuts({
 
       {isAnswerReady && (
         <>
-          <span className="shortcuts-hint-keys">
+          <span className={styles.keys}>
             <kbd>N</kbd>
           </span>
-          <span className="shortcuts-hint-action">
+          <span className={styles.action}>
             {t("keyboardShortcuts.nextQuestion")}
           </span>
         </>

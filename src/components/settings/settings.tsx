@@ -1,12 +1,13 @@
-import type { ScoreType, SettingsType } from "../types/types";
-import { useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faGear, faXmark } from "@fortawesome/free-solid-svg-icons";
+import type { ScoreType, SettingsType } from "@/types/types";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
-import { Trans, useTranslation } from "react-i18next";
-import SettingsRadioGroups from "./SettingsRadioGroups";
+import { faGear, faXmark } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import * as Dialog from "@radix-ui/react-dialog";
-import SettingsResetStatsDialog from "./SettingsResetStats";
+import { useState } from "react";
+import { Trans, useTranslation } from "react-i18next";
+import SettingsRadioGroups from "./settings-radio-groups";
+import SettingsResetStatsDialog from "./settings-reset-stats";
+import styles from "./settings.module.css";
 
 interface SettingsProps {
   settings: SettingsType;
@@ -39,13 +40,13 @@ function Settings({
 
   return (
     <Dialog.Root open={isOpen} onOpenChange={setIsOpen}>
-      <div className="settings-trigger">
+      <div className={styles.trigger}>
         <Dialog.Trigger asChild>
           <button
             type="button"
             title={t("settings.title")}
             aria-label={t("settings.title")}
-            className="button-unstyled icon-link"
+            className="unstyled icon-link"
           >
             <FontAwesomeIcon icon={faGear} aria-hidden="true" />
           </button>
@@ -55,7 +56,7 @@ function Settings({
       <Dialog.Portal>
         <Dialog.Overlay className="dialog-overlay" />
 
-        <Dialog.Content className="dialog-content settings">
+        <Dialog.Content className="dialog-content">
           <Dialog.Title className="dialog-title">
             {t("settings.title")}
           </Dialog.Title>
@@ -64,16 +65,16 @@ function Settings({
             {t("settings.description")}
           </Dialog.Description>
 
-          <div className="settings-body">
+          <div className={styles.body}>
             {/* Opciones de configuración */}
-            <div className="settings-content">
+            <div className={styles.content}>
               {/* Selector de idioma */}
-              <div className="setting-item">
-                <h3 className="setting-item-title">
+              <div className={styles.item}>
+                <h3 className={styles.itemTitle}>
                   {t("settings.language.legend")}
                 </h3>
 
-                <div className="setting-item-content">
+                <div className={styles.itemContent}>
                   <select
                     value={i18n.language}
                     onChange={(event) => {
@@ -97,15 +98,15 @@ function Settings({
 
               {/* Reinicio de puntaje */}
               {score.total > 0 && (
-                <div className="setting-item reset-stats">
-                  <h3 className="setting-item-title">
+                <div className={`${styles.item} ${styles.resetStats}`}>
+                  <h3 className={styles.itemTitle}>
                     {t("settings.stats.legend")}
                   </h3>
 
-                  <div className="setting-item-content">
+                  <div className={styles.itemContent}>
                     <SettingsResetStatsDialog resetScore={resetScore} />
 
-                    <span className="stats-summary">
+                    <span className={styles.statsSummary}>
                       {t("settings.stats.summary", {
                         correct: score.correct,
                         total: score.total,
@@ -118,8 +119,8 @@ function Settings({
             </div>
 
             {/* Pie de la ventana modal */}
-            <div className="settings-footer">
-              <div className="settings-footer-left">
+            <div className={styles.footer}>
+              <div>
                 <a
                   href={import.meta.env.VITE_APP_REPO}
                   target="_blank"
@@ -131,7 +132,7 @@ function Settings({
                 </a>
               </div>
 
-              <div className="settings-footer-right">
+              <div className={styles.right}>
                 <Trans i18nKey="settings.footer.attribution">
                   <a
                     href="https://docs.anilist.co/"
@@ -149,7 +150,7 @@ function Settings({
               type="button"
               title={t("common.close")}
               aria-label={t("common.close")}
-              className="dialog-close button-unstyled icon-link"
+              className="dialog-close unstyled icon-link"
             >
               <FontAwesomeIcon icon={faXmark} />
             </button>

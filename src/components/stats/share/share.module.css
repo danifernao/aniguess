@@ -1,0 +1,15 @@
+.share svg {
+  font-size: 1.2rem;
+}
+
+.share button:disabled svg {
+  color: var(--color-blue-1);
+}
+
+.cardWrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -2;
+  pointer-events: none;
+}

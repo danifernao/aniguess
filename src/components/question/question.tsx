@@ -1,11 +1,12 @@
+import CharacterImage from "@/components/image/image/image";
+import { CharacterType } from "@/types/types";
+import ImageFlag from "@components/image/flag/flag";
+import Tooltip from "@components/tooltip/tooltip";
 import { faLightbulb } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
-import type { CharacterType } from "../types/types";
-import CharacterImage from "./CharacterImage";
-import QuestionImageFlag from "./QuestionImageFlag";
-import Tooltip from "./Tooltip";
+import styles from "./question.module.css";
 
 interface QuestionProps {
   questionMode: "character" | "series";
@@ -122,28 +123,27 @@ function Question({
   }, [isHintAvailable, canUseHint, setHintAvailability, isImageReady]);
 
   return (
-    <div className="question">
-      <div className="question-image-wrapper">
+    <div className={styles.question}>
+      <div className={styles.image}>
         <CharacterImage
           src={questionCharacter.image.large}
           alt={t("question.image_alt")}
-          className="question-image"
           onComplete={() => setIsImageReady(true)}
         />
 
         {import.meta.env.VITE_FUNCTIONS_ENABLED && isImageReady && (
-          <QuestionImageFlag
-            questionCharacter={questionCharacter}
+          <ImageFlag
+            src={questionCharacter.image.large}
             newQuestion={newQuestion}
           />
         )}
       </div>
 
-      <div className="question-block">
+      <div>
         <div
-          className={`question-header ${isHintAvailable ? "hint-available" : ""}`}
+          className={`${styles.header} ${isHintAvailable ? styles.hintAvailable : ""}`}
         >
-          <h2 className="question-title">
+          <h2 className={styles.title}>
             {questionMode === "character"
               ? t("question.character")
               : t("question.series")}
@@ -153,7 +153,7 @@ function Question({
             <Tooltip content={t("question.hintTooltip")}>
               <button
                 type="button"
-                className="question-hint"
+                className={styles.hint}
                 onClick={triggerHint}
                 aria-keyshortcuts="h"
                 aria-label={t("question.hintLabel")}
@@ -166,14 +166,13 @@ function Question({
 
         {answerOptions.map((character: CharacterType, index: number) => (
           <div
-            className={`question-options ${isOptionHidden(character.id) ? "hidden" : ""}`}
+            className={`${styles.options} ${isOptionHidden(character.id) ? styles.hidden : ""}`}
             key={character.id}
           >
             <input
               type="radio"
               id={`media-${character.id}`}
               value={character.id}
-              name="series-title"
               onChange={() => handleChange(character)}
               onKeyDown={(e) => handleKeyDown(e, character)}
               aria-keyshortcuts={`${index + 1}`}

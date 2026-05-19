@@ -1,10 +1,11 @@
-import { useTranslation } from "react-i18next";
 import { faCircleNotch, faShare } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useRef, useState } from "react";
-import StatsShareCard from "./StatsShareCard";
 import { toPng } from "html-to-image";
+import { useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { toast } from "sonner";
+import StatsShareCard from "../card/card";
+import styles from "./share.module.css";
 
 interface StatsShare {
   total: number;
@@ -45,9 +46,9 @@ function StatsShare({ total, correct, percentage }: StatsShare) {
   };
 
   return (
-    <div className="stats-share">
+    <div className={styles.share}>
       <button
-        className="stats-share-button button-unstyled icon-link"
+        className="unstyled icon-link"
         title={t("stats.share.label")}
         aria-label={t("stats.share.label")}
         aria-busy={isDownloading}
@@ -61,11 +62,7 @@ function StatsShare({ total, correct, percentage }: StatsShare) {
         )}
       </button>
 
-      <div
-        ref={cardRef}
-        className="stats-share-card-wrapper"
-        aria-hidden="true"
-      >
+      <div ref={cardRef} className={styles.cardWrapper} aria-hidden="true">
         <StatsShareCard
           correct={correct}
           total={total}

@@ -1,5 +1,6 @@
 import * as Tooltip from "@radix-ui/react-tooltip";
 import type { ReactNode } from "react";
+import styles from "./tooltip.module.css";
 
 type TooltipDesktopProps = {
   content: string;
@@ -17,10 +18,10 @@ function TooltipDesktop({ content, children }: TooltipDesktopProps) {
             side="top"
             sideOffset={6}
             collisionPadding={8}
-            className="tooltip-content"
+            className={styles.content}
           >
             {content}
-            <Tooltip.Arrow className="tooltip-arrow" />
+            <Tooltip.Arrow className={styles.arrow} />
           </Tooltip.Content>
         </Tooltip.Portal>
       </Tooltip.Root>

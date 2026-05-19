@@ -1,5 +1,6 @@
-import type { SettingsType } from "../types/types";
+import type { SettingsType } from "@/types/types";
 import { useTranslation } from "react-i18next";
+import styles from "./settings.module.css";
 
 interface SettingsRadioGroupsProps {
   settings: SettingsType;
@@ -96,14 +97,12 @@ function SettingsRadioGroups({
   };
 
   return radioGroups.map((group, i) => (
-    <div className="setting-item" key={i}>
-      <h3 className="setting-item-title">
-        {t(`settings.${group.name}.legend`)}
-      </h3>
+    <div className={styles.item} key={i}>
+      <h3 className={styles.itemTitle}>{t(`settings.${group.name}.legend`)}</h3>
 
-      <div className="setting-item-content">
+      <div className={styles.itemContent}>
         {group.options.map((option, j) => (
-          <div className="option" key={j}>
+          <div className={styles.option} key={j}>
             <input
               type="radio"
               id={`${group.name}-${j}`}

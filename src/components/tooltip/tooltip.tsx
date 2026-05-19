@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
-import TooltipDesktop from "./TooltipDesktop";
-import TooltipMobile from "./TooltipMobile";
+import TooltipDesktop from "./tooltip-desktop";
+import TooltipMobile from "./tooltip-mobile";
 
 type TooltipProps = {
   content: string;

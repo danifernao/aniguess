@@ -9,6 +9,7 @@ import {
   type ReactElement,
   type ReactNode,
 } from "react";
+import styles from "./tooltip.module.css";
 
 type TooltipMobileProps = {
   content: string;
@@ -104,10 +105,10 @@ export default function TooltipMobile({
           side="top"
           sideOffset={6}
           collisionPadding={8}
-          className="tooltip-content"
+          className={styles.content}
         >
           {content}
-          <Popover.Arrow className="tooltip-arrow" />
+          <Popover.Arrow className={styles.arrow} />
         </Popover.Content>
       </Popover.Portal>
     </Popover.Root>

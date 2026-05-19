@@ -1,0 +1,56 @@
+.stats {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  border-bottom: 0.1rem solid var(--color-blue-4);
+}
+
+.scoreWrapper {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.score {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.progress {
+  width: 3rem !important;
+  height: 3rem !important;
+}
+
+.progress :global(.CircularProgressbar-trail) {
+  stroke: var(--color-blue-1);
+}
+
+.progress :global(.CircularProgressbar-text) {
+  font-size: 1.5rem !important;
+}
+
+.progress.neutral :global(.CircularProgressbar-path),
+.progress.neutral :global(.CircularProgressbar-text) {
+  stroke: var(--color-blue-1);
+  fill: var(--color-blue-1);
+}
+
+.progress.good :global(.CircularProgressbar-path),
+.progress.good :global(.CircularProgressbar-text) {
+  stroke: var(--color-green);
+  fill: var(--color-green);
+}
+
+.progress.medium :global(.CircularProgressbar-path),
+.progress.medium :global(.CircularProgressbar-text) {
+  stroke: var(--color-orange);
+  fill: var(--color-orange);
+}
+
+.progress.bad :global(.CircularProgressbar-path),
+.progress.bad :global(.CircularProgressbar-text) {
+  stroke: var(--color-red);
+  fill: var(--color-red);
+}

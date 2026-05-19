@@ -1,0 +1,77 @@
+.trigger {
+  font-size: 1.5rem;
+  color: var(--color-blue-1) !important;
+}
+
+.trigger button {
+  background-color: transparent;
+  border: none;
+  font-size: 1.5rem;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  min-height: 0;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  overflow-y: auto;
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  font-size: 0.9rem;
+}
+
+.itemTitle {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.itemContent {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.itemContent select {
+  outline-offset: -0.3rem;
+}
+
+.itemContent .option {
+  display: flex;
+  gap: 0.3rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.resetStats .itemContent {
+  gap: 1rem;
+}
+
+.resetStats .statsSummary {
+  font-size: 0.8rem;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.footer .right {
+  font-size: 0.8rem;
+}
+
+.footer svg {
+  font-size: 1.5rem;
+}

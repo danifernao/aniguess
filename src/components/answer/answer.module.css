@@ -1,0 +1,94 @@
+.answer {
+  flex-direction: column;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  text-align: center;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.answer.correct .title,
+.answer.correct .details.character .answerCharacter a,
+.answer.correct .details.series .answerSeries a {
+  color: var(--color-green);
+}
+
+.answer.incorrect .title,
+.answer.incorrect .details.character .answerCharacter a,
+.answer.incorrect .details.series .answerSeries a {
+  color: var(--color-red);
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.details.character .answerSeries a,
+.details.series .answerCharacter a {
+  color: var(--color-blue-1);
+}
+
+.details .answerCharacter {
+  font-size: 1.3rem;
+}
+
+.details .answerSeries {
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.details a .linkIcon {
+  margin-left: 0.5rem;
+  font-size: 0.8rem;
+  vertical-align: middle;
+  transform: translateY(-0.05em);
+}
+
+.nsfwBadge {
+  display: inline-block;
+  margin-right: 0.5rem;
+  padding: 0.1rem 0.3rem;
+  background-color: var(--color-red-2);
+  border: none;
+  color: var(--color-white);
+  font-family: "Roboto", sans-serif;
+  font-size: 0.7rem;
+  border-radius: 0.2rem;
+  vertical-align: middle;
+  transform: translateY(-0.05em);
+}
+
+.next {
+  padding: 0.5rem 0.8rem;
+  background-color: var(--color-blue-3);
+  border: 0;
+  border-radius: 0.3rem;
+  font-family: "Roboto", sans-serif;
+  font-size: 1rem;
+  color: var(--color-white);
+  transition:
+    box-shadow 0.1s ease,
+    transform 0.1s ease-in-out;
+  font-weight: 600;
+}
+
+.next:hover {
+  transform: scale(1.03);
+  box-shadow: 0 0.1rem 0.6rem rgb(from var(--color-blue-3) r g b / 0.6);
+}
+
+@media only screen and (max-width: 600px) {
+  .details {
+    gap: 1rem;
+  }
+}
