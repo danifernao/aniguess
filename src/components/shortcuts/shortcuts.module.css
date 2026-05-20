@@ -1,13 +1,18 @@
 .shortcuts {
-  display: flex;
-  align-items: center;
   gap: 0.5rem;
-  font-size: 0.9rem;
 }
 
+.shortcuts,
+.item,
 .keys {
   display: flex;
   align-items: center;
+  font-size: 0.9rem;
+}
+
+.item:not(:last-of-type):after {
+  content: "|";
+  margin-left: 0.5rem;
 }
 
 .keys kbd:not(:last-of-type):after {
@@ -21,7 +26,7 @@
 
 .action:before {
   content: "·";
-  margin-right: 0.5rem;
+  margin: 0 0.3rem;
 }
 
 /* Dispositivos táctiles */

@@ -17,12 +17,11 @@ function App() {
     questionCharacter,
     answerOptions,
     hiddenOptionIds,
-    isHintAvailable,
+    availableHints,
     isAnswerCorrect,
     score,
     settings,
     errorContext,
-    setHintAvailability,
     triggerHint,
     checkAnswer,
     newQuestion,
@@ -30,7 +29,6 @@ function App() {
     saveSettings,
     resumeFlow,
   } = useCharacterQuiz(answerOptionCount);
-
   // Determina el estado actual del juego.
   const hasQuestion = questionCharacter !== null;
   const isQuestionReady = hasQuestion && isAnswerCorrect === null;
@@ -67,9 +65,8 @@ function App() {
                 questionCharacter={questionCharacter}
                 answerOptions={answerOptions}
                 hiddenOptionIds={hiddenOptionIds}
-                isHintAvailable={isHintAvailable}
+                availableHints={availableHints}
                 seriesTitleLanguage={settings.seriesTitleLanguage}
-                setHintAvailability={setHintAvailability}
                 triggerHint={triggerHint}
                 checkAnswer={checkAnswer}
                 newQuestion={newQuestion}
@@ -101,7 +98,6 @@ function App() {
               isAnswerReady={isAnswerReady}
               answerOptions={answerOptions}
               hiddenOptionIds={hiddenOptionIds}
-              isHintAvailable={isHintAvailable}
               totalOptions={answerOptionCount}
             />
           </footer>

@@ -4,6 +4,7 @@ const defaultGameState: GameStateType = {
   usedCharacterIds: [],
   optionCharacterIds: null,
   questionCharacterId: null,
+  availableHints: 1,
   score: {
     total: 0,
     correct: 0,

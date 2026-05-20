@@ -43,8 +43,11 @@ export function useCharacterQuiz(answerOptionCount: number) {
   // Opciones de respuesta.
   const [optionCharacters, setOptionCharacters] = useState<CharacterType[]>([]);
 
-  // Disponibilidad de una pista para la pregunta.
-  const [isHintAvailable, setIsHintAvailable] = useState(false);
+  // Número de pistas por pregunta.
+  const hintsPerQuestions = 5;
+
+  // Número de pistas disponibles.
+  const [availableHints, setAvailableHints] = useState(1);
 
   // Opciones descartadas por las pistas.
   const [hiddenOptionIds, setHiddenOptionIds] = useState<number[]>([]);
@@ -179,7 +182,7 @@ export function useCharacterQuiz(answerOptionCount: number) {
 
   // Proporciona una pista ocultando una opción incorrecta.
   const triggerHint = useCallback((): void => {
-    if (!questionCharacter) return;
+    if (!questionCharacter || availableHints <= 0) return;
 
     const wrongOptions = optionCharacters.filter(
       (c) => c.id !== questionCharacter.id && !hiddenOptionIds.includes(c.id),
@@ -190,14 +193,9 @@ export function useCharacterQuiz(answerOptionCount: number) {
     );
 
     setHiddenOptionIds((prev) => [...prev, selected.id]);
-    setIsHintAvailable(false);
-  }, [optionCharacters, hiddenOptionIds, questionCharacter]);
 
-  // Alterna el estado de disponibilidad de la pista.
-  const setHintAvailability = useCallback(
-    (value: boolean) => setIsHintAvailable(value),
-    [],
-  );
+    setAvailableHints((prev) => prev - 1);
+  }, [optionCharacters, hiddenOptionIds, questionCharacter, availableHints]);
 
   // Verifica si la respuesta es correcta y actualiza el puntaje de la partida.
   const checkAnswer = (selected: CharacterType): void => {
@@ -213,6 +211,10 @@ export function useCharacterQuiz(answerOptionCount: number) {
       }
     }
 
+    if ((score.total + 1) % hintsPerQuestions === 0) {
+      setAvailableHints((prev) => prev + 1);
+    }
+
     setScore((s) => ({
       total: s.total + 1,
       correct: isCorrect ? s.correct + 1 : s.correct,
@@ -224,7 +226,6 @@ export function useCharacterQuiz(answerOptionCount: number) {
     setOptionCharacters([]);
     setHiddenOptionIds([]);
     setQuestionCharacter(null);
-    setIsHintAvailable(false);
     setIsAnswerCorrect(null);
   };
 
@@ -275,6 +276,7 @@ export function useCharacterQuiz(answerOptionCount: number) {
     setUsedCharacterIds(localState.usedCharacterIds);
     setSavedOptionCharacterIds(localState.optionCharacterIds);
     setSavedQuestionCharacterId(localState.questionCharacterId);
+    setAvailableHints(localState.availableHints);
     setScore(localState.score);
     setSettings(localState.settings);
 
@@ -320,6 +322,7 @@ export function useCharacterQuiz(answerOptionCount: number) {
           : null,
       questionCharacterId:
         isAnswerCorrect === null ? (questionCharacter?.id ?? null) : null,
+      availableHints,
       score,
       settings,
     });
@@ -328,6 +331,7 @@ export function useCharacterQuiz(answerOptionCount: number) {
     usedCharacterIds,
     optionCharacters,
     questionCharacter,
+    availableHints,
     isAnswerCorrect,
     score,
     settings,
@@ -337,12 +341,11 @@ export function useCharacterQuiz(answerOptionCount: number) {
     questionCharacter,
     answerOptions,
     hiddenOptionIds,
-    isHintAvailable,
+    availableHints,
     isAnswerCorrect,
     score,
     settings,
     errorContext,
-    setHintAvailability,
     triggerHint,
     checkAnswer,
     newQuestion,

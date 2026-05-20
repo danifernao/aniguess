@@ -9,7 +9,6 @@ interface KeyboardShortcutsProps {
   isAnswerReady: boolean;
   answerOptions: CharacterType[];
   hiddenOptionIds: number[];
-  isHintAvailable: boolean;
   totalOptions: number;
 }
 
@@ -18,7 +17,6 @@ function KeyboardShortcuts({
   isAnswerReady,
   answerOptions,
   hiddenOptionIds,
-  isHintAvailable,
   totalOptions,
 }: KeyboardShortcutsProps) {
   const { t } = useTranslation();
@@ -35,58 +33,54 @@ function KeyboardShortcuts({
 
       {isQuestionReady && (
         <>
-          {isHintAvailable && (
-            <>
-              <span className={styles.keys}>
-                <kbd>H</kbd>
-              </span>
+          <div className={styles.item}>
+            <span
+              className={styles.keys}
+              aria-label={t("keyboardShortcuts.answerShortcuts", {
+                total: totalOptions,
+              })}
+            >
+              {answerOptions.map((option, index) => {
+                const isHidden = hiddenOptionIds.includes(option.id);
 
-              <span className={styles.action}>
-                {t("keyboardShortcuts.useHint")}
-              </span>
-            </>
-          )}
+                return (
+                  <kbd
+                    key={option.id}
+                    className={isHidden ? styles.disabled : ""}
+                    aria-disabled={isHidden}
+                  >
+                    {index + 1}
+                  </kbd>
+                );
+              })}
+            </span>
 
-          {!isHintAvailable && (
-            <>
-              <span
-                className={styles.keys}
-                aria-label={t("keyboardShortcuts.answerShortcuts", {
-                  total: totalOptions,
-                })}
-              >
-                {answerOptions.map((option, index) => {
-                  const isHidden = hiddenOptionIds.includes(option.id);
+            <span className={styles.action}>
+              {t("keyboardShortcuts.selectAnswer")}
+            </span>
+          </div>
 
-                  return (
-                    <kbd
-                      key={option.id}
-                      className={isHidden ? styles.disabled : ""}
-                      aria-disabled={isHidden}
-                    >
-                      {index + 1}
-                    </kbd>
-                  );
-                })}
-              </span>
+          <div className={styles.item}>
+            <span className={styles.keys}>
+              <kbd>H</kbd>
+            </span>
 
-              <span className={styles.action}>
-                {t("keyboardShortcuts.selectAnswer")}
-              </span>
-            </>
-          )}
+            <span className={styles.action}>
+              {t("keyboardShortcuts.useHint")}
+            </span>
+          </div>
         </>
       )}
 
       {isAnswerReady && (
-        <>
+        <div className={styles.item}>
           <span className={styles.keys}>
             <kbd>N</kbd>
           </span>
           <span className={styles.action}>
             {t("keyboardShortcuts.nextQuestion")}
           </span>
-        </>
+        </div>
       )}
     </div>
   );

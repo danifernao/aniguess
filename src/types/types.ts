@@ -61,6 +61,7 @@ export interface GameStateType {
   usedCharacterIds: number[];
   optionCharacterIds: number[] | null;
   questionCharacterId: number | null;
+  availableHints: number;
   score: ScoreType;
   settings: SettingsType;
 }

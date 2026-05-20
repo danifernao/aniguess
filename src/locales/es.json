@@ -35,8 +35,12 @@
   },
   "question": {
     "character": "¿Cómo se llama este personaje?",
-    "hintLabel": "Usa una pista",
-    "hintTooltip": "Usa una pista para descartar una respuesta incorrecta.",
+    "hint": {
+      "label": "Usar pista. {{total}} disponibles",
+      "maxReached": "No puedes usar más pistas en esta pregunta",
+      "notAvailable": "No tienes pistas disponibles",
+      "tooltip": "Usa una pista para descartar una respuesta incorrecta."
+    },
     "image_alt": "Imagen del personaje a adivinar",
     "series": "¿A qué obra pertenece este personaje?"
   },

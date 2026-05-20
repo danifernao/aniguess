@@ -6,6 +6,7 @@ import { faLightbulb } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { toast } from "sonner";
 import styles from "./question.module.css";
 
 interface QuestionProps {
@@ -13,9 +14,8 @@ interface QuestionProps {
   questionCharacter: CharacterType;
   answerOptions: CharacterType[];
   hiddenOptionIds: number[];
-  isHintAvailable: boolean;
+  availableHints: number;
   seriesTitleLanguage: "english" | "romaji";
-  setHintAvailability: (value: boolean) => void;
   triggerHint: () => void;
   checkAnswer: (char: CharacterType) => void;
   newQuestion: () => void;
@@ -26,9 +26,8 @@ function Question({
   questionCharacter,
   answerOptions,
   hiddenOptionIds,
-  isHintAvailable,
+  availableHints,
   seriesTitleLanguage,
-  setHintAvailability,
   triggerHint,
   checkAnswer,
   newQuestion,
@@ -47,7 +46,20 @@ function Question({
   const maxHints = Math.floor(answerOptions.length / 2);
 
   // Indica si se pueden usar pistas (si no se han descartado demasiadas opciones).
-  const canUseHint = hiddenOptionIds.length < maxHints;
+  const canUseHint = availableHints > 0 && hiddenOptionIds.length < maxHints;
+
+  // Activa una pista o notifica al usuario por qué no está disponible.
+  const handleHint = useCallback(() => {
+    if (canUseHint) {
+      triggerHint();
+    } else {
+      if (availableHints <= 0) {
+        toast.warning(t("question.hint.notAvailable"));
+      } else {
+        toast.warning(t("question.hint.maxReached"));
+      }
+    }
+  }, [canUseHint, triggerHint, availableHints, t]);
 
   // Determina si una opción ha sido descartada por una pista.
   const isOptionHidden = useCallback(
@@ -96,11 +108,11 @@ function Question({
         checkAnswer(character);
       }
 
-      if (e.key.toLowerCase() === "h" && isHintAvailable) {
-        triggerHint();
+      if (e.key.toLowerCase() === "h") {
+        handleHint();
       }
     },
-    [answerOptions, checkAnswer, isHintAvailable, isOptionHidden, triggerHint],
+    [answerOptions, checkAnswer, isOptionHidden, handleHint],
   );
 
   useEffect(() => {
@@ -110,17 +122,6 @@ function Question({
       document.removeEventListener("keydown", handleShortcut);
     };
   }, [handleShortcut]);
-
-  // Muestra una pista después de un minuto.
-  useEffect(() => {
-    if (isHintAvailable || !canUseHint || !isImageReady) return;
-
-    const timer = setTimeout(() => {
-      setHintAvailability(true);
-    }, 20000);
-
-    return () => clearTimeout(timer);
-  }, [isHintAvailable, canUseHint, setHintAvailability, isImageReady]);
 
   return (
     <div className={styles.question}>
@@ -140,28 +141,27 @@ function Question({
       </div>
 
       <div>
-        <div
-          className={`${styles.header} ${isHintAvailable ? styles.hintAvailable : ""}`}
-        >
+        <div className={styles.header}>
           <h2 className={styles.title}>
             {questionMode === "character"
               ? t("question.character")
               : t("question.series")}
           </h2>
 
-          {isHintAvailable && (
-            <Tooltip content={t("question.hintTooltip")}>
-              <button
-                type="button"
-                className={styles.hint}
-                onClick={triggerHint}
-                aria-keyshortcuts="h"
-                aria-label={t("question.hintLabel")}
-              >
-                <FontAwesomeIcon icon={faLightbulb} aria-hidden="true" />
-              </button>
-            </Tooltip>
-          )}
+          <Tooltip content={t("question.hint.tooltip")}>
+            <button
+              type="button"
+              className={`${styles.hint} ${canUseHint ? styles.available : ""}`}
+              onClick={handleHint}
+              aria-keyshortcuts="h"
+              aria-label={t("question.hint.label", {
+                total: availableHints,
+              })}
+            >
+              <FontAwesomeIcon icon={faLightbulb} aria-hidden="true" />
+              <sup aria-hidden="true">{availableHints}</sup>
+            </button>
+          </Tooltip>
         </div>
 
         {answerOptions.map((character: CharacterType, index: number) => (
