@@ -39,7 +39,11 @@
       "label": "Use hint. {{total}} available",
       "maxReached": "No more hints can be used for this question",
       "notAvailable": "No hints available",
-      "tooltip": "Use a hint to discard an incorrect answer."
+      "tooltip": {
+        "available": "Use a hint to discard an incorrect answer.",
+        "maxReached": "You can't use more hints for this question.",
+        "notAvailable": "You'll get a new hint every five questions."
+      }
     },
     "image_alt": "Image of the character to guess",
     "series": "What series is this character from?"

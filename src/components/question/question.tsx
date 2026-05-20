@@ -48,6 +48,14 @@ function Question({
   // Indica si se pueden usar pistas (si no se han descartado demasiadas opciones).
   const canUseHint = availableHints > 0 && hiddenOptionIds.length < maxHints;
 
+  // Clave de traducción del tooltip según el estado actual de las pistas.
+  const hintTooltip =
+    availableHints > 0
+      ? canUseHint
+        ? "question.hint.tooltip.available"
+        : "question.hint.tooltip.maxReached"
+      : "question.hint.tooltip.notAvailable";
+
   // Activa una pista o notifica al usuario por qué no está disponible.
   const handleHint = useCallback(() => {
     if (canUseHint) {
@@ -148,7 +156,7 @@ function Question({
               : t("question.series")}
           </h2>
 
-          <Tooltip content={t("question.hint.tooltip")}>
+          <Tooltip content={t(hintTooltip)}>
             <button
               type="button"
               className={`${styles.hint} ${canUseHint ? styles.available : ""}`}

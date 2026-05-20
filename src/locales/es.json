@@ -39,7 +39,11 @@
       "label": "Usar pista. {{total}} disponibles",
       "maxReached": "No puedes usar más pistas en esta pregunta",
       "notAvailable": "No tienes pistas disponibles",
-      "tooltip": "Usa una pista para descartar una respuesta incorrecta."
+      "tooltip": {
+        "available": "Usa una pista para descartar una respuesta incorrecta.",
+        "maxReached": "No puedes usar más pistas en esta pregunta.",
+        "notAvailable": "Obtendrás una nueva pista cada cinco preguntas."
+      }
     },
     "image_alt": "Imagen del personaje a adivinar",
     "series": "¿A qué obra pertenece este personaje?"
