@@ -23,7 +23,7 @@ class AudioManager {
 
   public playError(): void {
     this.error.currentTime = 0;
-    this.error.volume = 0.4;
+    this.error.volume = 0.6;
     void this.error.play();
   }
 }
