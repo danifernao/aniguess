@@ -11,6 +11,7 @@ export const filterValidCharacters = (
   limit: number,
 ): CharacterType[] => {
   const result: CharacterType[] = [];
+  const blockedMediaIds = new Set<number>();
 
   for (let i = 0; i < apiCharacters.length; i++) {
     const character = apiCharacters[i];
@@ -31,11 +32,7 @@ export const filterValidCharacters = (
         // contenido NSFW establecida por el jugador.
         (settings.includeAdultMedia || !m.isAdult) &&
         // Solo se consideran las obras que no estén presentes en el resultado.
-        !result.some((resultCharacter) =>
-          resultCharacter.media.nodes.some(
-            (resultMedia) => resultMedia.id === m.id,
-          ),
-        ),
+        !blockedMediaIds.has(m.id),
     );
 
     // Solo se consideran los personajes que tengan una imagen válida
@@ -43,6 +40,12 @@ export const filterValidCharacters = (
     if (imageIsDefault || media.length === 0) {
       continue;
     }
+
+    // Actualiza el Set de IDs bloqueados al aceptar un personaje.
+    media.forEach((m) => {
+      blockedMediaIds.add(m.id);
+      m.relations.nodes.forEach((rel) => blockedMediaIds.add(rel.id));
+    });
 
     result.push({
       ...character,

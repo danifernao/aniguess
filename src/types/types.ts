@@ -29,6 +29,13 @@ export interface MediaType {
     english: string;
     romaji: string;
   };
+  relations: {
+    nodes: [
+      {
+        id: number;
+      },
+    ];
+  };
   siteUrl: string;
 }
 

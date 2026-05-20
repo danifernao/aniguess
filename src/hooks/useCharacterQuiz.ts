@@ -101,6 +101,11 @@ export function useCharacterQuiz(answerOptionCount: number) {
                 english
                 romaji
               }
+              relations {
+                nodes {
+                  id
+                }
+              }
               siteUrl
             }
           }
