@@ -3,6 +3,7 @@ import * as Popover from "@radix-ui/react-popover";
 import {
   cloneElement,
   isValidElement,
+  useId,
   useRef,
   useState,
   type PointerEvent,
@@ -21,6 +22,8 @@ export default function TooltipMobile({
   children,
 }: TooltipMobileProps) {
   const [open, setOpen] = useState(false);
+
+  const tooltipId = useId();
 
   // Referencia usada para almacenar el temporizador del toque presionado.
   const timerRef = useRef<number | null>(null);
@@ -68,6 +71,8 @@ export default function TooltipMobile({
   const child = children as ReactElement<React.HTMLAttributes<Element>>;
 
   const childWithHandlers = cloneElement(child, {
+    "aria-describedby": tooltipId,
+
     onPointerDown: (e: React.PointerEvent) => {
       child.props.onPointerDown?.(e);
       handlePointerDown();
@@ -98,14 +103,18 @@ export default function TooltipMobile({
 
   return (
     <Popover.Root open={open} onOpenChange={setOpen}>
-      <Popover.Trigger asChild>{childWithHandlers}</Popover.Trigger>
-
-      <Popover.Portal>
+      <Popover.Anchor asChild>{childWithHandlers}</Popover.Anchor>
+      <Popover.Portal forceMount>
         <Popover.Content
+          id={tooltipId}
           side="top"
           sideOffset={6}
           collisionPadding={8}
           className={styles.content}
+          role="tooltip"
+          onOpenAutoFocus={(e) => e.preventDefault()}
+          onCloseAutoFocus={(e) => e.preventDefault()}
+          style={{ display: open ? undefined : "none" }}
         >
           {content}
           <Popover.Arrow className={styles.arrow} />
