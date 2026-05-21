@@ -52,7 +52,7 @@
     "analysisError": "Could not analyze the image",
     "ariaLabel": "Verify image validity",
     "notPlaceholder": "The image appears to be valid",
-    "tooltip": "Analyzes the image and automatically skips the question if a default image is detected."
+    "tooltip": "Automatically skips the question if a placeholder image is detected."
   },
   "settings": {
     "changesApplied": "Changes applied",
