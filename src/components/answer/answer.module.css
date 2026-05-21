@@ -82,13 +82,15 @@
   font-weight: 600;
 }
 
-.next:hover {
-  transform: scale(1.03);
-  box-shadow: 0 0.1rem 0.6rem rgb(from var(--color-blue-3) r g b / 0.6);
-}
-
 @media only screen and (max-width: 600px) {
   .details {
     gap: 1rem;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .next:hover {
+    transform: scale(1.03);
+    box-shadow: 0 0.1rem 0.6rem rgb(from var(--color-blue-3) r g b / 0.6);
   }
 }

@@ -34,7 +34,6 @@
   color: var(--color-yellow);
 }
 
-.hint.available:hover,
 .hint.available:focus {
   filter: drop-shadow(0 0 0.4rem var(--color-yellow));
 }
@@ -74,5 +73,11 @@
 
   .options:not(:last-of-type) {
     margin-bottom: 1rem;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .hint.available:hover {
+    filter: drop-shadow(0 0 0.4rem var(--color-yellow));
   }
 }

@@ -8,7 +8,12 @@
   transition: opacity 0.2s ease;
 }
 
-.flag:hover,
 .flag:disabled {
   opacity: 1;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .flag:hover {
+    opacity: 1;
+  }
 }

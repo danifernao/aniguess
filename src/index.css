@@ -78,20 +78,12 @@ button.link {
   background-color: var(--color-red-2);
 }
 
-.button.danger:hover {
-  background-color: color-mix(in srgb, var(--color-red-2) 85%, black);
-}
-
 .button.danger:focus {
   background-color: color-mix(in srgb, var(--color-red-2) 75%, black);
 }
 
 .button.default {
   background-color: var(--color-blue-5);
-}
-
-.button.default:hover {
-  background-color: color-mix(in srgb, var(--color-blue-5) 90%, white);
 }
 
 .button.default:focus {
@@ -103,10 +95,6 @@ button.link {
   color: var(--color-blue-1);
   transition: color 0.2s ease;
   font-size: 1.5rem;
-}
-
-.icon-link:hover svg {
-  color: var(--color-blue-2);
 }
 
 /* Estructura */
@@ -250,4 +238,18 @@ body,
   --yarl__color_button_active: var(--color-blue-2);
   --yarl__color_button_disabled: rgb(from var(--color-blue-1) r g b / 0.4);
   backdrop-filter: blur(0.5rem) !important;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .button.danger:hover {
+    background-color: color-mix(in srgb, var(--color-red-2) 85%, black);
+  }
+
+  .button.default:hover {
+    background-color: color-mix(in srgb, var(--color-blue-5) 90%, white);
+  }
+
+  .icon-link:hover svg {
+    color: var(--color-blue-2);
+  }
 }
