@@ -232,6 +232,7 @@ export function useCharacterQuiz(answerOptionCount: number) {
   // Reinicia el puntaje.
   const resetScore = () => {
     setScore({ total: 0, correct: 0 });
+    setAvailableHints(1);
 
     toastChanges();
   };
