@@ -1,8 +1,8 @@
+import placeholderImage from "@/assets/anilist-placeholder.jpg";
 import { bmvbhash } from "blockhash-core";
 
 // Hash perceptual del placeholder.
-const placeholderHash =
-  "00000000000000000000000007e007e03ffc3ffc000000000000000000000000";
+let placeholderHashPromise: Promise<string> | null = null;
 
 // Distancia máxima permitida para considerar que una imagen es visualmente similar.
 // Mientras más alto, más tolerante; pero aumenta el riesgo de falsos positivos.
@@ -14,7 +14,10 @@ const normalizedSize = 64;
 // Carga una imagen desde una URL.
 const loadImage = (src: string): Promise<HTMLImageElement> => {
   return new Promise((resolve, reject) => {
-    const proxiedUrl = `/.netlify/functions/img-proxy?url=${encodeURIComponent(src)}`;
+    const imageUrl =
+      src.startsWith("http://") || src.startsWith("https://")
+        ? `/.netlify/functions/img-proxy?url=${encodeURIComponent(src)}`
+        : src;
 
     const img = new Image();
 
@@ -26,7 +29,7 @@ const loadImage = (src: string): Promise<HTMLImageElement> => {
       reject(error);
     };
 
-    img.src = proxiedUrl;
+    img.src = imageUrl;
   });
 };
 
@@ -54,6 +57,16 @@ export const generateHash = async (src: string): Promise<string> => {
   return bmvbhash(imageData, 16);
 };
 
+// Obtiene el hash del placeholder, calculándolo solo la primera vez
+// y almacenándolo para futuras comparaciones.
+export const getPlaceholderHash = async (): Promise<string> => {
+  if (placeholderHashPromise === null) {
+    placeholderHashPromise = generateHash(placeholderImage);
+  }
+
+  return placeholderHashPromise;
+};
+
 // Calcula la distancia Hamming entre dos hashes.
 // Mientras más baja la distancia, más parecidas son las imágenes
 export const distanceHamming = (hashA: string, hashB: string): number => {
@@ -75,6 +88,6 @@ export const distanceHamming = (hashA: string, hashB: string): number => {
 // Detecta si una imagen probablemente es el placeholder de AniList.
 export const isPlaceholder = async (imageUrl: string): Promise<boolean> => {
   const imageHash = await generateHash(imageUrl);
-  const distance = distanceHamming(imageHash, placeholderHash);
+  const distance = distanceHamming(imageHash, await getPlaceholderHash());
   return distance <= hammingThreshold;
 };

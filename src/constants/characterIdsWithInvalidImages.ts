@@ -2,5 +2,5 @@
 // Normalmente los personajes sin imagen usan "default.jpg",
 // pero algunos registros utilizan placeholders con nombres distintos.
 export const characterIdsWithInvalidImages = new Set<number>([
-  188194, 299305, 344021,
+  188194, 299305, 306364, 344021,
 ]);
