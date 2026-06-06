@@ -14,10 +14,9 @@ const normalizedSize = 64;
 // Carga una imagen desde una URL.
 const loadImage = (src: string): Promise<HTMLImageElement> => {
   return new Promise((resolve, reject) => {
-    const imageUrl =
-      src.startsWith("http://") || src.startsWith("https://")
-        ? `/.netlify/functions/img-proxy?url=${encodeURIComponent(src)}`
-        : src;
+    const imageUrl = src.startsWith(window.location.origin)
+      ? src
+      : `/.netlify/functions/img-proxy?url=${encodeURIComponent(src)}`;
 
     const img = new Image();
 
