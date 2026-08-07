@@ -42,7 +42,7 @@
       "tooltip": {
         "available": "Usa una pista para descartar una respuesta incorrecta.",
         "maxReached": "No puedes usar más pistas en esta pregunta.",
-        "notAvailable": "Obtendrás una nueva pista cada cinco preguntas."
+        "notAvailable": "Obtendrás una nueva pista cada cinco preguntas, hasta un máximo de tres."
       }
     },
     "image_alt": "Imagen del personaje a adivinar",

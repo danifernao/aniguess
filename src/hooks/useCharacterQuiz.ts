@@ -43,6 +43,9 @@ export function useCharacterQuiz(answerOptionCount: number) {
   // Opciones de respuesta.
   const [optionCharacters, setOptionCharacters] = useState<CharacterType[]>([]);
 
+  // Número máximo de pistas acumulables.
+  const maxHints = 3;
+
   // Número de pistas por pregunta.
   const hintsPerQuestions = 5;
 
@@ -212,7 +215,7 @@ export function useCharacterQuiz(answerOptionCount: number) {
     }
 
     if ((score.total + 1) % hintsPerQuestions === 0) {
-      setAvailableHints((prev) => prev + 1);
+      setAvailableHints((prev) => Math.min(prev + 1, maxHints));
     }
 
     setScore((s) => ({
@@ -277,7 +280,7 @@ export function useCharacterQuiz(answerOptionCount: number) {
     setUsedCharacterIds(localState.usedCharacterIds);
     setSavedOptionCharacterIds(localState.optionCharacterIds);
     setSavedQuestionCharacterId(localState.questionCharacterId);
-    setAvailableHints(localState.availableHints);
+    setAvailableHints(Math.min(localState.availableHints, maxHints));
     setScore(localState.score);
     setSettings(localState.settings);
 

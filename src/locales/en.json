@@ -42,7 +42,7 @@
       "tooltip": {
         "available": "Use a hint to discard an incorrect answer.",
         "maxReached": "You can't use more hints for this question.",
-        "notAvailable": "You'll get a new hint every five questions."
+        "notAvailable": "You'll get a new hint every five questions, up to a maximum of three."
       }
     },
     "image_alt": "Image of the character to guess",
