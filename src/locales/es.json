@@ -51,7 +51,7 @@
   "questionImageFlag": {
     "analysisError": "No se pudo analizar la imagen",
     "ariaLabel": "Verificar validez de la imagen",
-    "notPlaceholder": "No se detectó la imagen por defecto",
+    "notPlaceholder": "No se detectó una imagen por defecto",
     "tooltip": "Omite automáticamente la pregunta si se detecta una imagen por defecto."
   },
   "settings": {
