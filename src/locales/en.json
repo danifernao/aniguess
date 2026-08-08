@@ -51,7 +51,7 @@
   "questionImageFlag": {
     "analysisError": "Could not analyze the image",
     "ariaLabel": "Verify image validity",
-    "notPlaceholder": "The image appears to be valid",
+    "notPlaceholder": "No placeholder image detected",
     "tooltip": "Automatically skips the question if a placeholder image is detected."
   },
   "settings": {
